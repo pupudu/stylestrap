@@ -32,7 +32,7 @@ function applyPseudoSelectors(propKey, propValue, ruleMap) {
 }
 
 function applyBreakPoints(propKey, propValue, ruleMap) {
-  const breakPoints = getTheme().breakpoints;
+  const breakPoints = getTheme().breakpoints || {};
 
   return Object.keys(breakPoints).reduce((wrappedStyle, breakPoint) => {
     if (!propValue[breakPoint]) {

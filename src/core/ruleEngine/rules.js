@@ -26,11 +26,7 @@ export const getRuleMap = ({ theme, ...props }) => {
     color: {
       __label__: "color",
       enums: {
-        primary: theme.colors.primary,
-        secondary: theme.colors.secondary,
-        warning: theme.colors.warning,
-        danger: theme.colors.danger,
-        muted: theme.colors.muted
+        ...theme.colors
       },
       derive: (selector, base) =>
         theme.colors[`${selector}`](theme.colors[base])
