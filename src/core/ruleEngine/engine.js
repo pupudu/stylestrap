@@ -100,8 +100,8 @@ export function getStyleString(props, rulesToApply) {
   return generateStylesRecursively(props, ruleMapToApply);
 }
 
-export function filterProps(props) {
-  const ruleMap = getRuleMap({ theme: {}, ...props });
+export function filterProps(theme, props) {
+  const ruleMap = getRuleMap({ theme, ...props });
   const propsClone = { ...props };
   Object.keys(ruleMap).forEach(ruleKey => {
     if (ruleMap[ruleKey] === ruleKey || ruleMap[ruleKey].__label__ === ruleKey) {
