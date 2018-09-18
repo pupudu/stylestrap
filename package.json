@@ -1,0 +1,25 @@
+{
+  "name": "styledstrap",
+  "version": "0.0.1",
+  "description": "Bootstrap based components library built using styled components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pupudu/styledStrap.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "react",
+    "styled",
+    "components"
+  ],
+  "author": "Pubudu Dodangoda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pupudu/styledStrap/issues"
+  },
+  "homepage": "https://github.com/pupudu/styledStrap#readme"
+}
