@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { getStyleString, filterProps } from "./engine";
-import theme from "../theme";
+import React from 'react';
+import styled from 'styled-components';
+import { getStyleString, filterProps } from './engine';
+import theme from '../theme';
 
 export const withStyles = (
   displayName,

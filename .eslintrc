@@ -2,12 +2,15 @@
   "extends": [
     "eslint:recommended",
     "plugin:prettier/recommended",
+    "plugin:react/recommended",
     "prettier/react"
   ],
   "parserOptions": {
     "sourceType": "module",
+    "ecmaVersion": 2018,
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "modules": true
     }
   },
   "env": {
@@ -16,7 +19,12 @@
     "browser": true
   },
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true
+      }
+    ],
     "no-var": "error",
     "prefer-const": "error",
     "prefer-template": "error"

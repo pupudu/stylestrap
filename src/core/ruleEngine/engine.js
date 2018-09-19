@@ -61,7 +61,10 @@ function generateStylesRecursively(props, ruleMap, startStyle = '') {
         return appendRule(style, styleKey, propValue);
       case 'object': {
         if (propValue.base) {
-          style = concat(style, generateStylesRecursively({ [propKey]: propValue.base }, ruleMap));
+          style = concat(
+            style,
+            generateStylesRecursively({ [propKey]: propValue.base }, ruleMap)
+          );
         }
         // If the propValue is an object, this would either be breakpoints or nested attributes.
         // First try to treat the propValue object as breakpoints
@@ -83,7 +86,9 @@ function generateStylesRecursively(props, ruleMap, startStyle = '') {
         return generateStylesRecursively(propValue, ruleMap[propKey], style);
       }
     }
-    throw new Error(`Unexpected propValue type: ${typeof propValue} for key: ${propKey}`);
+    throw new Error(
+      `Unexpected propValue type: ${typeof propValue} for key: ${propKey}`
+    );
   }, startStyle);
 }
 
@@ -104,7 +109,10 @@ export function filterProps(theme, props) {
   const ruleMap = getRuleMap({ theme, ...props });
   const propsClone = { ...props };
   Object.keys(ruleMap).forEach(ruleKey => {
-    if (ruleMap[ruleKey] === ruleKey || ruleMap[ruleKey].__label__ === ruleKey) {
+    if (
+      ruleMap[ruleKey] === ruleKey ||
+      ruleMap[ruleKey].__label__ === ruleKey
+    ) {
       return;
     }
     delete propsClone[ruleKey];
