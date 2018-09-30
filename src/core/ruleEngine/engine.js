@@ -10,46 +10,73 @@ import { getRuleMap } from './rules';
 
 const pseudoSelectors = {
   hover: 'hover',
+  focus: 'focus',
   active: 'active',
   visited: 'visited',
   link: 'link'
 };
 
 function applyPseudoSelectors(propKey, propValue, ruleMap) {
-  return Object.keys(pseudoSelectors).reduce((wrappedStyle, selector) => {
-    if (!propValue[selector]) {
-      return wrappedStyle;
-    }
-    if (propValue[selector] === 'auto') {
-      propValue[selector] = ruleMap[propKey].derive(selector, propValue.base);
-    }
-    return appendPseudoSelector(
-      wrappedStyle,
-      selector,
-      generateStylesRecursively({ [propKey]: propValue[selector] }, ruleMap)
-    );
-  }, '');
+  let status = false;
+  const style = Object.keys(pseudoSelectors).reduce(
+    (wrappedStyle, selector) => {
+      if (selector in propValue) {
+        status = true;
+      }
+      if (!propValue[selector]) {
+        return wrappedStyle;
+      }
+      if (propValue[selector] === 'auto') {
+        propValue[selector] = ruleMap[propKey].derive(selector, propValue.base);
+      }
+      return appendPseudoSelector(
+        wrappedStyle,
+        selector,
+        generateStylesRecursively(
+          { [propKey]: propValue[selector] },
+          { [propKey]: ruleMap[propKey] }
+        )
+      );
+    },
+    ''
+  );
+  return {
+    status,
+    style
+  };
 }
 
 function applyBreakPoints(propKey, propValue, ruleMap) {
+  let status = false;
   const breakPoints = getTheme().breakpoints || {};
 
-  return Object.keys(breakPoints).reduce((wrappedStyle, breakPoint) => {
+  const style = Object.keys(breakPoints).reduce((wrappedStyle, breakPoint) => {
+    if (breakPoint in propValue) {
+      status = true;
+    }
     if (!propValue[breakPoint]) {
       return wrappedStyle;
     }
     return appendMediaQueryRule(
       wrappedStyle,
       breakPoints[breakPoint],
-      generateStylesRecursively({ [propKey]: propValue[breakPoint] }, ruleMap)
+      generateStylesRecursively(
+        { [propKey]: propValue[breakPoint] },
+        { [propKey]: ruleMap[propKey] }
+      )
     );
   }, '');
+
+  return {
+    status,
+    style
+  };
 }
 
 function generateStylesRecursively(props, ruleMap, startStyle = '') {
   return Object.keys(ruleMap).reduce((style, propKey) => {
-    const propValue = props[propKey];
     const styleKey = ruleMap[propKey];
+    const propValue = props[propKey] || styleKey.default || 'initial';
 
     // Generate css rules based on the prop value type
     switch (typeof propValue) {
@@ -63,22 +90,25 @@ function generateStylesRecursively(props, ruleMap, startStyle = '') {
         if (propValue.base) {
           style = concat(
             style,
-            generateStylesRecursively({ [propKey]: propValue.base }, ruleMap)
+            generateStylesRecursively(
+              { [propKey]: propValue.base },
+              { [propKey]: ruleMap[propKey] }
+            )
           );
         }
-        // If the propValue is an object, this would either be breakpoints or nested attributes.
-        // First try to treat the propValue object as breakpoints
-        const wrapped = applyBreakPoints(propKey, propValue, ruleMap);
+        // If the propValue is an object, this would either be
+        // breakpoints, pseudo-selectors or nested attributes.
 
-        // If it were actually breakpoints, then we get styles wrapped in a media query
-        if (wrapped !== '') {
-          return concat(style, wrapped);
+        // First try to treat the propValue object as breakpoints
+        const mediaStyles = applyBreakPoints(propKey, propValue, ruleMap);
+        if (mediaStyles.status) {
+          return concat(style, mediaStyles.style);
         }
 
-        const wrapped2 = applyPseudoSelectors(propKey, propValue, ruleMap);
-        // If it were actually pseudo selectors, then we get styles wrapped in a psedo selector
-        if (wrapped2 !== '') {
-          return concat(style, wrapped2);
+        // Next we try to treat propValue object as pseudo selectors
+        const pseudoStyles = applyPseudoSelectors(propKey, propValue, ruleMap);
+        if (pseudoStyles.status) {
+          return concat(style, pseudoStyles.style);
         }
 
         // If an empty string was returned from above, that means the propValue object contains nested attributes
@@ -92,17 +122,22 @@ function generateStylesRecursively(props, ruleMap, startStyle = '') {
   }, startStyle);
 }
 
-export function getStyleString(props, rulesToApply) {
+function toKebabCase(ruleKey) {
+  return ruleKey.replace(/([A-Z])/g, Cap => `-${Cap.toLowerCase()}`);
+}
+
+export function getStyleString(props, getStyleProps) {
   setTheme(props.theme);
   const ruleMap = getRuleMap(props);
-  let ruleMapToApply = ruleMap;
-  if (rulesToApply) {
-    ruleMapToApply = rulesToApply.reduce((map, rule) => {
-      map[rule] = ruleMap[rule];
-      return map;
-    }, {});
-  }
-  return generateStylesRecursively(props, ruleMapToApply);
+
+  const styleProps = getStyleProps(props, ruleMap);
+
+  const ruleMapToApply = Object.keys(styleProps).reduce((map, rule) => {
+    map[rule] = ruleMap[rule] || { __label__: toKebabCase(rule), unit: '' };
+    return map;
+  }, {});
+
+  return generateStylesRecursively(styleProps, ruleMapToApply);
 }
 
 export function filterProps(theme, props) {

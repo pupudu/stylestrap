@@ -36,7 +36,12 @@ export function appendRule(base, ruleKey, value) {
 
 export function appendSizeRule(base, ruleKey, value) {
   if (typeof ruleKey === 'object') {
-    return concat(base, `${ruleKey.__label__}: ${value}${ruleKey.unit || ''};`);
+    return concat(
+      base,
+      `${ruleKey.__label__}: ${value}${
+        typeof ruleKey.unit === 'string' ? ruleKey.unit : 'rem'
+      };`
+    );
   }
   return concat(base, `${ruleKey}: ${value}rem;`);
 }

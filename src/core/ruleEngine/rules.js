@@ -1,10 +1,5 @@
 export const getRuleMap = ({ theme, ...props }) => {
   return {
-    fontSize: 'font-size',
-    fontWeight: {
-      __label__: 'font-weight',
-      unit: ''
-    },
     lineHeight: {
       __label__: 'line-height',
       derive: () => theme.lineHeight(props.fontSize)
@@ -23,11 +18,28 @@ export const getRuleMap = ({ theme, ...props }) => {
       left: 'margin-left',
       right: 'margin-right'
     },
+    border: {
+      __label__: 'border',
+      top: 'border-top',
+      bottom: 'border-bottom',
+      left: 'border-left',
+      right: 'border-right'
+    },
     color: {
       __label__: 'color',
-      enums: {
-        ...theme.colors
-      },
+      enums: theme.colors,
+      derive: (selector, base) =>
+        theme.colors[`${selector}`](theme.colors[base])
+    },
+    background: {
+      __label__: 'background',
+      enums: theme.colors,
+      derive: (selector, base) =>
+        theme.colors[`${selector}`](theme.colors[base])
+    },
+    borderColor: {
+      __label__: 'border-color',
+      enums: theme.colors,
       derive: (selector, base) =>
         theme.colors[`${selector}`](theme.colors[base])
     }
