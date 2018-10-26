@@ -1,11 +1,12 @@
 {
-  "name": "styledstrap",
-  "version": "0.0.1",
+  "name": "stylestrap",
+  "version": "0.0.2",
   "description": "Bootstrap based components library built using styled components",
   "main": "index.js",
   "scripts": {
     "start": "docz dev",
     "docz:build": "docz build",
+    "build": "STYLED_ENGINE=styled-components BABEL_ENV=rollup rollup -c",
     "lint": "eslint --fix src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,16 +27,41 @@
   },
   "homepage": "https://github.com/pupudu/styledStrap#readme",
   "devDependencies": {
-    "docz": "^0.11.2",
-    "eslint": "^5.6.0",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-annotate-pure-calls": "^0.4.0",
+    "babel-plugin-transform-rename-import": "^2.3.0",
+    "docz": "^0.12.5",
+    "docz-theme-default": "^0.12.5",
+    "eslint": "^5.6.1",
     "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-babel": "^5.2.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.1",
-    "polished": "^2.0.3",
+    "polished": "^2.3.0",
     "prettier": "^1.14.2",
+    "prop-types": "^15.6.2",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
-    "styled-components": "^3.4.8"
+    "rollup": "^0.66.6",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-uglify": "^6.0.0",
+    "styled-components": "^4.0.2"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "peerDependencies": {
+    "polished": ">= 2",
+    "prop-types": ">= 15",
+    "react": ">= 16",
+    "react-dom": ">= 16",
+    "styled-components": ">= 4"
+  }
 }
