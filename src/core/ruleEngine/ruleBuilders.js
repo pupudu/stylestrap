@@ -1,3 +1,5 @@
+import { getTheme } from './state';
+
 export function concat(rule1, rule2) {
   return `
 ${rule1}
@@ -17,11 +19,17 @@ export function appendMediaQueryRule(base, breakPoint, rule) {
 }
 
 export function getRule(ruleKey, value) {
+  // Check if theme based size enums exist. If exists, replace the original value with the derived value
+  const theme = getTheme();
+  if (theme && theme.sizes && theme.sizes[value]) {
+    value = theme.sizes[value];
+  }
+
   if (typeof ruleKey === 'object') {
     if (ruleKey.enums && ruleKey.enums[value]) {
       return `${ruleKey.__label__}: ${ruleKey.enums[value]};`;
     }
-    if (value === 'auto') {
+    if (value === '_auto') {
       const derivedValue = ruleKey.derive();
       return `${ruleKey.__label__}: ${derivedValue};`;
     }
