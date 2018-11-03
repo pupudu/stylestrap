@@ -1,102 +1,158 @@
 ---
-Card
+name: Card
+menu: Components
 ---
 
-import Card, { CardHeading } from './Card';
+import { Playground } from 'docz';
+import { Card, CardHeader, CardBody } from './Card';
+import { Container, Col, Row } from '../FlexBox';
+import { Grid } from '../Grid'
 
 # Card
 
-<Card shade={'primary'}>
-    <CardHeading>Heading</CardHeading>
+## Basic Usage
+
+<Playground>
+    <Container>
+        <Row>
+            <Col>
+                <Card color={'primary'}>
+                    <CardHeader>Heading</CardHeader>
+                    <CardBody>
+                        Infos
+                    </CardBody>
+                </Card>
+            </Col>
+
+            <Col>
+                <Card color={'secondary'}>
+                    <CardHeader>Heading</CardHeader>
+                    Infos
+                </Card>
+            </Col>
+
+            <Col>
+                <Card color={'success'}>
+                    <CardHeader>Heading</CardHeader>
+                    Infos
+                </Card>
+            </Col>
+        </Row>
+    </Container>
+</Playground>
+
+## Variations
+
+# Plain Cards
+<Container>
+    <Row>
+        <Col>
+            <Card color={'primary'}>
+                <CardHeader>Heading</CardHeader>
+                Infos
+            </Card>
+        </Col>
+
+        <Col>
+            <Card color={'secondary'}>
+                <CardHeader>Heading</CardHeader>
+                Infos
+            </Card>
+        </Col>
+
+        <Col>
+            <Card color={'success'}>
+                <CardHeader>Heading</CardHeader>
+                Infos
+            </Card>
+        </Col>
+    </Row>
+
+    <Row>
+        <Col>
+            <Card color={'warning'}>
+                <CardHeader>Heading</CardHeader>
+                Infos
+            </Card>
+        </Col>
+
+        <Col>
+            <Card color={'danger'}>
+                <CardHeader>Heading</CardHeader>
+                Infos
+            </Card>
+        </Col>
+
+        <Col>
+            <Card color={'info'}>
+                <CardHeader>Heading</CardHeader>
+                Infos
+            </Card>
+        </Col>
+    </Row>
+</Container>
+
+
+## outline Card
+
+<Card color={'primary'} flavor="outline">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
-<Card shade={'secondary'}>
-    <CardHeading>Heading</CardHeading>
+<Card color={'secondary'} flavor="outline">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
-<Card shade={'success'}>
-    <CardHeading>Heading</CardHeading>
+<Card color={'success'} flavor="outline">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
-<Card shade={'warning'}>
-    <CardHeading>Heading</CardHeading>
+<Card color={'warning'} flavor="outline">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
-<Card shade={'danger'}>
-    <CardHeading>Heading</CardHeading>
+<Card color={'danger'} flavor="outline">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
-<Card shade={'info'}>
-    <CardHeading>Heading</CardHeading>
-    Infos
-</Card>
-
-
-# Ghost Card
-
-<Card shade={'primary'} type="ghost">
-    <CardHeading>Heading</CardHeading>
-    Infos
-</Card>
-
-<Card shade={'secondary'} type="ghost">
-    <CardHeading>Heading</CardHeading>
-    Infos
-</Card>
-
-<Card shade={'success'} type="ghost">
-    <CardHeading>Heading</CardHeading>
-    Infos
-</Card>
-
-<Card shade={'warning'} type="ghost">
-    <CardHeading>Heading</CardHeading>
-    Infos
-</Card>
-
-<Card shade={'danger'} type="ghost">
-    <CardHeading>Heading</CardHeading>
-    Infos
-</Card>
-
-<Card shade={'info'} type="ghost">
-    <CardHeading>Heading</CardHeading>
+<Card color={'info'} flavor="outline">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
 # Accent Card
 
-<Card shade={'primary'} type="accent">
-    <CardHeading>Heading</CardHeading>
+<Card color={'primary'} flavor="accent">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
-<Card shade={'secondary'} type="accent">
-    <CardHeading>Heading</CardHeading>
+<Card color={'secondary'} flavor="accent">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
-<Card shade={'success'} type="accent">
-    <CardHeading>Heading</CardHeading>
+<Card color={'success'} flavor="accent">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
-<Card shade={'warning'} type="accent">
-    <CardHeading>Heading</CardHeading>
+<Card color={'warning'} flavor="accent">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
-<Card shade={'danger'} type="accent">
-    <CardHeading>Heading</CardHeading>
+<Card color={'danger'} flavor="accent">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
 
-<Card shade={'info'} type="accent">
-    <CardHeading>Heading</CardHeading>
+<Card color={'info'} flavor="accent">
+    <CardHeader>Heading</CardHeader>
     Infos
 </Card>
