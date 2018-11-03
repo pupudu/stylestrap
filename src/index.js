@@ -9,5 +9,5 @@ export { Container, Col, Row } from './FlexBox';
 export { Header } from './Header';
 
 // Core modules and optionals
-export { default as defaultTheme } from './core/theme';
-export { default as hipagesTheme } from './Themes/hipagesTheme';
+export { default as defaultTheme } from './Themes/stylestrap';
+export { default as hipagesTheme } from './Themes/hipages';

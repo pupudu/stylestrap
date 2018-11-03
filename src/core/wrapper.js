@@ -1,11 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
-import theme from './theme';
+import theme from '../Themes/stylestrap';
+import '../Stylestrap';
 
-const Wrapper = ({ children }) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+const state = {
+  setState: null
 };
+
+export function setState(theme) {
+  state.setState(theme);
+}
+
+class Wrapper extends React.Component {
+  state = theme;
+
+  componentDidMount() {
+    state.setState = this.setState.bind(this);
+  }
+
+  render() {
+    return (
+      <ThemeProvider theme={this.state}>{this.props.children}</ThemeProvider>
+    );
+  }
+}
 
 Wrapper.propTypes = {
   children: PropTypes.any

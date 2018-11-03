@@ -1,0 +1,31 @@
+---
+name: Themes
+menu: Themes
+---
+
+import { setState } from '../core/wrapper';
+import { Button } from '../Button/Button';
+
+# Themes
+
+<Button shade={'primary'}>Primary</Button>
+<Button shade="primary" onClick={()=> {
+    setState({
+    colors: {
+      primary: `#${Math.round(Math.random() * 10)}${Math.round(Math.random() * 10)}${Math.round(Math.random() * 10)}`,
+      secondary: '#6c757d',
+      success: '#28a745',
+      warning: '#ffc107',
+      info: '#17a2b8',
+      danger: '#dc3545',
+      hover: color => color,
+      active: color => color
+    },
+    breakpoints: {
+      xs: 0,
+      sm: 30,
+      md: 48,
+      lg: 64
+    }
+  });
+}}>Change</Button>
