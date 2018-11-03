@@ -1,32 +1,90 @@
 ---
-Button
+name: Button
+menu: Components
 ---
 
-import Button from './Button';
+import { Playground, PropsTable } from 'docz';
+import { Button } from './Button';
 
 # Button
 
-<Button shade={'primary'}>Primary</Button>
-<Button shade={'secondary'}>Secondary</Button>
-<Button shade={'success'}>Success</Button>
-<Button shade={'warning'}>Warning</Button>
-<Button shade={'danger'}>Danger</Button>
-<Button shade={'info'}>Info</Button>
+<PropsTable of={Button} />
 
-# Ghost Button
+## Basic usage
 
-<Button shade={'primary'} type="ghost">Primary</Button>
-<Button shade={'secondary'} type="ghost">Secondary</Button>
-<Button shade={'success'} type="ghost">Success</Button>
-<Button shade={'warning'} type="ghost">Warning</Button>
-<Button shade={'danger'} type="ghost">Danger</Button>
-<Button shade={'info'} type="ghost">Info</Button>
+<Playground>
+  <Button color="primary">Click me</Button>
+  <Button color="secondary">Click me</Button>
+</Playground>
 
-# Accent Button
+## Button Variants
 
-<Button shade={'primary'} type="accent">Primary</Button>
-<Button shade={'secondary'} type="accent">Secondary</Button>
-<Button shade={'success'} type="accent">Success</Button>
-<Button shade={'warning'} type="accent">Warning</Button>
-<Button shade={'danger'} type="accent">Danger</Button>
-<Button shade={'info'} type="accent">Info</Button>
+### Solid Button 
+
+<Button color={'primary'}>Primary</Button>
+<Button color={'secondary'}>Secondary</Button>
+<Button color={'success'}>Success</Button>
+<Button color={'warning'}>Warning</Button>
+<Button color={'danger'}>Danger</Button>
+<Button color={'info'}>Info</Button>
+<Button color={'solid'}>Solid</Button>
+<Button color={'blend'}>Blend</Button>
+
+### outline Button
+
+<Button color={'primary'} flavor="outline">Primary</Button>
+<Button color={'secondary'} flavor="outline">Secondary</Button>
+<Button color={'success'} flavor="outline">Success</Button>
+<Button color={'warning'} flavor="outline">Warning</Button>
+<Button color={'danger'} flavor="outline">Danger</Button>
+<Button color={'info'} flavor="outline">Info</Button>
+<Button color={'solid'} flavor="outline">Solid</Button>
+<Button color={'blend'} flavor="outline">Blend</Button>
+
+### Accent Button
+
+<Button color={'primary'} flavor="accent">Primary</Button>
+<Button color={'secondary'} flavor="accent">Secondary</Button>
+<Button color={'success'} flavor="accent">Success</Button>
+<Button color={'warning'} flavor="accent">Warning</Button>
+<Button color={'danger'} flavor="accent">Danger</Button>
+<Button color={'info'} flavor="accent">Info</Button>
+<Button color={'solid'} flavor="accent">Solid</Button>
+<Button color={'blend'} flavor="accent">Blend</Button>
+
+### Dark Background
+
+<div style={{background: '#666', padding: '1rem'}}>
+  <Button color={'primary'}>Primary</Button>
+  <Button color={'secondary'}>Secondary</Button>
+  <Button color={'success'}>Success</Button>
+  <Button color={'warning'}>Warning</Button>
+  <Button color={'danger'}>Danger</Button>
+  <Button color={'info'}>Info</Button>
+  <Button color={'solid'}>Solid</Button>
+  <Button color={'blend'}>Blend</Button>
+
+  <br/>
+  <br/>
+
+  <Button color={'primary'} flavor="outline">Primary</Button>
+  <Button color={'secondary'} flavor="outline">Secondary</Button>
+  <Button color={'success'} flavor="outline">Success</Button>
+  <Button color={'warning'} flavor="outline">Warning</Button>
+  <Button color={'danger'} flavor="outline">Danger</Button>
+  <Button color={'info'} flavor="outline">Info</Button>
+  <Button color={'solid'} flavor="outline">Solid</Button>
+  <Button color={'blend'} flavor="outline">Blend</Button>
+
+  <br/>
+  <br/>
+
+  <Button color={'primary'} flavor="accent">Primary</Button>
+  <Button color={'secondary'} flavor="accent">Secondary</Button>
+  <Button color={'success'} flavor="accent">Success</Button>
+  <Button color={'warning'} flavor="accent">Warning</Button>
+  <Button color={'danger'} flavor="accent">Danger</Button>
+  <Button color={'info'} flavor="accent">Info</Button>
+  <Button color={'solid'} flavor="accent">Solid</Button>
+  <Button color={'blend'} flavor="accent">Blend</Button>
+</div>
