@@ -58,6 +58,9 @@
     "rollup-plugin-uglify": "^6.0.0",
     "styled-components": "^4.0.2"
   },
+  "dependencies": {
+    "bootstrap": "^4.1.3"
+  },
   "peerDependencies": {
     "polished": ">= 2",
     "prop-types": ">= 15",
