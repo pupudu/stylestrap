@@ -1,4 +1,4 @@
-import baseTheme from '../theme';
+import baseTheme from '../../Themes/stylestrap';
 
 export const getRuleMap = ({ theme, ...props }) => {
   // TODO get rid of this check here. Theme should be merged with baseTheme at a higher level. Probably when calling setTheme()
