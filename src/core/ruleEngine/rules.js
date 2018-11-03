@@ -1,4 +1,9 @@
+import baseTheme from '../theme';
+
 export const getRuleMap = ({ theme, ...props }) => {
+  // TODO get rid of this check here. Theme should be merged with baseTheme at a higher level. Probably when calling setTheme()
+  if (!theme || !Object.keys(theme).length) theme = {} || baseTheme;
+
   return {
     lineHeight: {
       __label__: 'line-height',
