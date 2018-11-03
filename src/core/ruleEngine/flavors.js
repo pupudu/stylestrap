@@ -1,8 +1,4 @@
-import { withStyles } from './withStyles';
-
-// TODO - extract ghost and accent helpers as HoCs to decorate plain colors, rather than making this a big HoC
-
-function getGhostColors(theme, brand, effects) {
+function getOutlineStyles(theme, brand, effects) {
   return {
     color: {
       base: brand,
@@ -18,7 +14,7 @@ function getGhostColors(theme, brand, effects) {
   };
 }
 
-function getAccentColors(theme, brand, effects) {
+function getAccentStyles(theme, brand, effects) {
   return {
     border: {
       top: `1px solid ${theme.helpers.borderColorByLuminance(brand)}`,
@@ -39,7 +35,7 @@ function getAccentColors(theme, brand, effects) {
   };
 }
 
-function getPlainColors(theme, brand, effects) {
+function getPlainStyles(theme, brand, effects) {
   return {
     color: theme.helpers.colorByLuminance(brand),
     background: {
@@ -50,24 +46,14 @@ function getPlainColors(theme, brand, effects) {
   };
 }
 
-export const withBrand = (
-  displayName,
-  effects = true,
-  ...rest
-) => Component => {
-  return withStyles(
-    displayName,
-    props => {
-      const shade = props.shade;
-      const theme = props.theme;
-      if (props.type === 'ghost') {
-        return getGhostColors(theme, shade, effects);
-      }
-      if (props.type == 'accent') {
-        return getAccentColors(theme, shade, effects);
-      }
-      return getPlainColors(theme, shade, effects);
-    },
-    ...rest
-  )(Component);
-};
+export function getStylesByFlavor(props, theme, effects) {
+  const { flavor, color } = props;
+  switch (flavor) {
+    case 'outline':
+      return getOutlineStyles(theme, color, effects);
+    case 'accent':
+      return getAccentStyles(theme, color, effects);
+    default:
+      return getPlainStyles(theme, color, effects);
+  }
+}
