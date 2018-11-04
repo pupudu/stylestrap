@@ -1,0 +1,22 @@
+---
+name: Grid
+menu: Layout
+---
+
+import {Playground} from 'docz';
+import { Container, Col, Row } from './Container';
+
+# Flexbox
+
+<Playground>
+    <Container>
+        <Row>
+            <Col xs={2} css={{ backgroundColor: 'primary' }}>
+                Foo
+            </Col>
+            <Col xs={10} css={{ backgroundColor: 'secondary' }}>
+                Bar
+            </Col>
+        </Row>
+    </Container>
+</Playground>
