@@ -25,6 +25,10 @@ export function getRule(ruleKey, value) {
     value = theme.sizes[value];
   }
 
+  if (theme && theme.colors && theme.colors[value]) {
+    value = theme.colors[value];
+  }
+
   if (typeof ruleKey === 'object') {
     if (ruleKey.enums && ruleKey.enums[value]) {
       return `${ruleKey.__label__}: ${ruleKey.enums[value]};`;
