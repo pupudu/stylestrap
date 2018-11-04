@@ -2,6 +2,7 @@
 export { Button } from './Button';
 export { Grid, Cell } from './Grid';
 export { Container, Col, Row } from './FlexBox';
+export { FormGroup } from './Forms';
 
 // Presets
 export { Header } from './Header';
@@ -9,3 +10,6 @@ export { Header } from './Header';
 // Core modules and optionals
 export { default as defaultTheme } from './Themes/stylestrap';
 export { default as hipagesTheme } from './Themes/hipages';
+
+// Helpers
+export { withStyles } from './core/ruleEngine/withStyles';
