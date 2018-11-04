@@ -26,9 +26,10 @@ const theme = {
     lg: 64
   },
   sizes: {
-    xxs: '0.125rem',
-    xs: '0.25rem',
-    sm: '0.5rem',
+    xxxs: '0.125rem',
+    xxs: '0.25rem',
+    xs: '0.5rem',
+    sm: '0.75rem',
     md: '1rem',
     lg: '1.25rem',
     xl: '1.5rem'
