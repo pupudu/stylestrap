@@ -4,16 +4,18 @@ import {
   appendMediaQueryRule,
   appendPseudoSelector,
   appendRule
-} from './helpers';
+} from './ruleBuilders';
 import { setTheme, getTheme } from './state';
 import { getRuleMap } from './rules';
 
 const pseudoSelectors = {
+  // TODO consider using :hover type strings for pseudo selectors
   hover: 'hover',
   focus: 'focus',
   active: 'active',
   visited: 'visited',
-  link: 'link'
+  link: 'link',
+  disabled: 'disabled'
 };
 
 function applyPseudoSelectors(propKey, propValue, ruleMap) {
@@ -26,7 +28,8 @@ function applyPseudoSelectors(propKey, propValue, ruleMap) {
       if (!propValue[selector]) {
         return wrappedStyle;
       }
-      if (propValue[selector] === 'auto') {
+      // TODO get rid of '_auto' possibly from everywhere, at least from one of helpers or here
+      if (propValue[selector] === '_auto') {
         propValue[selector] = ruleMap[propKey].derive(selector, propValue.base);
       }
       return appendPseudoSelector(
@@ -76,7 +79,10 @@ function applyBreakPoints(propKey, propValue, ruleMap) {
 function generateStylesRecursively(props, ruleMap, startStyle = '') {
   return Object.keys(ruleMap).reduce((style, propKey) => {
     const styleKey = ruleMap[propKey];
-    const propValue = props[propKey] || styleKey.default || 'initial';
+    const propValue = props[propKey]; // Derive default
+
+    // TODO consider using type_key of stylekey to derive which rule to apply, before going into propValue type
+    // TODO for that, will need to consider nested properties like padding
 
     // Generate css rules based on the prop value type
     switch (typeof propValue) {
@@ -130,10 +136,19 @@ export function getStyleString(props, getStyleProps) {
   setTheme(props.theme);
   const ruleMap = getRuleMap(props);
 
-  const styleProps = getStyleProps(props, ruleMap);
+  const styleProps = getStyleProps(props);
 
-  const ruleMapToApply = Object.keys(styleProps).reduce((map, rule) => {
-    map[rule] = ruleMap[rule] || { __label__: toKebabCase(rule), unit: '' };
+  const ruleMapToApply = Object.keys(styleProps).reduce((map, ruleKey) => {
+    if (
+      typeof styleProps[ruleKey] === undefined ||
+      styleProps[ruleKey] === false
+    ) {
+      return map;
+    }
+    map[ruleKey] = ruleMap[ruleKey] || {
+      __label__: toKebabCase(ruleKey),
+      unit: ''
+    };
     return map;
   }, {});
 
