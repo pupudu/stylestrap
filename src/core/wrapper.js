@@ -5,11 +5,16 @@ import theme from '../Themes/stylestrap';
 import '../Stylestrap';
 
 const state = {
-  setState: null
+  setState: null,
+  state
 };
 
 export function setState(theme) {
   state.setState(theme);
+}
+
+export function getState() {
+  return state.state;
 }
 
 class Wrapper extends React.Component {
@@ -17,9 +22,11 @@ class Wrapper extends React.Component {
 
   componentDidMount() {
     state.setState = this.setState.bind(this);
+    state.state = this.state;
   }
 
   render() {
+    console.log(this.state);
     return (
       <ThemeProvider theme={this.state}>{this.props.children}</ThemeProvider>
     );
