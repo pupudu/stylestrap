@@ -5,5 +5,6 @@ export default {
   themeConfig: {
     mode: 'light'
   },
-  plugins: [css()]
+  plugins: [css()],
+  menu: ['Introduction', 'Layout', 'Components', 'Themes']
 };
