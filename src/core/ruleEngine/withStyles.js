@@ -9,7 +9,7 @@ export const withStyles = (args, getStyleProps = () => ({})) => (
   if (!Array.isArray(args)) {
     args = [args];
   }
-  const [displayName, className = ''] = args;
+  const [displayName, baseClassName = ''] = args;
 
   const getStylePropsWithCss = props => {
     return {
@@ -17,17 +17,20 @@ export const withStyles = (args, getStyleProps = () => ({})) => (
       ...props.css // Enable passing a function as css
     };
   };
+
+  // Note: Two ampersands are here to make generated styles more specific than base classes
+  // See: https://www.styled-components.com/docs/faqs#how-can-i-override-styles-with-higher-specificity
   const StyledComponent = styled(Component)`
-    ${props => getStyleString(props, getStylePropsWithCss)};
+    && {
+      ${props => getStyleString(props, getStylePropsWithCss)};
+    }
   `;
 
   const Wrapped = props => {
+    const className = `${baseClassName} ${props.className || ''}`.trim();
     return (
       <React.Fragment>
-        <StyledComponent
-          {...props}
-          className={`${className} ${props.className}`}
-        />
+        <StyledComponent {...props} className={className} />
         {suffix}
       </React.Fragment>
     );
