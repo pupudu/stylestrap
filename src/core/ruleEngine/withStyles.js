@@ -9,7 +9,7 @@ export const withStyles = (args, getStyleProps = () => ({})) => (
   if (!Array.isArray(args)) {
     args = [args];
   }
-  const [displayName, className] = args;
+  const [displayName, className = ''] = args;
 
   const getStylePropsWithCss = props => {
     return {
@@ -24,7 +24,10 @@ export const withStyles = (args, getStyleProps = () => ({})) => (
   const Wrapped = props => {
     return (
       <React.Fragment>
-        <StyledComponent {...props} className={className} />
+        <StyledComponent
+          {...props}
+          className={`${className} ${props.className}`}
+        />
         {suffix}
       </React.Fragment>
     );
