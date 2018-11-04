@@ -9,7 +9,7 @@ const theme = {
     info: '#17a2b8',
     danger: '#dc3545',
     blend: '#f8f9fa',
-    solid: '#343a40',
+    flip: '#343a40',
     hover: color => shade(0.2, color),
     active: color => shade(0.3, color)
   },

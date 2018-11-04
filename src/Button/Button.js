@@ -14,7 +14,7 @@ Button.propTypes = {
     'danger',
     'info',
     'blend',
-    'solid'
+    'flip'
   ])
 };
 
