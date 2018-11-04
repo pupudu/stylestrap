@@ -5,6 +5,7 @@ import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
+import postcss from 'rollup-plugin-postcss';
 
 // eslint-disable-next-line
 const babelConfig = require('./babel.config');
@@ -18,7 +19,8 @@ const getRollupConfig = ({ pkg, pwd, buildName }) => {
     plugins: [
       babel({ exclude: '**/node_modules/**', ...babelConfig }),
       resolve({ browser: true }),
-      commonjs()
+      commonjs(),
+      postcss()
     ]
   };
 
@@ -89,7 +91,7 @@ const getRollupConfig = ({ pkg, pwd, buildName }) => {
     return [esConfig];
   }
 
-  return [umdConfig, esConfig, minConfig, cjsConfig];
+  return [umdConfig, esConfig, cjsConfig];
 };
 
 export default getRollupConfig({

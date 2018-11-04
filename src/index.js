@@ -1,5 +1,3 @@
-import './Stylestrap';
-
 // Components
 export { Button } from './Button';
 export { Grid, Cell } from './Grid';
