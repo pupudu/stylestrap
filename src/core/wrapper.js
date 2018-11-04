@@ -26,7 +26,6 @@ class Wrapper extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <ThemeProvider theme={this.state}>{this.props.children}</ThemeProvider>
     );
