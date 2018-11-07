@@ -47,7 +47,7 @@ function getPlainStyles(theme, color, effects) {
 }
 
 export function getStylesByFlavor(props, theme, effects) {
-  const { flavor, color } = props;
+  const { flavor, color = 'primary' } = props;
   switch (flavor) {
     case 'outline':
       return getOutlineStyles(theme, color, effects);
