@@ -10,10 +10,10 @@ const theme = {
     danger: '#dc3545',
     blend: '#f8f9fa',
     flip: '#343a40',
-    hover: color => shade(0.2, color),
-    active: color => shade(0.3, color)
+    getShade: getColorShade
   },
   helpers: {
+    // TODO need a better approach for this
     colorByLuminance: color =>
       getLuminance(theme.colors[color]) < 0.7 ? '#FFF' : '#666',
     borderColorByLuminance: color =>
@@ -35,5 +35,18 @@ const theme = {
     xl: '1.5rem'
   }
 };
+
+function getColorShade(colorEnum, type) {
+  const color = theme.colors[colorEnum];
+  const colorMap = {
+    '-2': shade(0.3, color), // TODO replace shade with some other helper to make them brighter
+    '-1': shade(0.2, color), // TODO replace shade with some other helper to make them brighter
+    0: color,
+    1: shade(0.2, color),
+    2: shade(0.3, color)
+  };
+
+  return colorMap[type];
+}
 
 export default theme;

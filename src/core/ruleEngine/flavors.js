@@ -1,47 +1,47 @@
-function getOutlineStyles(theme, brand, effects) {
+function getOutlineStyles(theme, color, effects) {
   return {
     color: {
-      base: brand,
-      hover: effects && theme.helpers.colorByLuminance(brand),
-      active: effects && theme.helpers.colorByLuminance(brand)
+      base: color,
+      hover: effects && theme.helpers.colorByLuminance(color),
+      active: effects && theme.helpers.colorByLuminance(color)
     },
     background: {
       base: 'rgba(0,0,0,0)',
-      hover: effects && brand,
-      active: effects && theme.colors.active(theme.colors[brand])
+      hover: effects && color,
+      active: effects && theme.colors.getShade(color, 2)
     },
-    borderColor: brand
+    borderColor: color
   };
 }
 
-function getAccentStyles(theme, brand, effects) {
+function getAccentStyles(theme, color, effects) {
   return {
     border: {
-      top: `1px solid ${theme.helpers.borderColorByLuminance(brand)}`,
-      right: `1px solid ${theme.helpers.borderColorByLuminance(brand)}`,
-      bottom: `1px solid ${theme.helpers.borderColorByLuminance(brand)}`,
-      left: `3px solid ${theme.colors[brand]}`
+      top: `1px solid ${theme.helpers.borderColorByLuminance(color)}`,
+      right: `1px solid ${theme.helpers.borderColorByLuminance(color)}`,
+      bottom: `1px solid ${theme.helpers.borderColorByLuminance(color)}`,
+      left: `3px solid ${theme.colors[color]}`
     },
     color: {
-      base: brand,
-      hover: effects && theme.helpers.colorByLuminance(brand),
-      active: effects && theme.helpers.colorByLuminance(brand)
+      base: color,
+      hover: effects && theme.helpers.colorByLuminance(color),
+      active: effects && theme.helpers.colorByLuminance(color)
     },
     background: {
-      base: 'rgba(0,0,0,0)',
-      hover: effects && brand,
-      active: effects && theme.colors.active(theme.colors[brand])
+      base: 'rgba(0,0,0,0)', // TODO
+      hover: effects && color,
+      active: effects && theme.colors.getShade(color, 2)
     }
   };
 }
 
-function getPlainStyles(theme, brand, effects) {
+function getPlainStyles(theme, color, effects) {
   return {
-    color: theme.helpers.colorByLuminance(brand),
+    color: theme.helpers.colorByLuminance(color),
     background: {
-      base: brand,
-      hover: effects && '_auto',
-      active: effects && '_auto'
+      base: color,
+      hover: effects && theme.colors.getShade(color, 1),
+      active: effects && theme.colors.getShade(color, 2)
     }
   };
 }

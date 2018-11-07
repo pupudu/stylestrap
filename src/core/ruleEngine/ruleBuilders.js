@@ -33,10 +33,6 @@ export function getRule(ruleKey, value) {
     if (ruleKey.enums && ruleKey.enums[value]) {
       return `${ruleKey.__label__}: ${ruleKey.enums[value]};`;
     }
-    if (value === '_auto') {
-      const derivedValue = ruleKey.derive();
-      return `${ruleKey.__label__}: ${derivedValue};`;
-    }
     return `${ruleKey.__label__}: ${value};`;
   }
   return `${ruleKey}: ${value};`;

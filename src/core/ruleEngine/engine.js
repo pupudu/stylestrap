@@ -28,10 +28,6 @@ function applyPseudoSelectors(propKey, propValue, ruleMap) {
       if (!propValue[selector]) {
         return wrappedStyle;
       }
-      // TODO get rid of '_auto' possibly from everywhere, at least from one of helpers or here
-      if (propValue[selector] === '_auto') {
-        propValue[selector] = ruleMap[propKey].derive(selector, propValue.base);
-      }
       return appendPseudoSelector(
         wrappedStyle,
         selector,
