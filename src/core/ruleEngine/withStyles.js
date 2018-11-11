@@ -13,16 +13,18 @@ export const withStyles = (args, getStyleProps = () => ({})) => (
 
   const getStylePropsWithCss = props => {
     return {
-      ...getStyleProps(props, props.theme), // TODO merge with default theme as required
+      ...getStyleProps(props, props.theme),
       ...props.css // Enable passing a function as css
     };
   };
 
   // Note: Two ampersands are here to make generated styles more specific than base classes
   // See: https://www.styled-components.com/docs/faqs#how-can-i-override-styles-with-higher-specificity
+  // TODO merge with default theme as required
   const StyledComponent = styled(Component)`
     && {
-      ${props => getStyleString(props, getStylePropsWithCss)};
+      ${props =>
+        getStyleString(props, props.theme, getStylePropsWithCss, displayName)};
     }
   `;
 

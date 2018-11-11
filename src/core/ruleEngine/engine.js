@@ -128,18 +128,37 @@ function toKebabCase(ruleKey) {
   return ruleKey.replace(/([A-Z])/g, Cap => `-${Cap.toLowerCase()}`);
 }
 
-export function getStyleString(props, getStyleProps) {
-  setTheme(props.theme);
+export function getStyleString(props, theme, getStyleProps, displayName) {
+  setTheme(theme);
   const ruleMap = getRuleMap(props);
 
   const styleProps = getStyleProps(props);
 
+  // TODO - ruleKey can be an object here. Do we care?
   const ruleMapToApply = Object.keys(styleProps).reduce((map, ruleKey) => {
     if (
-      typeof styleProps[ruleKey] === undefined ||
+      typeof styleProps[ruleKey] === 'undefined' ||
       styleProps[ruleKey] === false
     ) {
-      return map;
+      if (!theme || !theme.components[displayName]) {
+        return map;
+      }
+      const defaultComponentStyles = theme.components[displayName];
+
+      // If defaultComponentStyles is a function, we call it with props and theme as arguments
+      // Otherwise we expect it to be an object
+      const defaultStyles =
+        typeof defaultComponentStyles === 'function'
+          ? defaultComponentStyles(props, theme)
+          : defaultComponentStyles;
+
+      // If a default value exists, we set it and let the flow continue.
+      // Otherwise we return the map
+      if (!defaultStyles[ruleKey]) {
+        return map;
+      }
+      styleProps[ruleKey] = defaultStyles[ruleKey];
+      // Do not return here. Let the code outside of this if block run
     }
     map[ruleKey] = ruleMap[ruleKey] || {
       __label__: toKebabCase(ruleKey),
@@ -147,7 +166,6 @@ export function getStyleString(props, getStyleProps) {
     };
     return map;
   }, {});
-
   return generateStylesRecursively(styleProps, ruleMapToApply);
 }
 
