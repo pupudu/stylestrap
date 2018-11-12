@@ -140,10 +140,10 @@ export function getStyleString(props, theme, getStyleProps, displayName) {
       typeof styleProps[ruleKey] === 'undefined' ||
       styleProps[ruleKey] === false
     ) {
-      if (!theme || !theme.components[displayName]) {
+      if (!theme || !theme.defaultStyles[displayName]) {
         return map;
       }
-      const defaultComponentStyles = theme.components[displayName];
+      const defaultComponentStyles = theme.defaultStyles[displayName];
 
       // If defaultComponentStyles is a function, we call it with props and theme as arguments
       // Otherwise we expect it to be an object

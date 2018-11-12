@@ -13,6 +13,8 @@ export const withStyles = (args, getStyleProps = () => ({})) => (
 
   const getStylePropsWithCss = props => {
     return {
+      // Here props.theme comes from `getStyleString`.
+      // Thus any modifications done there will be reflected here as well.
       ...getStyleProps(props, props.theme),
       ...props.css // Enable passing a function as css
     };
@@ -30,6 +32,7 @@ export const withStyles = (args, getStyleProps = () => ({})) => (
 
   const Wrapped = props => {
     const className = `${baseClassName} ${props.className || ''}`.trim();
+    // TODO get rid of Fragment if suffix seems redundant
     return (
       <React.Fragment>
         <StyledComponent {...props} className={className} />
