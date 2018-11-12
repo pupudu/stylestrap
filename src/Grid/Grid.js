@@ -1,14 +1,19 @@
 import { withStyles } from '../core/ruleEngine/withStyles';
 
-const Grid = withStyles('Grid', props => ({
-  padding: props.padding,
-  margin: props.margin,
-  gridTemplateColumns: props.columns,
-  gridTemplateRows: props.rows,
-  gridGap: props.gap,
-  display: 'grid',
-  position: 'relative'
-}))();
+const Grid = withStyles('Grid', props => {
+  const columns = isNaN(+props.columns)
+    ? props.columns
+    : `repeat(${+props.columns}, 1fr)`;
+  return {
+    padding: props.padding,
+    margin: props.margin,
+    gridTemplateColumns: columns,
+    gridTemplateRows: props.rows,
+    gridGap: props.gap,
+    display: 'grid',
+    position: 'relative'
+  };
+})();
 
 const Cell = withStyles('Cell', props => {
   const [gridRowStart, gridRowEnd] =
