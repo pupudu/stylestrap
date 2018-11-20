@@ -78,7 +78,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,mdx}": [
+    "*.{js}": [
       "yarn lint",
       "git add"
     ]

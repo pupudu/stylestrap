@@ -3,15 +3,15 @@ name: Themes
 menu: Themes
 ---
 
-import { setState, getState } from '../core/wrapper';
-import { Button } from '../Button';
-
 # Themes
 
 // TODO: Show an input box with theme as a json to allow customizing or pasting a whole new theme
+// TODO: Show multiple themes and clicking on them would change the theme
+import { setState, getState } from '../core/wrapper';
+import { Button } from '../Button';
 
 <Button color="primary" onClick={()=> {
-    console.log("theme: ", theme);
+    const theme = getState();
     setState({
       ...theme,
       colors: {

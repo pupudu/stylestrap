@@ -129,7 +129,11 @@ function toKebabCase(ruleKey) {
 }
 
 export function getStyleString(props, theme, getStyleProps, displayName) {
-  setTheme(theme);
+  // Replace theme with return value from setTheme
+  // This is useful when theme was defined before, but undefined now due to some
+  // reason like using portals or 3rd party libraries
+  theme = setTheme(theme);
+
   const ruleMap = getRuleMap(props);
 
   const styleProps = getStyleProps(props);
@@ -140,7 +144,7 @@ export function getStyleString(props, theme, getStyleProps, displayName) {
       typeof styleProps[ruleKey] === 'undefined' ||
       styleProps[ruleKey] === false
     ) {
-      if (!theme || !theme.defaultStyles[displayName]) {
+      if (!theme || !theme.defaultStyles || !theme.defaultStyles[displayName]) {
         return map;
       }
       const defaultComponentStyles = theme.defaultStyles[displayName];
