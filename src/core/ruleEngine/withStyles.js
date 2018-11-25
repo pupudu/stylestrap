@@ -2,14 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { getStyleString } from './engine';
 
-export const withStyles = (args, getStyleProps = () => ({})) => (
-  Component = styled.div``,
-  suffix
-) => {
+export const withStyles = (
+  args,
+  getStyleProps = () => ({}),
+  transformProps = () => ({})
+) => (Component = styled.div``) => {
   if (!Array.isArray(args)) {
     args = [args];
   }
   const [displayName, baseClassName = ''] = args;
+
+  if (typeof Component === 'string') {
+    Component = styled[Component]``;
+  }
 
   const getStylePropsWithCss = props => {
     return {
@@ -31,13 +36,16 @@ export const withStyles = (args, getStyleProps = () => ({})) => (
   `;
 
   const Wrapped = props => {
-    const className = `${baseClassName} ${props.className || ''}`.trim();
-    // TODO get rid of Fragment if suffix seems redundant
+    const transformedProps = transformProps(props);
+    const className = `${baseClassName} ${transformedProps.className ||
+      props.className ||
+      ''}`.trim();
+
     return (
-      <React.Fragment>
-        <StyledComponent {...props} className={className} />
-        {suffix}
-      </React.Fragment>
+      <StyledComponent
+        {...{ ...props, ...transformedProps }}
+        className={className}
+      />
     );
   };
   Wrapped.displayName = displayName;
