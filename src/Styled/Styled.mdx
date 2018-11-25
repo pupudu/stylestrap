@@ -1,0 +1,32 @@
+---
+name: Styled Component
+menu: Components
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Styled } from './';
+
+# Styled Component
+  
+<Playground>
+    <Styled background="danger">
+        <Styled as={'button'} 
+            margin="lg" 
+            color={{
+                base: "success",
+                hover: "warning"
+            }}
+            background={{
+                base: "warning",
+                hover: "success"
+            }}
+            borderRadius={{
+                base: "5px 20px",
+                hover: "20px 5px"
+            }}
+            cursor="pointer"
+        >
+            Styled Button
+        </Styled>
+    </Styled>
+</Playground>
