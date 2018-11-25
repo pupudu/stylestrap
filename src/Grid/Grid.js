@@ -16,13 +16,14 @@ const Grid = withStyles('Grid', props => {
 })();
 
 const Cell = withStyles('Cell', props => {
+  const { row = [], col = [], align, position } = props;
   const [gridRowStart, gridRowEnd] =
-    typeof props.row === 'number' ? [props.row, props.row + 1] : props.row;
+    typeof row === 'number' ? [row, row + 1] : row;
   const [gridColumnStart, gridColumnEnd] =
-    typeof props.col === 'number' ? [props.col, props.col + 1] : props.col;
+    typeof col === 'number' ? [col, col + 1] : col;
   return {
-    alignSelf: props.align,
-    position: props.position,
+    alignSelf: align,
+    position: position,
     gridRowStart,
     gridRowEnd,
     gridColumnStart,
