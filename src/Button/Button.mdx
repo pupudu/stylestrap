@@ -4,87 +4,107 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { Button } from './Button';
+import { Button } from './';
+import { Grid, Cell } from '../Grid';
+import { Styled } from '../Styled';
 
 # Button
 
-<PropsTable of={Button} />
+<PropsTable of={Button} />;
 
 ## Basic usage
 
 <Playground>
-  <Button color="primary">Click me</Button>
-  <Button color="secondary">Click me</Button>
+  <Grid columns="8" gap="xxs">
+    <Button color="primary">Primary</Button>
+    <Button color="secondary">Secondary</Button>
+    <Button color={'success'}>Success</Button>
+    <Button color={'warning'}>Warning</Button>
+    <Button color={'danger'}>Danger</Button>
+    <Button color={'info'}>Info</Button>
+    <Button color={'flip'}>Flip</Button>
+    <Button color={'blend'}>Blend</Button>
+  </Grid>
 </Playground>
 
-## Button Variants
+## Button Flavors
 
-### Flip Button 
+<Playground>
+  <Grid columns="8" gap="xxs">
+    
+    <Cell col={[1, 9]}>Plain Buttons</Cell>
 
-<Button color={'primary'}>Primary</Button>
-<Button color={'secondary'}>Secondary</Button>
-<Button color={'success'}>Success</Button>
-<Button color={'warning'}>Warning</Button>
-<Button color={'danger'}>Danger</Button>
-<Button color={'info'}>Info</Button>
-<Button color={'flip'}>Flip</Button>
-<Button color={'blend'}>Blend</Button>
+    <Button color={'primary'}>Primary</Button>
+    <Button color={'secondary'}>Secondary</Button>
+    <Button color={'success'}>Success</Button>
+    <Button color={'warning'}>Warning</Button>
+    <Button color={'danger'}>Danger</Button>
+    <Button color={'info'}>Info</Button>
+    <Button color={'flip'}>Flip</Button>
+    <Button color={'blend'}>Blend</Button>
 
-### Outline Button
+    <Cell col={[1, 9]}>Outline flavor</Cell>
 
-<Button color={'primary'} flavor="outline">Primary</Button>
-<Button color={'secondary'} flavor="outline">Secondary</Button>
-<Button color={'success'} flavor="outline">Success</Button>
-<Button color={'warning'} flavor="outline">Warning</Button>
-<Button color={'danger'} flavor="outline">Danger</Button>
-<Button color={'info'} flavor="outline">Info</Button>
-<Button color={'flip'} flavor="outline">Flip</Button>
-<Button color={'blend'} flavor="outline">Blend</Button>
+    <Button color={'primary'} flavor="outline">Primary</Button>
+    <Button color={'secondary'} flavor="outline">Secondary</Button>
+    <Button color={'success'} flavor="outline">Success</Button>
+    <Button color={'warning'} flavor="outline">Warning</Button>
+    <Button color={'danger'} flavor="outline">Danger</Button>
+    <Button color={'info'} flavor="outline">Info</Button>
+    <Button color={'flip'} flavor="outline">Flip</Button>
+    <Button color={'blend'} flavor="outline">Blend</Button>
 
-### Accent Button
+    <Cell col={[1, 9]}>Accent flavor</Cell>
 
-<Button color={'primary'} flavor="accent">Primary</Button>
-<Button color={'secondary'} flavor="accent">Secondary</Button>
-<Button color={'success'} flavor="accent">Success</Button>
-<Button color={'warning'} flavor="accent">Warning</Button>
-<Button color={'danger'} flavor="accent">Danger</Button>
-<Button color={'info'} flavor="accent">Info</Button>
-<Button color={'flip'} flavor="accent">Flip</Button>
-<Button color={'blend'} flavor="accent">Blend</Button>
+    <Button color={'primary'} flavor="accent">Primary</Button>
+    <Button color={'secondary'} flavor="accent">Secondary</Button>
+    <Button color={'success'} flavor="accent">Success</Button>
+    <Button color={'warning'} flavor="accent">Warning</Button>
+    <Button color={'danger'} flavor="accent">Danger</Button>
+    <Button color={'info'} flavor="accent">Info</Button>
+    <Button color={'flip'} flavor="accent">Flip</Button>
+    <Button color={'blend'} flavor="accent">Blend</Button>
+  </Grid>
+</Playground>
 
 ### Dark Background
 
-<div style={{background: '#666', padding: '1rem'}}>
-  <Button color={'primary'}>Primary</Button>
-  <Button color={'secondary'}>Secondary</Button>
-  <Button color={'success'}>Success</Button>
-  <Button color={'warning'}>Warning</Button>
-  <Button color={'danger'}>Danger</Button>
-  <Button color={'info'}>Info</Button>
-  <Button color={'flip'}>Flip</Button>
-  <Button color={'blend'}>Blend</Button>
+<Playground>
+  <Styled background="#444" padding="md" borderRadius="xs">
+    <Grid columns="8" gap="xxs">
 
-  <br/>
-  <br/>
+      <Cell col={[1, 9]} css={{color: 'white'}}>Plain Buttons</Cell>
 
-  <Button color={'primary'} flavor="outline">Primary</Button>
-  <Button color={'secondary'} flavor="outline">Secondary</Button>
-  <Button color={'success'} flavor="outline">Success</Button>
-  <Button color={'warning'} flavor="outline">Warning</Button>
-  <Button color={'danger'} flavor="outline">Danger</Button>
-  <Button color={'info'} flavor="outline">Info</Button>
-  <Button color={'flip'} flavor="outline">Flip</Button>
-  <Button color={'blend'} flavor="outline">Blend</Button>
+      <Button color={'primary'}>Primary</Button>
+      <Button color={'secondary'}>Secondary</Button>
+      <Button color={'success'}>Success</Button>
+      <Button color={'warning'}>Warning</Button>
+      <Button color={'danger'}>Danger</Button>
+      <Button color={'info'}>Info</Button>
+      <Button color={'flip'}>Flip</Button>
+      <Button color={'blend'}>Blend</Button>
 
-  <br/>
-  <br/>
+      <Cell col={[1, 9]} css={{color: 'white'}}>Outline Flavor</Cell>
 
-  <Button color={'primary'} flavor="accent">Primary</Button>
-  <Button color={'secondary'} flavor="accent">Secondary</Button>
-  <Button color={'success'} flavor="accent">Success</Button>
-  <Button color={'warning'} flavor="accent">Warning</Button>
-  <Button color={'danger'} flavor="accent">Danger</Button>
-  <Button color={'info'} flavor="accent">Info</Button>
-  <Button color={'flip'} flavor="accent">Flip</Button>
-  <Button color={'blend'} flavor="accent">Blend</Button>
-</div>
+      <Button color={'primary'} flavor="outline">Primary</Button>
+      <Button color={'secondary'} flavor="outline">Secondary</Button>
+      <Button color={'success'} flavor="outline">Success</Button>
+      <Button color={'warning'} flavor="outline">Warning</Button>
+      <Button color={'danger'} flavor="outline">Danger</Button>
+      <Button color={'info'} flavor="outline">Info</Button>
+      <Button color={'flip'} flavor="outline">Flip</Button>
+      <Button color={'blend'} flavor="outline">Blend</Button>
+
+      <Cell col={[1, 9]} css={{color: 'white'}}>Accent Flavor</Cell>
+
+      <Button color={'primary'} flavor="accent">Primary</Button>
+      <Button color={'secondary'} flavor="accent">Secondary</Button>
+      <Button color={'success'} flavor="accent">Success</Button>
+      <Button color={'warning'} flavor="accent">Warning</Button>
+      <Button color={'danger'} flavor="accent">Danger</Button>
+      <Button color={'info'} flavor="accent">Info</Button>
+      <Button color={'flip'} flavor="accent">Flip</Button>
+      <Button color={'blend'} flavor="accent">Blend</Button>
+    </Grid>
+  </Styled>
+</Playground>

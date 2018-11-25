@@ -1,13 +1,12 @@
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { withStyles, getStylesByFlavor } from '../core/ruleEngine';
 
 const Button = withStyles(['Button', 'btn'], (props, theme) => {
   return getStylesByFlavor(props, theme, true);
-})(styled.button``);
+})('button');
 
 Button.propTypes = {
-  shade: PropTypes.oneOf([
+  color: PropTypes.oneOf([
     'primary',
     'secondary',
     'success',
