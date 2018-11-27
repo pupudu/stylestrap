@@ -1,9 +1,10 @@
-import { withStyles } from '../core/ruleEngine/withStyles';
+import { withStyles, transform } from '../core/ruleEngine/withStyles';
 
 const Grid = withStyles('Grid', props => {
-  const columns = isNaN(+props.columns)
-    ? props.columns
-    : `repeat(${+props.columns}, 1fr)`;
+  const columns = transform(columns => {
+    return isNaN(+columns) ? columns : `repeat(${+columns}, 1fr)`;
+  }, props.columns);
+
   return {
     padding: props.padding,
     margin: props.margin,
@@ -16,11 +17,26 @@ const Grid = withStyles('Grid', props => {
 })();
 
 const Cell = withStyles('Cell', props => {
-  const { row = [], col = [], align, position } = props;
-  const [gridRowStart, gridRowEnd] =
-    typeof row === 'number' ? [row, row + 1] : row;
-  const [gridColumnStart, gridColumnEnd] =
-    typeof col === 'number' ? [col, col + 1] : col;
+  const { align, position } = props;
+
+  const { gridRowStart, gridRowEnd } = transform((row = []) => {
+    const [gridRowStart, gridRowEnd] =
+      typeof row === 'number' ? [row, row + 1] : row;
+    return {
+      gridRowStart,
+      gridRowEnd
+    };
+  }, props.row);
+
+  const { gridColumnStart, gridColumnEnd } = transform((col = []) => {
+    const [gridColumnStart, gridColumnEnd] =
+      typeof col === 'number' ? [col, col + 1] : col;
+    return {
+      gridColumnStart,
+      gridColumnEnd
+    };
+  }, props.col);
+
   return {
     alignSelf: align,
     position: position,

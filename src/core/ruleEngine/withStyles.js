@@ -10,11 +10,12 @@ export const withStyles = (
   if (!Array.isArray(args)) {
     args = [args];
   }
-  const [displayName, baseClassName = ''] = args;
 
   if (typeof Component === 'string') {
     Component = styled[Component]``;
   }
+  const [displayName, baseClassNameConst = ''] = args;
+  let baseClassName = baseClassNameConst;
 
   const getStylePropsWithCss = props => {
     return {
@@ -36,6 +37,9 @@ export const withStyles = (
   `;
 
   const Wrapped = props => {
+    if (typeof baseClassName === 'function') {
+      baseClassName = baseClassName(props);
+    }
     const transformedProps = transformProps(props);
     const className = `${baseClassName} ${transformedProps.className ||
       props.className ||
@@ -51,4 +55,27 @@ export const withStyles = (
   Wrapped.displayName = displayName;
 
   return Wrapped;
+};
+
+export const transform = (transform, nestedValue) => {
+  const finalReturn = {};
+
+  if (typeof nestedValue !== 'object' || Array.isArray(nestedValue)) {
+    return transform(nestedValue);
+  }
+
+  Object.keys(nestedValue).forEach(mediaKey => {
+    const value = nestedValue[mediaKey];
+    const transformed = transform(value);
+    if (typeof transformed === 'object') {
+      return Object.keys(transformed).forEach(propKey => {
+        finalReturn[propKey] = {
+          ...finalReturn[propKey],
+          [mediaKey]: transformed[propKey]
+        };
+      });
+    }
+    finalReturn[mediaKey] = transformed;
+  });
+  return finalReturn;
 };
