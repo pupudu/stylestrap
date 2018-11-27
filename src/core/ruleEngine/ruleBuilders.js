@@ -58,7 +58,7 @@ export function appendPseudoSelector(base, selector, rule) {
   return concat(
     base,
     `
-&:${selector} {
+${selector} {
   ${rule}
 }
   `.trim()

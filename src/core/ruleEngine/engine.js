@@ -8,37 +8,34 @@ import {
 import { setTheme, getTheme } from './state';
 import { getRuleMap } from './rules';
 
-const pseudoSelectors = {
-  // TODO consider using :hover type strings for pseudo selectors
-  hover: 'hover',
-  focus: 'focus',
-  active: 'active',
-  visited: 'visited',
-  link: 'link',
-  disabled: 'disabled'
-};
+const pseudoSelectors = [
+  '&:hover',
+  '&:focus',
+  '&:active',
+  '&:visited',
+  '&:link',
+  '&:disabled'
+];
 
+// TODO consider adding pseudo selectors based on the '&:' prefix rather than relying on enums
 function applyPseudoSelectors(propKey, propValue, ruleMap) {
   let status = false;
-  const style = Object.keys(pseudoSelectors).reduce(
-    (wrappedStyle, selector) => {
-      if (selector in propValue) {
-        status = true;
-      }
-      if (!propValue[selector]) {
-        return wrappedStyle;
-      }
-      return appendPseudoSelector(
-        wrappedStyle,
-        selector,
-        generateStylesRecursively(
-          { [propKey]: propValue[selector] },
-          { [propKey]: ruleMap[propKey] }
-        )
-      );
-    },
-    ''
-  );
+  const style = pseudoSelectors.reduce((wrappedStyle, selector) => {
+    if (selector in propValue) {
+      status = true;
+    }
+    if (!propValue[selector]) {
+      return wrappedStyle;
+    }
+    return appendPseudoSelector(
+      wrappedStyle,
+      selector,
+      generateStylesRecursively(
+        { [propKey]: propValue[selector] },
+        { [propKey]: ruleMap[propKey] }
+      )
+    );
+  }, '');
   return {
     status,
     style

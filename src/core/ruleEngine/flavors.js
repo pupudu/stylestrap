@@ -2,13 +2,13 @@ function getOutlineStyles(theme, color, effects) {
   return {
     color: {
       base: color,
-      hover: effects && theme.helpers.colorByLuminance(color),
-      active: effects && theme.helpers.colorByLuminance(color)
+      '&:hover': effects && theme.helpers.colorByLuminance(color),
+      '&:active': effects && theme.helpers.colorByLuminance(color)
     },
     background: {
       base: 'rgba(0,0,0,0)',
-      hover: effects && color,
-      active: effects && theme.colors.getShade(color, 2)
+      '&:hover': effects && color,
+      '&:active': effects && theme.colors.getShade(color, 2)
     },
     borderColor: color
   };
@@ -24,13 +24,13 @@ function getAccentStyles(theme, color, effects) {
     },
     color: {
       base: color,
-      hover: effects && theme.helpers.colorByLuminance(color),
-      active: effects && theme.helpers.colorByLuminance(color)
+      '&:hover': effects && theme.helpers.colorByLuminance(color),
+      '&:active': effects && theme.helpers.colorByLuminance(color)
     },
     background: {
       base: 'rgba(0,0,0,0)', // TODO
-      hover: effects && color,
-      active: effects && theme.colors.getShade(color, 2)
+      '&:hover': effects && color,
+      '&:active': effects && theme.colors.getShade(color, 2)
     }
   };
 }
@@ -40,8 +40,8 @@ function getPlainStyles(theme, color, effects) {
     color: theme.helpers.colorByLuminance(color),
     background: {
       base: color,
-      hover: effects && theme.colors.getShade(color, 1),
-      active: effects && theme.colors.getShade(color, 2)
+      '&:hover': effects && theme.colors.getShade(color, 1),
+      '&:active': effects && theme.colors.getShade(color, 2)
     }
   };
 }
