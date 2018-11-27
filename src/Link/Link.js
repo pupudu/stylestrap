@@ -5,7 +5,7 @@ const Anchor = withStyles('Anchor', props => ({
   color: props.color,
   backgroundColor: 'transparent',
   textDecoration: {
-    hover: 'underline'
+    '&:hover': 'underline'
   }
 }))('a');
 
