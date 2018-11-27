@@ -1,6 +1,6 @@
 {
   "name": "stylestrap",
-  "version": "0.0.8-alpha.3",
+  "version": "0.0.8-alpha.4",
   "description": "Bootstrap based components library built using styled components",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -63,7 +63,9 @@
     "rollup-plugin-uglify": "^6.0.0",
     "styled-components": "^4.0.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "classnames": "^2.2.6"
+  },
   "peerDependencies": {
     "bootstrap": ">= 4",
     "polished": ">= 2",
