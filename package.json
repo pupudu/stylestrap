@@ -1,6 +1,6 @@
 {
   "name": "stylestrap",
-  "version": "0.0.9-alpha.9",
+  "version": "0.0.9-alpha.10",
   "description": "Bootstrap based components library built using styled components",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -64,7 +64,6 @@
     "styled-components": "^4.1.2"
   },
   "dependencies": {
-    "@svgr/rollup": "^4.1.0",
     "classnames": "^2.2.6",
     "react-select": "^2.1.2"
   },
