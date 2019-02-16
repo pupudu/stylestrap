@@ -1,6 +1,6 @@
 {
   "name": "stylestrap",
-  "version": "0.1.0-alpha.16",
+  "version": "0.1.0",
   "description": "Bootstrap based components library built using styled components",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -51,8 +51,9 @@
     "polished": "^2.3.0",
     "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
-    "react": "^16.8.0-alpha.1",
-    "react-dom": "^16.8.0-alpha.1",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-select": "^2.4.0",
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
@@ -64,8 +65,7 @@
     "styled-components": "^4.1.2"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
-    "react-select": "^2.1.2"
+    "classnames": "^2.2.6"
   },
   "peerDependencies": {
     "bootstrap": ">= 4",
@@ -73,6 +73,7 @@
     "prop-types": ">= 15",
     "react": ">= 16",
     "react-dom": ">= 16",
+    "react-select": ">= 2",
     "styled-components": ">= 4"
   },
   "husky": {
