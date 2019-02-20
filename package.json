@@ -1,6 +1,6 @@
 {
   "name": "stylestrap",
-  "version": "0.1.1-alpha.3",
+  "version": "0.1.1",
   "description": "Bootstrap based components library built using styled components",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
