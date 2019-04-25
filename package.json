@@ -1,6 +1,6 @@
 {
   "name": "stylestrap",
-  "version": "0.2.0-alpha.0",
+  "version": "0.2.0-alpha.1",
   "description": "Bootstrap based components library built using styled components",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -75,6 +75,7 @@
     "react": ">= 16",
     "react-dom": ">= 16",
     "react-select": ">= 2",
+    "reactstrap": ">=8.0.0",
     "styled-components": ">= 4"
   },
   "husky": {
