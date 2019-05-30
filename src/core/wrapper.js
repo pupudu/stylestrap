@@ -1,39 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
-import theme from '../Themes/stylestrap';
+import defaultTheme from '../Themes/stylestrap';
 import '../Stylestrap';
 
-const state = {
+const cacheState = {
   setState: null,
-  state
+  state: null
 };
 
 export function setState(theme) {
-  state.setState(theme);
+  cacheState.setState(theme);
 }
 
 export function getState() {
-  return state.state;
+  return cacheState.state;
 }
 
-class Wrapper extends React.Component {
-  state = theme;
-
-  componentDidMount() {
-    state.setState = this.setState.bind(this);
-    state.state = this.state;
-  }
-
-  render() {
-    return (
-      <ThemeProvider theme={this.state}>{this.props.children}</ThemeProvider>
-    );
-  }
+export default function DoczRoot(props) {
+  const [state, setState] = useState(defaultTheme);
+  useEffect(() => {
+    cacheState.state = state;
+    cacheState.setState = setState;
+  }, [state]);
+  return <ThemeProvider theme={state} {...props} />;
 }
-
-Wrapper.propTypes = {
-  children: PropTypes.any
-};
-
-export default Wrapper;

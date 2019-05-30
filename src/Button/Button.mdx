@@ -3,14 +3,14 @@ name: Button
 menu: Components
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground, Props } from 'docz';
 import { Button } from './';
 import { Grid, Cell } from '../Grid';
 import { Styled } from '../Styled';
 
 # Button
 
-<PropsTable of={Button} />
+<Props of={Button} />
 
 ## Basic usage
 
@@ -74,9 +74,9 @@ import { Styled } from '../Styled';
 ### Dark Background
 
 <Playground>
-  <Styled background="#444" padding="md" borderRadius="xs">
+  <Styled css={{background: "#444", padding:"md"}} borderRadius="xs">
 
-    <Styled color="white">Plain Buttons</Styled>
+    <Styled css={{color: "white"}}>Plain Buttons</Styled>
 
     <Grid columns="8" gap="xxs">
       <Button color={'primary'}>Primary</Button>
@@ -89,7 +89,7 @@ import { Styled } from '../Styled';
       <Button color={'blend'}>Blend</Button>
     </Grid>
 
-    <Styled color="white">Outline Flavor</Styled>
+    <Styled css={{color: "white"}}>Outline Flavor</Styled>
 
     <Grid columns="8" gap="xxs">
       <Button color={'primary'} flavor="outline">Primary</Button>
@@ -102,7 +102,7 @@ import { Styled } from '../Styled';
       <Button color={'blend'} flavor="outline">Blend</Button>
     </Grid>
 
-    <Styled color="white">Accent Flavor</Styled>
+    <Styled css={{color: "white"}}>Accent Flavor</Styled>
 
     <Grid columns="8" gap="xxs">
       <Button color={'primary'} flavor="accent">Primary</Button>
