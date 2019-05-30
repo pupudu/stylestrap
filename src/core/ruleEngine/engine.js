@@ -78,9 +78,11 @@ function generateStylesRecursively(props, ruleMap, startStyle = '') {
     // TODO for that, will need to consider nested properties like padding
 
     // Generate css rules based on the prop value type
+    if ([null, undefined, false].indexOf(propValue) >= 0) {
+      // These values are not valid CSS values
+      return style;
+    }
     switch (typeof propValue) {
-      case 'undefined':
-        return style;
       case 'number':
         return appendSizeRule(style, styleKey, propValue);
       case 'string':
