@@ -1,24 +1,17 @@
 import { withStyles } from '../core/ruleEngine/withStyles';
 
 const Styled = withStyles('Styled', undefined, props => {
-  // Clone props and remove the extracted properties from the clone,
-  // to make it usable as the css prop
-  const propsClone = { ...props };
-  function extract(propKey) {
-    const prop = propsClone[propKey];
-    delete propsClone[propKey];
-    return prop;
-  }
-
-  const children = extract('children');
-  const as = extract('as');
-  const className = extract('className');
+  const { className, as, children, css, style, ...rest } = props;
 
   return {
     className,
     as,
     children,
-    css: propsClone
+    style,
+    css: {
+      ...css,
+      ...rest
+    }
   };
 })();
 
