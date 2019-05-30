@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { withStyles, getStylesByFlavor } from '../core/ruleEngine';
 
 const Button = withStyles(['Button', 'btn'], (props, theme) => {
-  return getStylesByFlavor(props, theme, true);
+  return getStylesByFlavor({ color: 'primary', ...props }, theme, true);
 })('button');
 
 Button.propTypes = {

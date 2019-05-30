@@ -37,17 +37,17 @@ function getAccentStyles(theme, color, effects) {
 
 function getPlainStyles(theme, color, effects) {
   return {
-    color: theme.helpers.colorByLuminance(color),
+    color: color && theme.helpers.colorByLuminance(color),
     background: {
       base: color,
-      '&:hover': effects && theme.colors.getShade(color, 1),
-      '&:active': effects && theme.colors.getShade(color, 2)
+      '&:hover': effects && color && theme.colors.getShade(color, 1),
+      '&:active': effects && color && theme.colors.getShade(color, 2)
     }
   };
 }
 
 export function getStylesByFlavor(props, theme, effects) {
-  const { flavor, color = 'primary', disabled } = props;
+  const { flavor, color, disabled } = props;
 
   effects = effects && !disabled;
 
