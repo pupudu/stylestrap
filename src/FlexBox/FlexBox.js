@@ -31,13 +31,7 @@ const Container = withStyles(['Container', 'container'], props => ({
   },
   width: props.fluid,
   margin: props.margin,
-  maxWidth: !props.fluid && {
-    // TODO get from theme
-    xs: '100%',
-    sm: '26.25rem',
-    md: '45rem',
-    lg: '60rem'
-  }
+  maxWidth: !props.fluid && props.maxWidth
 }))();
 
 const Col = withStyles(['Col', 'col'], props => {
