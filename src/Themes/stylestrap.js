@@ -14,10 +14,13 @@ const theme = {
   },
   helpers: {
     // TODO need a better approach for this
-    colorByLuminance: color =>
-      getLuminance(theme.colors[color]) < 0.7 ? '#FFF' : '#666',
-    borderColorByLuminance: color =>
-      getLuminance(theme.colors[color]) < 0.7 ? '#AAA' : '#FFF'
+    colorByLuminance: (color, extendedTheme = theme) => {
+      return getLuminance(extendedTheme.colors[color] || color) < 0.7
+        ? '#FFF'
+        : '#666';
+    },
+    borderColorByLuminance: (color, extendedTheme = theme) =>
+      getLuminance(extendedTheme.colors[color] || color) < 0.7 ? '#AAA' : '#FFF'
   },
   breakpoints: {
     xs: 0,
@@ -34,10 +37,26 @@ const theme = {
     lg: '1.25rem',
     xl: '1.5rem'
   },
+  headingSizes: {
+    h1: '2.5rem',
+    h2: '2rem',
+    h3: '1.75rem',
+    h4: '1.5rem',
+    h5: '1.25rem',
+    h6: '1rem'
+  },
   defaultStyles: {
     Col: {
       padding: {
         left: 'xl'
+      }
+    },
+    Container: {
+      maxWidths: {
+        xs: '100%',
+        sm: '26.25rem',
+        md: '45rem',
+        lg: '60rem'
       }
     }
   }
