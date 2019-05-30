@@ -6,7 +6,7 @@ export const withStyles = (
   args,
   getStyleProps = () => ({}),
   transformProps = () => ({})
-) => (Component = styled.div``) => {
+) => (Component = 'div') => {
   if (!Array.isArray(args)) {
     args = [args];
   }
@@ -14,8 +14,8 @@ export const withStyles = (
   if (typeof Component === 'string') {
     Component = styled[Component]``;
   }
+
   const [displayName, baseClassNameConst = ''] = args;
-  let baseClassName = baseClassNameConst;
 
   const getStylePropsWithCss = props => {
     return {
@@ -26,19 +26,20 @@ export const withStyles = (
     };
   };
 
-  // Note: Two ampersands are here to make generated styles more specific than base classes
+  // Note: Three ampersands are here to make generated styles more specific than base classes
   // See: https://www.styled-components.com/docs/faqs#how-can-i-override-styles-with-higher-specificity
   // TODO merge with default theme as required
   const StyledComponent = styled(Component)`
-    && {
+    &&& {
       ${props =>
         getStyleString(props, props.theme, getStylePropsWithCss, displayName)};
     }
   `;
 
   const Wrapped = props => {
-    if (typeof baseClassName === 'function') {
-      baseClassName = baseClassName(props);
+    let baseClassName = baseClassNameConst;
+    if (typeof baseClassNameConst === 'function') {
+      baseClassName = baseClassNameConst(props);
     }
     const transformedProps = transformProps(props);
     const className = `${baseClassName} ${transformedProps.className ||
