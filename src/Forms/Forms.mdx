@@ -1,0 +1,27 @@
+---
+name: Form
+menu: Components
+---
+
+# Form Components
+
+import { Playground, PropsTable } from 'docz';
+import { FormInput, HelpText } from './';
+
+<form>
+    <FormInput 
+        type="number"
+        label="Refund Amount"
+        id="amount"
+        placeholder="0.00"
+        aria-describedby="currency"
+        helpText="Refund amount cannot be more than the accounts total unapplied credit"
+        onBlur={()=>null}
+        onChange={()=>null}
+        error={''}
+        touched={false}
+        value={''}
+    />
+</form>
+
+<PropsTable of={HelpText} />
