@@ -8,6 +8,7 @@ const CardBody = withStyles(['CardBody', 'card-body'], props => {
 })();
 
 const CardHeader = withStyles(['CardHeader', 'card-header'])();
+const CardFooter = withStyles(['CardFooter', 'card-footer'])();
 
 const CardContainer = withStyles(['Card', 'card'], (props, theme) => {
   return getStylesByFlavor(props, theme, false);
@@ -26,4 +27,4 @@ const Card = ({ children, ...rest }) => {
   );
 };
 
-export { Card, CardHeader, CardBody };
+export { Card, CardHeader, CardBody, CardFooter };
