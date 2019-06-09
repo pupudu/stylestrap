@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles, getStylesByFlavor } from '../core/ruleEngine';
+import './Button.css';
 
 const Button = withStyles(
   [
@@ -8,6 +9,7 @@ const Button = withStyles(
     props =>
       classNames({
         btn: true,
+        'btn-xs': props.size === 'xs',
         'btn-sm': props.size === 'sm',
         'btn-lg': props.size === 'lg',
         'btn-block': props.block
