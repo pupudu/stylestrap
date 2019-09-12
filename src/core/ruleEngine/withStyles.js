@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { getStyleString } from './engine';
+import classnames from 'classnames';
+import { callOrReturn } from './utils';
 
 export const withStyles = (
   args,
@@ -11,17 +13,13 @@ export const withStyles = (
     args = [args];
   }
 
-  if (typeof Component === 'string') {
-    Component = styled[Component]``;
-  }
-
-  const [displayName, baseClassNameConst = ''] = args;
+  const [displayName, baseClassNames = ''] = args;
 
   const getStylePropsWithCss = props => {
     return {
       // Here props.theme comes from `getStyleString`.
       // Thus any modifications done there will be reflected here as well.
-      ...getStyleProps(props, props.theme),
+      ...callOrReturn(getStyleProps, props, props.theme),
       ...props.css // Enable passing a function as css
     };
   };
@@ -29,29 +27,25 @@ export const withStyles = (
   // Note: Three ampersands are here to make generated styles more specific than base classes
   // See: https://www.styled-components.com/docs/faqs#how-can-i-override-styles-with-higher-specificity
   // TODO merge with default theme as required
-  const StyledComponent = styled(Component)`
+  const StyledComponent = (styled[Component] || styled(Component))`
     &&& {
       ${props =>
         getStyleString(props, props.theme, getStylePropsWithCss, displayName)};
     }
   `;
 
-  const Wrapped = props => {
-    let baseClassName = baseClassNameConst;
-    if (typeof baseClassNameConst === 'function') {
-      baseClassName = baseClassNameConst(props);
-    }
-    const transformedProps = transformProps(props);
-    const className = `${baseClassName} ${transformedProps.className ||
-      props.className ||
-      ''}`.trim();
+  const Wrapped = originalProps => {
+    const props = {
+      ...originalProps,
+      ...callOrReturn(transformProps, originalProps)
+    };
 
-    return (
-      <StyledComponent
-        {...{ ...props, ...transformedProps }}
-        className={className}
-      />
+    const className = classnames(
+      callOrReturn(baseClassNames, props),
+      props.className
     );
+
+    return <StyledComponent {...props} className={className} />;
   };
   Wrapped.displayName = displayName;
 
