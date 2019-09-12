@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { callOrReturn } from './utils';
 import classnames from 'classnames';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
 import { getStyleString } from './engine';
 
 class Builder {
@@ -32,18 +32,22 @@ class Builder {
   }
 
   create(component = 'div') {
-    return originalProps => {
-      const theme = useContext(ThemeContext);
-      const {
-        name,
-        initialProps,
-        initialStyles,
-        initialClassNames
-      } = this.state;
-      const { css, ...filteredProps } = originalProps;
+    const { name, initialProps, initialStyles, initialClassNames } = this.state;
 
+    const styleMapper = props => ({
+      ...callOrReturn(initialStyles, props, props.theme),
+      ...callOrReturn(props.css, props, props.theme)
+    });
+
+    const StyledComponent = (styled[component] || styled(component))`
+      &&& {
+        ${propsWithTheme => getStyleString(propsWithTheme, styleMapper, name)};
+      }
+    `;
+
+    return originalProps => {
       const mergedProps = {
-        ...filteredProps,
+        ...originalProps,
         ...callOrReturn(initialProps, originalProps)
       };
 
@@ -51,18 +55,6 @@ class Builder {
         callOrReturn(initialClassNames, mergedProps),
         mergedProps.className
       );
-
-      const styleMapper = propsWithTheme => ({
-        ...callOrReturn(initialStyles, propsWithTheme, propsWithTheme.theme),
-        ...callOrReturn(css, propsWithTheme, propsWithTheme.theme)
-      });
-
-      const StyledComponent = (styled[component] || styled(component))`
-        &&& {
-          ${propsWithTheme =>
-            getStyleString(propsWithTheme, styleMapper, name)};
-        }
-      `;
 
       return <StyledComponent {...mergedProps} className={className} />;
     };
