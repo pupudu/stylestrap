@@ -29,8 +29,7 @@ export const withStyles = (
   // TODO merge with default theme as required
   const StyledComponent = (styled[Component] || styled(Component))`
     &&& {
-      ${props =>
-        getStyleString(props, props.theme, getStylePropsWithCss, displayName)};
+      ${props => getStyleString(props, getStylePropsWithCss, displayName)};
     }
   `;
 

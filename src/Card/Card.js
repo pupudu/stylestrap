@@ -1,18 +1,26 @@
 import React from 'react';
-import { withStyles, getStylesByFlavor } from '../core/ruleEngine';
+import { makeComponent, getStylesByFlavor } from '../core/ruleEngine';
 
-const CardBody = withStyles(['CardBody', 'card-body'], props => {
-  return {
+const CardBody = makeComponent('CardBody')
+  .classNames('card-body')
+  .styles(props => ({
     padding: props.padding
-  };
-})();
+  }))
+  .create();
 
-const CardHeader = withStyles(['CardHeader', 'card-header'])();
-const CardFooter = withStyles(['CardFooter', 'card-footer'])();
+const CardHeader = makeComponent('CardHeader')
+  .classNames('card-header')
+  .create();
+const CardFooter = makeComponent('CardFooter')
+  .classNames('card-footer')
+  .create();
 
-const CardContainer = withStyles(['Card', 'card'], (props, theme) => {
-  return getStylesByFlavor(props, theme, false);
-})();
+const CardContainer = makeComponent('Card')
+  .classNames('card')
+  .styles((props, theme) => {
+    return getStylesByFlavor(props, theme, false);
+  })
+  .create();
 
 const Card = ({ children, ...rest }) => {
   return (

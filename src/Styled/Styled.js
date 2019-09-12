@@ -1,18 +1,13 @@
-import { withStyles } from '../core/ruleEngine/withStyles';
+import { makeComponent } from '../core/ruleEngine';
 
-const Styled = withStyles('Styled', undefined, props => {
-  const { className, as, children, css, style, ...rest } = props;
-
-  return {
+const Styled = makeComponent('Styled')
+  .props(({ className, as, children, css, style, ...rest }) => ({
     className,
     as,
     children,
     style,
-    css: {
-      ...css,
-      ...rest
-    }
-  };
-})();
+    css: { ...css, ...rest }
+  }))
+  .create();
 
 export { Styled };

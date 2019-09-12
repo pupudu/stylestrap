@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '../core/ruleEngine';
+import { makeComponent } from '../core/ruleEngine';
 
 const getOnClickAnchor = onClick => e => {
   e.preventDefault();
@@ -7,19 +7,18 @@ const getOnClickAnchor = onClick => e => {
   return false;
 };
 
-const Anchor = withStyles(
-  'Anchor',
-  props => ({
+const Anchor = makeComponent('Anchor')
+  .styles(props => ({
     color: props.color,
     backgroundColor: 'transparent',
     textDecoration: {
       '&:hover': 'underline'
     }
-  }),
-  ({ onClick }) => ({
+  }))
+  .props(({ onClick }) => ({
     onClick: getOnClickAnchor(onClick)
-  })
-)('a');
+  }))
+  .create('a');
 
 Anchor.defaultProps = {
   href: '#',

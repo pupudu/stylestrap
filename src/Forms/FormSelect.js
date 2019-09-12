@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormGroup, Label, Feedback, HelpText } from './FormComponents';
 import { Select } from './ReactSelect';
-import { withStyles } from '../core/ruleEngine';
+import { makeComponent } from '../core/ruleEngine';
 
 const FormSelectBase = props => {
   const { id, label, helpText, className, ...rest } = props;
@@ -19,7 +19,7 @@ const FormSelectBase = props => {
   );
 };
 
-const FormSelect = withStyles('FormSelect')(FormSelectBase);
+const FormSelect = makeComponent('FormSelect').create(FormSelectBase);
 
 FormSelect.propTypes = {
   id: PropTypes.string,

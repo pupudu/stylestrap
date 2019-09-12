@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
-import { withStyles } from '../core/ruleEngine';
+import { makeComponent } from '../core/ruleEngine';
 import './rangeSlider.css';
 
-const Container = withStyles(['RangeContainer', 'range-slider'], props => {
-  return {
+const Container = makeComponent('RangeContainer')
+  .classNames('range-slider')
+  .styles(props => ({
     position: 'relative',
     width: props.width || '100%',
     height: '35px',
     textAlign: 'center'
-  };
-})('section');
+  }))
+  .create('section');
 
-const RangeInput = withStyles('RangeInput', () => {
-  return {
+const RangeInput = makeComponent('RangeInput')
+  .styles({
     position: 'absolute',
     left: 0,
     top: '15px',
     width: '100%',
     height: '18px'
-  };
-})('input');
+  })
+  .create('input');
 
 const BaseRangeSlider = props => {
   const {
@@ -81,9 +82,9 @@ const BaseRangeSlider = props => {
   );
 };
 
-const RangeSlider = withStyles(['RangeSlider', 'range-slider'])(
-  BaseRangeSlider
-);
+const RangeSlider = makeComponent('RangeSlider')
+  .classNames('range-slider')
+  .create(BaseRangeSlider);
 
 RangeSlider.propTypes = {};
 

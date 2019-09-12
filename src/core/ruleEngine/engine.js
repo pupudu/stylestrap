@@ -127,11 +127,11 @@ function toKebabCase(ruleKey) {
   return ruleKey.replace(/([A-Z])/g, Cap => `-${Cap.toLowerCase()}`);
 }
 
-export function getStyleString(props, theme, getStyleProps, displayName) {
-  // Replace theme with return value from setTheme
+export function getStyleString(props, getStyleProps, displayName) {
+  // Use theme with return value from setTheme
   // This is useful when theme was defined before, but undefined now due to some
   // reason like using portals or 3rd party libraries
-  theme = setTheme(theme);
+  const theme = setTheme(props.theme);
 
   const ruleMap = getRuleMap(props);
 

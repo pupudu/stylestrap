@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '../core/ruleEngine/withStyles';
+import { makeComponent } from '../core/ruleEngine';
 
-const Navbar = withStyles(['Navbar', 'navbar'])();
+const Navbar = makeComponent('Navbar')
+  .classNames('navbar')
+  .create();
 
 const Header = props => <Navbar {...props} />;
 

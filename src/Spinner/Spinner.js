@@ -1,7 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 import styled from 'styled-components';
-import { withStyles } from '../core/ruleEngine';
+import { makeComponent } from '../core/ruleEngine';
 
 const iconMap = {
   arrow: '↻',
@@ -35,13 +35,13 @@ Icon.propTypes = {
   children: T.any
 };
 
-const Spinner = withStyles(['Spinner', 'spinner'], props => {
-  return {
+const Spinner = makeComponent('Spinner')
+  .classNames('spinner')
+  .styles(props => ({
     animation: `spin ${props.speed || 0.8}s linear infinite`,
     display: 'inline-block',
     fontSize: props.size || '1.5rem'
-  };
-})(styled(Icon)`
+  })).create(styled(Icon)`
   @keyframes spin {
     100% {
       transform: rotate(360deg);

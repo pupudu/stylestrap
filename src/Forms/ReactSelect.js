@@ -1,31 +1,11 @@
-import classNames from 'classnames';
 import ReactSelect from 'react-select';
-import { withStyles } from '../core/ruleEngine';
+import { makeComponent } from '../core/ruleEngine';
 
-const Select = withStyles(
-  [
-    'Select',
-    ({ invalid, valid }) =>
-      classNames({
-        'form-control': true,
-        'is-invalid': invalid,
-        'is-valid': valid
-      })
-  ],
-  () => ({
-    padding: 0,
-    height: 'auto'
-  }),
-  ({
-    id,
-    onChange = () => undefined,
-    onBlur = () => undefined,
-    name,
-    ...rest
-  }) => ({
+const Select = makeComponent('Select')
+  .props(({ id, name, onChange = () => {}, onBlur = () => {} }) => ({
     styles: {
-      control: provided => ({
-        ...provided,
+      control: existingStyles => ({
+        ...existingStyles,
         border: 'none'
       })
     },
@@ -45,11 +25,17 @@ const Select = withStyles(
           value: data
         }
       });
-    },
-    name,
-    id,
-    ...rest
+    }
+  }))
+  .classNames(props => ({
+    'form-control': true,
+    'is-invalid': props.invalid,
+    'is-valid': props.valid
+  }))
+  .styles({
+    padding: 0,
+    height: 'auto'
   })
-)(ReactSelect);
+  .create(ReactSelect);
 
 export { Select };

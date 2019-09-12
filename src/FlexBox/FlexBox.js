@@ -1,4 +1,4 @@
-import { withStyles } from '../core/ruleEngine';
+import { makeComponent } from '../core/ruleEngine';
 
 function getFlexProps(props) {
   const breakpoints = Object.keys(props.theme.breakpoints || {});
@@ -24,32 +24,41 @@ function getFlexProps(props) {
       };
 }
 
-const Container = withStyles(['Container', 'container'], props => ({
-  padding: props.padding || {
-    left: 'sm',
-    right: 'sm'
-  },
-  width: props.fluid,
-  margin: props.margin,
-  maxWidth: !props.fluid && props.maxWidth
-}))();
+const Container = makeComponent('Container')
+  .classNames('container')
+  .styles(props => ({
+    padding: props.padding || {
+      left: 'sm',
+      right: 'sm'
+    },
+    width: props.fluid,
+    margin: props.margin,
+    maxWidth: !props.fluid && props.maxWidth
+  }))
+  .create();
 
-const Col = withStyles(['Col', 'col'], props => {
-  return {
+const Col = makeComponent('Col')
+  .classNames('col')
+  .styles(props => {
+    return {
+      padding: props.padding,
+      margin: props.margin,
+      ...getFlexProps(props)
+    };
+  })
+  .create();
+
+const Row = makeComponent('Row')
+  .classNames('row')
+  .styles(props => ({
     padding: props.padding,
     margin: props.margin,
-    ...getFlexProps(props)
-  };
-})();
-
-const Row = withStyles(['Row', 'row'], props => ({
-  padding: props.padding,
-  margin: props.margin,
-  flexBasis: props.basis,
-  flexGrow: props.grow,
-  justifyContent: props.justifyContent,
-  flexShrink: props.shrink,
-  alignItems: props.alignItems
-}))();
+    flexBasis: props.basis,
+    flexGrow: props.grow,
+    justifyContent: props.justifyContent,
+    flexShrink: props.shrink,
+    alignItems: props.alignItems
+  }))
+  .create();
 
 export { Container, Col, Row };

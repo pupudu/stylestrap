@@ -1,46 +1,38 @@
-import { withStyles } from '../core/ruleEngine';
-import classNames from 'classnames';
+import { makeComponent } from '../core/ruleEngine';
 
-const Feedback = withStyles(
-  [
-    'Feedback',
-    ({ invalid, valid }) =>
-      classNames({
-        'invalid-feedback': invalid,
-        'valid-feedback': valid
-      })
-  ],
-  ({ invalid, valid }) => ({
+const Feedback = makeComponent('Feedback')
+  .props(({ invalid, valid }) => ({
     color: invalid ? 'danger' : valid ? 'success' : 'initial'
-  })
-)();
+  }))
+  .classNames(({ invalid, valid }) => ({
+    'invalid-feedback': invalid,
+    'valid-feedback': valid
+  }))
+  .create();
 
-const HelpText = withStyles([
-  'HelpText',
-  ({ muted }) =>
-    classNames({
-      'form-text': true,
-      'text-muted': muted
-    })
-])('small');
+const HelpText = makeComponent('HelpText')
+  .props({ muted: true })
+  .classNames(({ muted }) => ({
+    'form-text': true,
+    'text-muted': muted
+  }))
+  .create('small');
 
-HelpText.defaultProps = {
-  muted: true
-};
+const FormGroup = makeComponent('FormGroup')
+  .classNames('form-group')
+  .create();
 
-const FormGroup = withStyles(['FormGroup', 'form-group'])();
+const Input = makeComponent('Input')
+  .classNames(props => ({
+    'form-control': props.type !== 'plaintext',
+    'is-invalid': props.invalid,
+    'is-valid': props.valid,
+    'form-control-plaintext': props.type === 'plaintext'
+  }))
+  .create('input');
 
-const Input = withStyles([
-  'Input',
-  ({ invalid, valid, type = '' }) =>
-    classNames({
-      'form-control': type !== 'plaintext',
-      'is-invalid': invalid,
-      'is-valid': valid,
-      'form-control-plaintext': type === 'plaintext'
-    })
-])('input');
-
-const Label = withStyles(['Label', 'label'])();
+const Label = makeComponent('Label')
+  .classNames('label')
+  .create();
 
 export { Feedback, HelpText, FormGroup, Input, Label };

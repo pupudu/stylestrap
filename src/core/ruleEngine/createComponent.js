@@ -52,14 +52,15 @@ class Builder {
         mergedProps.className
       );
 
-      const styleMapper = () => ({
-        ...callOrReturn(initialStyles, mergedProps, theme),
-        ...css
+      const styleMapper = propsWithTheme => ({
+        ...callOrReturn(initialStyles, propsWithTheme, propsWithTheme.theme),
+        ...callOrReturn(css, propsWithTheme, propsWithTheme.theme)
       });
 
       const StyledComponent = (styled[component] || styled(component))`
         &&& {
-          ${getStyleString(mergedProps, theme, styleMapper, name)};
+          ${propsWithTheme =>
+            getStyleString(propsWithTheme, styleMapper, name)};
         }
       `;
 

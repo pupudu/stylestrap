@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormGroup, Feedback, HelpText, Input, Label } from './FormComponents';
-import { withStyles } from '../core/ruleEngine';
+import { makeComponent } from '../core/ruleEngine';
 
 const FormInputBase = props => {
   const {
@@ -36,7 +36,7 @@ const FormInputBase = props => {
   );
 };
 
-const FormInput = withStyles('FormInput')(FormInputBase);
+const FormInput = makeComponent('FormInput').create(FormInputBase);
 
 FormInput.propTypes = {
   error: PropTypes.string,

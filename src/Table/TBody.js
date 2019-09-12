@@ -1,10 +1,9 @@
-import T from 'prop-types';
-import { withStyles } from '../core/ruleEngine';
+import { makeComponent } from '../core/ruleEngine';
 
-const TBody = withStyles(['TBody', ''], props => {
-  return {}; // TODO change colors based on props
-})('tbody');
-
-TBody.propTypes = {};
+const TBody = makeComponent('TBody')
+  .props(props => {
+    return {}; // TODO change colors based on props
+  })
+  .create('tbody');
 
 export { TBody };

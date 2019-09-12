@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import T from 'prop-types';
-import { withStyles } from '../core/ruleEngine';
+import { makeComponent } from '../core/ruleEngine';
 import {
   Modal as ModalBase,
   ModalHeader as ModalHeaderBase,
@@ -8,10 +8,12 @@ import {
   ModalBody as ModalBodyBase
 } from 'reactstrap';
 
-const ModalComponent = withStyles(['Modal', 'react-admin'])(ModalBase);
-const ModalHeader = withStyles('ModalHeader')(ModalHeaderBase);
-const ModalFooter = withStyles('ModalFooter')(ModalFooterBase);
-const ModalBody = withStyles('ModalBody')(ModalBodyBase);
+const ModalComponent = makeComponent('Modal')
+  .classNames('react-admin')
+  .create(ModalBase);
+const ModalHeader = makeComponent('ModalHeader').create(ModalHeaderBase);
+const ModalFooter = makeComponent('ModalFooter').create(ModalFooterBase);
+const ModalBody = makeComponent('ModalBody').create(ModalBodyBase);
 
 const useToggle = (initialState = false) => {
   const [state, setState] = useState(initialState);

@@ -1,12 +1,13 @@
 import T from 'prop-types';
-import { withStyles } from '../core/ruleEngine';
+import { makeComponent } from '../core/ruleEngine';
 
-const Badge = withStyles(['Badge', 'badge'], (props, theme) => {
-  return {
+const Badge = makeComponent('Badge')
+  .classNames('badge')
+  .styles((props, theme) => ({
     backgroundColor: props.color,
     color: theme.helpers.colorByLuminance(props.color, theme)
-  };
-})('span');
+  }))
+  .create('span');
 
 Badge.propTypes = {
   color: T.string
