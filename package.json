@@ -52,7 +52,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,js}": [
+    "src/**/*.{ts,js,tsx}": [
       "yarn lint --fix",
       "git add"
     ]

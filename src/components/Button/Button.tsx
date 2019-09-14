@@ -1,12 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import { makeComponent, getStylesByFlavor } from '../../core/ruleEngine';
 import './Button.css';
 
-type Button = {
+type ButtonProps = {
   color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'blend' | 'flip';
 };
 
-const Button: React.FC<Button> = makeComponent('Button')
+const Button: React.FC<ButtonProps> = makeComponent('Button')
   .classNames(props => ({
     btn: true,
     'btn-xs': props.size === 'xs', // TODO this looks weird. Possible bug?
