@@ -17,5 +17,6 @@ export default {
       .end();
   },
   wrapper: 'src/core/wrapper',
-  menu: ['Introduction', 'Layout', 'Components', 'Themes']
+  menu: ['Introduction', 'Layout', 'Components', 'Themes'],
+  typescript: true
 };
