@@ -9,7 +9,8 @@ class Builder {
     name: '',
     initialClassNames: '',
     initialStyles: undefined,
-    initialProps: {},
+    transformedProps: {},
+    defaultProps: {},
   };
 
   constructor(name) {
@@ -27,12 +28,17 @@ class Builder {
   }
 
   props(props) {
-    this.state.initialProps = props;
+    this.state.transformedProps = props;
+    return this;
+  }
+
+  defaultProps(props) {
+    this.state.defaultProps = props;
     return this;
   }
 
   create(component: any = 'div') {
-    const { name, initialProps, initialStyles, initialClassNames } = this.state;
+    const { name, transformedProps, defaultProps, initialStyles, initialClassNames } = this.state;
 
     const styleMapper = props => ({
       ...callOrReturn(initialStyles, props, props.theme),
@@ -48,8 +54,9 @@ class Builder {
 
     return originalProps => {
       const mergedProps = {
+        ...defaultProps,
         ...originalProps,
-        ...callOrReturn(initialProps, originalProps),
+        ...callOrReturn(transformedProps, originalProps),
       };
 
       const className = classnames(

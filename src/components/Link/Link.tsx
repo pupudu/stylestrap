@@ -15,10 +15,12 @@ const Anchor = makeComponent('Anchor')
       '&:hover': 'underline',
     },
   }))
+  .defaultProps({
+    color: 'primary',
+    href: '#',
+  })
   .props(({ onClick }) => ({
     onClick: getOnClickAnchor(onClick),
-    href: '#',
-    color: 'primary',
   }))
   .create('a');
 

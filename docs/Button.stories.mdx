@@ -3,16 +3,16 @@ name: Button
 menu: Components
 ---
 
-import { Playground, Props } from 'docz';
+import { PropsTable, Preview } from './utils';
 import { Grid, Cell, Styled, Button } from './';
 
 # Button
 
-<Props of={Button} />
+<PropsTable of={Button} />
 
 ## Basic usage
 
-<Playground>
+<Preview>
   <Grid columns="8" gap="xxs">
     <Button color="primary">Primary</Button>
     <Button color="secondary">Secondary</Button>
@@ -23,11 +23,11 @@ import { Grid, Cell, Styled, Button } from './';
     <Button color={'flip'}>Flip</Button>
     <Button color={'blend'}>Blend</Button>
   </Grid>
-</Playground>
+</Preview>
 
 ## Button Flavors
 
-<Playground>
+<Preview bg="#eee">
     
   <div>Plain Buttons</div>
 
@@ -67,12 +67,11 @@ import { Grid, Cell, Styled, Button } from './';
     <Button color={'flip'} flavor="accent">Flip</Button>
     <Button color={'blend'} flavor="accent">Blend</Button>
   </Grid>
-</Playground>
+</Preview>
 
 ### Dark Background
 
-<Playground>
-  <Styled css={{background: "#444", padding:"md"}} borderRadius="xs">
+<Preview bg="flip">
 
     <Styled css={{color: "white"}}>Plain Buttons</Styled>
 
@@ -112,5 +111,4 @@ import { Grid, Cell, Styled, Button } from './';
       <Button color={'flip'} flavor="accent">Flip</Button>
       <Button color={'blend'} flavor="accent">Blend</Button>
     </Grid>
-  </Styled>
-</Playground>
+</Preview>
