@@ -156,15 +156,3 @@ export function getStyleString(props, getStyleProps, displayName) {
   }, {});
   return generateStylesRecursively(styleProps, ruleMapToApply);
 }
-
-export function filterProps(theme, props) {
-  const ruleMap = getRuleMap({ theme, ...props });
-  const propsClone = { ...props };
-  Object.keys(ruleMap).forEach(ruleKey => {
-    if (ruleMap[ruleKey] === ruleKey || ruleMap[ruleKey].__label__ === ruleKey) {
-      return;
-    }
-    delete propsClone[ruleKey];
-  });
-  return propsClone;
-}
