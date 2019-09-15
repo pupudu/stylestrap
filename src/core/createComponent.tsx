@@ -52,7 +52,7 @@ class Builder {
       }
     `;
 
-    return originalProps => {
+    const Wrapped: React.FC = originalProps => {
       const mergedProps = {
         ...defaultProps,
         ...originalProps,
@@ -66,6 +66,9 @@ class Builder {
 
       return <StyledComponent {...mergedProps} className={className} />;
     };
+    Wrapped.displayName = name;
+
+    return Wrapped;
   }
 }
 
