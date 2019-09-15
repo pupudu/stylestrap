@@ -1,6 +1,31 @@
 import { shade, getLuminance } from 'polished';
+import state from '../core/ruleEngine/state';
+
+function getColorShade(colorEnum, type) {
+  const color = state.theme.colors[colorEnum];
+  const colorMap = {
+    '-2': shade(0.3, color), // TODO replace shade with some other helper to make them brighter
+    '-1': shade(0.2, color), // TODO replace shade with some other helper to make them brighter
+    0: color,
+    1: shade(0.2, color),
+    2: shade(0.3, color),
+  };
+
+  return colorMap[type];
+}
+
+function colorByLuminance(color) {
+  return getLuminance(state.theme.colors[color] || color) < 0.7 ? '#FFF' : '#666';
+}
+
+function borderColorByLuminance(color) {
+  return getLuminance(state.theme.colors[color] || color) < 0.7 ? '#AAA' : '#FFF';
+}
 
 const theme = {
+  colorByLuminance,
+  borderColorByLuminance,
+  getColorShade,
   colors: {
     primary: '#007bff',
     secondary: '#6c757d',
@@ -10,15 +35,6 @@ const theme = {
     danger: '#dc3545',
     blend: '#f8f9fa',
     flip: '#343a40',
-    getShade: getColorShade,
-  },
-  helpers: {
-    // TODO need a better approach for this
-    colorByLuminance: (color, extendedTheme = theme) => {
-      return getLuminance(extendedTheme.colors[color] || color) < 0.7 ? '#FFF' : '#666';
-    },
-    borderColorByLuminance: (color, extendedTheme = theme) =>
-      getLuminance(extendedTheme.colors[color] || color) < 0.7 ? '#AAA' : '#FFF',
   },
   breakpoints: {
     xs: 0,
@@ -59,18 +75,5 @@ const theme = {
     },
   },
 };
-
-function getColorShade(colorEnum, type) {
-  const color = theme.colors[colorEnum];
-  const colorMap = {
-    '-2': shade(0.3, color), // TODO replace shade with some other helper to make them brighter
-    '-1': shade(0.2, color), // TODO replace shade with some other helper to make them brighter
-    0: color,
-    1: shade(0.2, color),
-    2: shade(0.3, color),
-  };
-
-  return colorMap[type];
-}
 
 export default theme;

@@ -2,13 +2,13 @@ function getOutlineStyles(theme, color, effects) {
   return {
     color: {
       base: color,
-      '&:hover': effects && theme.helpers.colorByLuminance(color),
-      '&:active': effects && theme.helpers.colorByLuminance(color),
+      '&:hover': effects && theme.colorByLuminance(color),
+      '&:active': effects && theme.colorByLuminance(color),
     },
     background: {
       base: 'rgba(0,0,0,0)',
       '&:hover': effects && color,
-      '&:active': effects && theme.colors.getShade(color, 2),
+      '&:active': effects && theme.getColorShade(color, 2),
     },
     borderColor: color,
   };
@@ -17,31 +17,31 @@ function getOutlineStyles(theme, color, effects) {
 function getAccentStyles(theme, color, effects) {
   return {
     border: {
-      top: `1px solid ${theme.helpers.borderColorByLuminance(color)}`,
-      right: `1px solid ${theme.helpers.borderColorByLuminance(color)}`,
-      bottom: `1px solid ${theme.helpers.borderColorByLuminance(color)}`,
+      top: `1px solid ${theme.borderColorByLuminance(color)}`,
+      right: `1px solid ${theme.borderColorByLuminance(color)}`,
+      bottom: `1px solid ${theme.borderColorByLuminance(color)}`,
       left: `3px solid ${theme.colors[color]}`,
     },
     color: {
       base: color,
-      '&:hover': effects && theme.helpers.colorByLuminance(color),
-      '&:active': effects && theme.helpers.colorByLuminance(color),
+      '&:hover': effects && theme.colorByLuminance(color),
+      '&:active': effects && theme.colorByLuminance(color),
     },
     background: {
       base: 'rgba(0,0,0,0)', // TODO
       '&:hover': effects && color,
-      '&:active': effects && theme.colors.getShade(color, 2),
+      '&:active': effects && theme.getColorShade(color, 2),
     },
   };
 }
 
 function getPlainStyles(theme, color, effects) {
   return {
-    color: color && theme.helpers.colorByLuminance(color),
+    color: color && theme.colorByLuminance(color),
     background: {
       base: color,
-      '&:hover': effects && color && theme.colors.getShade(color, 1),
-      '&:active': effects && color && theme.colors.getShade(color, 2),
+      '&:hover': effects && color && theme.getColorShade(color, 1),
+      '&:active': effects && color && theme.getColorShade(color, 2),
     },
   };
 }
