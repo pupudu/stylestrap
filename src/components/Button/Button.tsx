@@ -3,7 +3,7 @@ import { makeComponent, getStylesByFlavor } from '../../core';
 import './Button.css';
 
 type ButtonProps = {
-  color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'blend' | 'flip';
+  color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'blend' | 'flip';
 };
 
 const Button: React.FC<ButtonProps> = makeComponent('Button')
@@ -14,7 +14,8 @@ const Button: React.FC<ButtonProps> = makeComponent('Button')
     'btn-lg': props.size === 'lg',
     'btn-block': props.block,
   }))
-  .styles((props, theme) => getStylesByFlavor({ color: 'primary', ...props }, theme, true))
+  .defaultProps({ color: 'primary' })
+  .styles((props, theme) => getStylesByFlavor(props, theme, true))
   .create('button');
 
 export { Button };
