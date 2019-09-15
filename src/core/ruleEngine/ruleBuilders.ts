@@ -1,4 +1,4 @@
-import { getTheme } from './state';
+import state from './state';
 
 export function concat(rule1, rule2) {
   return `
@@ -20,7 +20,7 @@ export function appendMediaQueryRule(base, breakPoint, rule) {
 
 export function getRule(ruleKey, value) {
   // Check if theme based size enums exist. If exists, replace the original value with the derived value
-  const theme = getTheme();
+  const theme = state.theme;
   if (theme && theme.sizes && theme.sizes[value]) {
     value = theme.sizes[value];
   }

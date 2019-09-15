@@ -2,7 +2,7 @@ import React from 'react';
 import { callOrReturn } from './utils';
 import classnames from 'classnames';
 import styled from 'styled-components';
-import { getStyleString } from './engine';
+import { getStyleString } from './ruleEngine';
 
 class Builder {
   state = {

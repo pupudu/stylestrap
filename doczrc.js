@@ -1,7 +1,5 @@
-import { css } from 'docz-plugin-css';
-
 export default {
-  onCreateWebpackChain: (config) => {
+  onCreateWebpackChain: config => {
     // Allow SCSS imports
     config.module
       .rule('scss')
@@ -19,4 +17,5 @@ export default {
   wrapper: 'docs/Provider',
   menu: ['Introduction', 'Layout', 'Components', 'Themes'],
   typescript: true,
+  files: '**/*.{markdown,mdx}',
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Label, Feedback, HelpText } from './FormComponents';
 import { Select } from './ReactSelect';
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 
 const FormSelectBase = props => {
   const { id, label, helpText, className, ...rest } = props;

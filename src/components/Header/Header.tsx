@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 
 const Navbar = makeComponent('Navbar')
   .classNames('navbar')

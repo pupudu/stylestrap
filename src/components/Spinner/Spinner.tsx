@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 
 const iconMap = {
   arrow: '↻',

@@ -1,4 +1,4 @@
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 
 const THead = makeComponent('THead')
   .classNames(props => ({

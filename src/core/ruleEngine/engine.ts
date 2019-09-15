@@ -5,7 +5,7 @@ import {
   appendPseudoSelector,
   appendRule,
 } from './ruleBuilders';
-import { setTheme, getTheme } from './state';
+import state from './state';
 import { getRuleMap } from './rules';
 
 const pseudoSelectors = ['&:hover', '&:focus', '&:active', '&:visited', '&:link', '&:disabled'];
@@ -34,7 +34,7 @@ function applyPseudoSelectors(propKey, propValue, ruleMap) {
 
 function applyBreakPoints(propKey, propValue, ruleMap) {
   let status = false;
-  const breakPoints = getTheme().breakpoints || {};
+  const breakPoints = state.theme.breakpoints;
 
   const style = Object.keys(breakPoints).reduce((wrappedStyle, breakPoint) => {
     if (breakPoint in propValue) {
@@ -59,10 +59,10 @@ function applyBreakPoints(propKey, propValue, ruleMap) {
   };
 }
 
-function generateStylesRecursively(props, ruleMap, startStyle = '') {
+function generateStylesRecursively(styleProps, ruleMap, startStyle = '') {
   return Object.keys(ruleMap).reduce((style, propKey) => {
     const styleKey = ruleMap[propKey];
-    const propValue = props[propKey]; // Derive default
+    const propValue = styleProps[propKey]; // Derive default
 
     // TODO consider using type_key of stylekey to derive which rule to apply, before going into propValue type
     // TODO for that, will need to consider nested properties like padding
@@ -119,7 +119,7 @@ export function getStyleString(props, getStyleProps, displayName) {
   // Use theme with return value from setTheme
   // This is useful when theme was defined before, but undefined now due to some
   // reason like using portals or 3rd party libraries
-  const theme = setTheme(props.theme);
+  const theme = state.setTheme(props.theme);
 
   const ruleMap = getRuleMap(props);
 

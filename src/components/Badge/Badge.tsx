@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 
 type Badge = {
   color: string;

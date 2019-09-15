@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 import './rangeSlider.css';
 
 const Container = makeComponent('RangeContainer')

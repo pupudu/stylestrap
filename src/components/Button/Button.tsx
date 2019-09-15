@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeComponent, getStylesByFlavor } from '../../core/ruleEngine';
+import { makeComponent, getStylesByFlavor } from '../../core';
 import './Button.css';
 
 type ButtonProps = {

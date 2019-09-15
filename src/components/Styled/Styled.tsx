@@ -1,4 +1,4 @@
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 
 const Styled = makeComponent('Styled')
   .props(({ className, as, children, css, style, ...rest }) => ({

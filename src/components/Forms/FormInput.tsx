@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormGroup, Feedback, HelpText, Input, Label } from './FormComponents';
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 
 const FormInputBase = props => {
   const { error, touched, label, id, helpText, className, children, ...rest } = props;

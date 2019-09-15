@@ -1,51 +1,34 @@
-import { makeComponent, transform } from '../../core/ruleEngine';
+import { makeComponent, transform } from '../../core';
 
 const Grid = makeComponent('Grid')
   .styles(props => {
-    const columns = transform(columns => {
-      return isNaN(+columns) ? columns : `repeat(${+columns}, 1fr)`;
-    }, props.columns);
-
+    const gridTemplateColumns = transform(
+      columns => (isNaN(+columns) ? columns : `repeat(${+columns}, 1fr)`),
+      props.columns
+    );
     return {
-      padding: props.padding,
-      margin: props.margin,
-      gridTemplateColumns: columns,
-      gridTemplateRows: props.rows,
-      gridGap: props.gap,
       display: 'grid',
       position: 'relative',
+      gridTemplateColumns,
+      padding: props.padding,
+      margin: props.margin,
+      gridGap: props.gap,
+      gridTemplateRows: props.rows,
     };
   })
   .create();
 
 const Cell = makeComponent('Cell')
-  .styles(props => {
-    const { align, position } = props;
-
-    const { gridRowStart, gridRowEnd } = transform((row = []) => {
-      const [gridRowStart, gridRowEnd] = typeof row === 'number' ? [row, row + 1] : row;
-      return {
-        gridRowStart,
-        gridRowEnd,
-      };
-    }, props.row);
-
-    const { gridColumnStart, gridColumnEnd } = transform((col = []) => {
-      const [gridColumnStart, gridColumnEnd] = typeof col === 'number' ? [col, col + 1] : col;
-      return {
-        gridColumnStart,
-        gridColumnEnd,
-      };
-    }, props.col);
-
-    return {
-      alignSelf: align,
-      position: position,
-      gridRowStart,
-      gridRowEnd,
-      gridColumnStart,
-      gridColumnEnd,
-    };
+  .styles(({ align: alignSelf, position, ...props }) => {
+    const [gridRowStart, gridRowEnd] = transform(
+      row => (typeof row === 'number' ? [row, row + 1] : row),
+      props.row
+    );
+    const [gridColumnStart, gridColumnEnd] = transform(
+      col => (typeof col === 'number' ? [col, col + 1] : col),
+      props.col
+    );
+    return { alignSelf, position, gridRowStart, gridRowEnd, gridColumnStart, gridColumnEnd };
   })
   .create();
 

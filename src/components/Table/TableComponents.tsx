@@ -1,4 +1,4 @@
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 
 const Tr = makeComponent('Tr').create('tr');
 const Th = makeComponent('Th').create('th');

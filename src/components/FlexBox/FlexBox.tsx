@@ -1,4 +1,4 @@
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 
 function getFlexProps(props) {
   const breakpoints = Object.keys(props.theme.breakpoints || {});

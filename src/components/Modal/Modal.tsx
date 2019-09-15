@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import T from 'prop-types';
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 import {
   Modal as ModalBase,
   ModalHeader as ModalHeaderBase,

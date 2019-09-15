@@ -1,11 +1,18 @@
-const state: any = {};
+class EngineState {
+  theme = {
+    breakpoints: {},
+    defaultStyles: {},
+    sizes: {},
+    colors: {},
+  };
 
-export const setTheme = theme => {
-  // Set theme only if it is not an empty object
-  if (Object.keys(theme).length > 0) {
-    state.theme = theme;
+  setTheme(theme) {
+    // Set theme only if it is not an empty object
+    if (Object.keys(theme).length > 0) {
+      this.theme = theme;
+    }
+    return this.theme;
   }
-  return state.theme;
-};
+}
 
-export const getTheme = () => state.theme;
+export default new EngineState();

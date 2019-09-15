@@ -1,5 +1,5 @@
 import ReactSelect from 'react-select';
-import { makeComponent } from '../../core/ruleEngine';
+import { makeComponent } from '../../core';
 
 const Select = makeComponent('Select')
   .props(({ id, name, onChange = () => {}, onBlur = () => {} }) => ({
