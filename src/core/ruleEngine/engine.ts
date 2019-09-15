@@ -7,6 +7,7 @@ import {
 } from './ruleBuilders';
 import state from './state';
 import { getRuleMap } from './rules';
+import { callOrReturn } from '../utils';
 
 const pseudoSelectors = ['&:hover', '&:focus', '&:active', '&:visited', '&:link', '&:disabled'];
 
@@ -120,9 +121,7 @@ export function getStyleString(props, getStyleProps, displayName) {
   // This is useful when theme was defined before, but undefined now due to some
   // reason like using portals or 3rd party libraries
   const theme = state.setTheme(props.theme);
-
   const ruleMap = getRuleMap(props);
-
   const styleProps = getStyleProps(props);
 
   // TODO - ruleKey can be an object here. Do we care?
@@ -131,14 +130,9 @@ export function getStyleString(props, getStyleProps, displayName) {
       if (!theme || !theme.defaultStyles || !theme.defaultStyles[displayName]) {
         return map;
       }
-      const defaultComponentStyles = theme.defaultStyles[displayName];
 
-      // If defaultComponentStyles is a function, we call it with props and theme as arguments
       // Otherwise we expect it to be an object
-      const defaultStyles =
-        typeof defaultComponentStyles === 'function'
-          ? defaultComponentStyles(props, theme)
-          : defaultComponentStyles;
+      const defaultStyles = callOrReturn(theme.defaultStyles[displayName], props, theme);
 
       // If a default value exists, we set it and let the flow continue.
       // Otherwise we return the map

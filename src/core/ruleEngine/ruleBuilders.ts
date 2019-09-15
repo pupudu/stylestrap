@@ -14,7 +14,7 @@ export function appendMediaQueryRule(base, breakPoint, rule) {
 @media (min-width: ${breakPoint}rem) {
   ${rule}
 }
-  `.trim()
+    `.trim()
   );
 }
 
@@ -59,6 +59,6 @@ export function appendPseudoSelector(base, selector, rule) {
 ${selector} {
   ${rule}
 }
-  `.trim()
+    `.trim()
   );
 }
