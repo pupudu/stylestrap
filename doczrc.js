@@ -16,7 +16,7 @@ export default {
       .loader('sass-loader')
       .end();
   },
-  wrapper: 'src/core/wrapper',
+  wrapper: 'docs/Provider',
   menu: ['Introduction', 'Layout', 'Components', 'Themes'],
-  typescript: true
+  typescript: true,
 };

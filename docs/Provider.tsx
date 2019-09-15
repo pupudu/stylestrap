@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
-import defaultTheme from '../Themes/stylestrap';
-import '../Stylestrap';
+import { defaultTheme } from './';
+import '../src/Stylestrap';
 
 const cacheState: {
   setState?: Function;
