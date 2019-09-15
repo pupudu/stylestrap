@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeComponent } from '../../core';
 
 const Navbar = makeComponent('Navbar')
   .classNames('navbar')
   .create();
 
-const Header = props => <Navbar {...props} />;
-
-Header.propTypes = {
-  minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+type HeaderProps = {
+  minHeight: string | number;
 };
+
+const Header: React.FC<HeaderProps> = props => <Navbar {...props} />;
 
 export default Header;

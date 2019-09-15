@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import T from 'prop-types';
 import { makeComponent } from '../../core';
 import {
   Modal as ModalBase,
@@ -20,11 +19,16 @@ const useToggle = (initialState = false) => {
   return [state, () => setState(!state)];
 };
 
-const Modal = ({ children, toggle, ...rest }) => {
+type ModalProps = {
+  initialState: boolean;
+  toggle: Function;
+};
+
+const Modal: React.FC<ModalProps> = ({ children, toggle, ...rest }) => {
   return (
     <ModalComponent {...rest} toggle={toggle}>
-      {React.Children.map(children, child => {
-        if (child && child.type === ModalHeader) {
+      {React.Children.map(children, (child: any) => {
+        if (child && child.type && child.type === ModalHeader) {
           return React.cloneElement(child, {
             toggle,
             ...child.props,
@@ -34,10 +38,6 @@ const Modal = ({ children, toggle, ...rest }) => {
       })}
     </ModalComponent>
   );
-};
-
-Modal.propTypes = {
-  initialState: T.bool,
 };
 
 export { useToggle, Modal, ModalHeader, ModalFooter, ModalBody };

@@ -39,7 +39,6 @@
   "peerDependencies": {
     "bootstrap": ">= 4",
     "polished": ">= 2",
-    "prop-types": ">= 15",
     "react": ">= 16",
     "react-dom": ">= 16",
     "react-select": ">= 2",
