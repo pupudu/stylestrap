@@ -1,0 +1,33 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Button, Grid, Styled } from '../../src';
+
+<Meta title="MDX|Button" component={Button} />
+
+# Button
+
+With `MDX` we can define a story for `Button` right in the middle of our
+markdown documentation.
+
+<Preview>
+  <Story name="all checkboxes">
+     <Button>Primary </Button>
+  </Story>
+</Preview>
+
+
+## Basic usage
+
+<Preview>
+  <Story name="all">
+     <Grid columns="8" gap="xxs">
+       <Button color="primary">Primary</Button>
+       <Button color="secondary">Secondary</Button>
+       <Button color={'success'}>Success</Button>
+       <Button color={'warning'}>Warning</Button>
+       <Button color={'danger'}>Danger</Button>
+       <Button color={'info'}>Info</Button>
+       <Button color={'flip'}>Flip</Button>
+       <Button color={'blend'}>Blend</Button>
+     </Grid>
+  </Story>
+</Preview>
