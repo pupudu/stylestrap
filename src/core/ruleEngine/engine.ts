@@ -7,7 +7,7 @@ import {
 } from './ruleBuilders';
 import state from './state';
 import { getRuleMap } from './rules';
-import { callOrReturn } from '../utils';
+import { callOrReturn, toKebabCase } from '../utils';
 
 const pseudoSelectors = ['&:hover', '&:focus', '&:active', '&:visited', '&:link', '&:disabled'];
 
@@ -27,10 +27,7 @@ function applyPseudoSelectors(propKey, propValue, ruleMap) {
       generateStylesRecursively({ [propKey]: propValue[selector] }, { [propKey]: ruleMap[propKey] })
     );
   }, '');
-  return {
-    status,
-    style,
-  };
+  return { status, style };
 }
 
 function applyBreakPoints(propKey, propValue, ruleMap) {
@@ -54,10 +51,7 @@ function applyBreakPoints(propKey, propValue, ruleMap) {
     );
   }, '');
 
-  return {
-    status,
-    style,
-  };
+  return { status, style };
 }
 
 function generateStylesRecursively(styleProps, ruleMap, startStyle = '') {
@@ -112,41 +106,27 @@ function generateStylesRecursively(styleProps, ruleMap, startStyle = '') {
   }, startStyle);
 }
 
-function toKebabCase(ruleKey) {
-  return ruleKey.replace(/([A-Z])/g, Cap => `-${Cap.toLowerCase()}`);
-}
-
 export function getStyleString(props, getStyleProps, displayName) {
   // Use theme with return value from setTheme
-  // This is useful when theme was defined before, but undefined now due to some
-  // reason like using portals or 3rd party libraries
+  // Useful when theme was defined before, but undefined now for a reason like using portals or 3rd party libraries
   const theme = state.setTheme(props.theme);
   const ruleMap = getRuleMap(props);
-  const styleProps = getStyleProps(props);
 
-  // TODO - ruleKey can be an object here. Do we care?
-  const ruleMapToApply = Object.keys(styleProps).reduce((map, ruleKey) => {
-    if (typeof styleProps[ruleKey] === 'undefined' || styleProps[ruleKey] === false) {
-      if (!theme || !theme.defaultStyles || !theme.defaultStyles[displayName]) {
-        return map;
-      }
-
-      // Otherwise we expect it to be an object
-      const defaultStyles = callOrReturn(theme.defaultStyles[displayName], props, theme);
-
-      // If a default value exists, we set it and let the flow continue.
-      // Otherwise we return the map
-      if (!defaultStyles[ruleKey]) {
-        return map;
-      }
-      styleProps[ruleKey] = defaultStyles[ruleKey];
-      // Do not return here. Let the code outside of this if block run
-    }
-    map[ruleKey] = ruleMap[ruleKey] || {
-      __label__: toKebabCase(ruleKey),
-      unit: '',
+  let styleProps = getStyleProps(props);
+  if (theme.defaultStyles && theme.defaultStyles[displayName]) {
+    styleProps = {
+      ...styleProps,
+      ...callOrReturn(theme.defaultStyles[displayName], props, theme),
     };
-    return map;
-  }, {});
+  }
+
+  // Filter ruleMap keys with only what is there in the styleProps
+  const ruleMapToApply = {};
+  Object.keys(styleProps).forEach(ruleKey => {
+    if (typeof styleProps[ruleKey] !== 'undefined' && styleProps[ruleKey] !== false) {
+      ruleMapToApply[ruleKey] = ruleMap[ruleKey] || { __label__: toKebabCase(ruleKey), unit: '' };
+    }
+  });
+
   return generateStylesRecursively(styleProps, ruleMapToApply);
 }

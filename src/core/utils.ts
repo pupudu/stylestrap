@@ -4,3 +4,7 @@ export function callOrReturn(target, ...args) {
   }
   return target;
 }
+
+export function toKebabCase(str) {
+  return str.replace(/([A-Z])/g, Cap => `-${Cap.toLowerCase()}`);
+}
