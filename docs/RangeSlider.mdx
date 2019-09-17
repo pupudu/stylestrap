@@ -8,6 +8,10 @@ import { RangeSlider } from "./";
 
 # Slider
 
+<div id="abc">low: 10, high: 20</div>
+
 <Playground>
-  <RangeSlider min="0" max="365" start="10"/>
+  <RangeSlider min="0" max="90" value={[10, 20]} overlap onChange={([a, b]) => {
+     document.getElementById("abc").innerText = `low: ${a}, high: ${b}`
+  }}/>
 </Playground>

@@ -24,10 +24,13 @@ const RangeInput = makeComponent('RangeInput')
   .create('input');
 
 const BaseRangeSlider = props => {
-  const { start, end, width, className, min = 0, max = 10, step = 1, onChange = () => {} } = props;
+  const { width, className, overlap, min = 0, max = 10, step = 1, onChange = () => {} } = props;
 
-  const [low, setLow] = useState(start);
-  const [high, setHigh] = useState(end);
+  const u = props.value[0] || min;
+  const v = props.value[1] || max;
+
+  const [low, setLow] = useState(Math.min(u, v));
+  const [high, setHigh] = useState(Math.max(u, v));
 
   const baseProps = {
     min,
@@ -41,21 +44,18 @@ const BaseRangeSlider = props => {
 
   return (
     <Container width={width} className={className}>
-      <span>
-        {low} → {high}
-      </span>
       <RangeInput
         {...baseProps}
         value={low}
         onChange={e => {
-          setLow(Math.min(Number(e.target.value), high - 1));
+          setLow(Math.min(Number(e.target.value), overlap ? high : high - 1));
         }}
       />
       <RangeInput
         {...baseProps}
         value={high}
         onChange={e => {
-          setHigh(Math.max(Number(e.target.value), low + 1));
+          setHigh(Math.max(Number(e.target.value), overlap ? low : low + 1));
         }}
       />
     </Container>
