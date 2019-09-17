@@ -1,3 +1,5 @@
+import { transparentize } from 'polished';
+
 function getOutlineStyles(theme, color, effects) {
   return {
     color: {
@@ -11,6 +13,9 @@ function getOutlineStyles(theme, color, effects) {
       '&:active': effects && theme.getColorShade(color, 2),
     },
     borderColor: color,
+    boxShadow: {
+      '&:focus': effects && `0 0 0 0.2rem ${transparentize(0.5, theme.colors[color])}`,
+    },
   };
 }
 
@@ -32,16 +37,22 @@ function getAccentStyles(theme, color, effects) {
       '&:hover': effects && color,
       '&:active': effects && theme.getColorShade(color, 2),
     },
+    boxShadow: {
+      '&:focus': effects && `0 0 0 0.2rem ${transparentize(0.5, theme.colors[color])}`,
+    },
   };
 }
 
 function getPlainStyles(theme, color, effects) {
   return {
-    color: color && theme.colorByLuminance(color),
+    color: theme.colorByLuminance(color),
     background: {
       base: color,
-      '&:hover': effects && color && theme.getColorShade(color, 1),
-      '&:active': effects && color && theme.getColorShade(color, 2),
+      '&:hover': effects && theme.getColorShade(color, 1),
+      '&:active': effects && theme.getColorShade(color, 2),
+    },
+    boxShadow: {
+      '&:focus': effects && `0 0 0 0.2rem ${transparentize(0.5, theme.colors[color])}`,
     },
   };
 }
