@@ -62,6 +62,8 @@ export function getStylesByFlavor(props, theme, effects) {
 
   effects = effects && !disabled;
 
+  if (!color) return;
+
   switch (flavor) {
     case 'outline':
       return getOutlineStyles(theme, color, effects);
