@@ -1,5 +1,4 @@
 import { makeComponent, getStylesByFlavor } from '../../core';
-import './Button.css';
 
 type ButtonProps = {
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'blend' | 'flip';
@@ -8,7 +7,7 @@ type ButtonProps = {
 const Button = makeComponent<ButtonProps>('Button')
   .classNames(props => ({
     btn: true,
-    'btn-xs': props.size === 'xs', // TODO this looks weird. Possible bug?
+    'btn-xs': props.size === 'xs', // TODO This needs to be supported
     'btn-sm': props.size === 'sm',
     'btn-lg': props.size === 'lg',
     'btn-block': props.block,
