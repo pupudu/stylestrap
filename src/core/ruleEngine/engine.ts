@@ -109,16 +109,15 @@ function generateStylesRecursively(styleProps, ruleMap, startStyle = '') {
 export function getStyleString(props, getStyleProps, displayName) {
   // Use theme with return value from setTheme
   // Useful when theme was defined before, but undefined now for a reason like using portals or 3rd party libraries
-  const theme = state.setTheme(props.theme);
-  const ruleMap = getRuleMap(props);
+  state.setTheme(props.theme);
+  const theme = state.theme;
+  const ruleMap = getRuleMap(theme);
 
-  let styleProps = getStyleProps(props);
-  if (theme.defaultStyles && theme.defaultStyles[displayName]) {
-    styleProps = {
-      ...styleProps,
-      ...callOrReturn(theme.defaultStyles[displayName], props, theme),
-    };
-  }
+  const styleProps = {
+    ...callOrReturn(theme.defaultStyles[displayName], props, theme),
+    ...getStyleProps(props),
+    ...callOrReturn(theme.overrideStyles[displayName], props, theme),
+  };
 
   // Filter ruleMap keys with only what is there in the styleProps
   const ruleMapToApply = {};
