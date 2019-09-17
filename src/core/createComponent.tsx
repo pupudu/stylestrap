@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import styled from 'styled-components';
 import { getStyleString } from './ruleEngine';
 
-class Builder {
+class Builder<T> {
   state = {
     name: '',
     initialClassNames: '',
@@ -37,7 +37,7 @@ class Builder {
     return this;
   }
 
-  create(component: any = 'div') {
+  create(component: any = 'div'): React.FC<T> {
     const { name, transformedProps, defaultProps, initialStyles, initialClassNames } = this.state;
 
     const styleMapper = props => ({
@@ -72,4 +72,6 @@ class Builder {
   }
 }
 
-export const makeComponent = name => new Builder(name);
+export const makeComponent = function<T = any>(name) {
+  return new Builder<T>(name);
+};
