@@ -1,14 +1,5 @@
-import baseTheme from '../../Themes/stylestrap';
-
-export const getRuleMap = ({ theme, ...props }) => {
-  // TODO get rid of this check here. Theme should be merged with baseTheme at a higher level. Probably when calling setTheme()
-  if (!theme || !Object.keys(theme).length) theme = {} || baseTheme;
-
+export const getRuleMap = theme => {
   return {
-    lineHeight: {
-      __label__: 'line-height',
-      derive: () => theme.lineHeight(props.fontSize),
-    },
     padding: {
       __label__: 'padding',
       top: 'padding-top',
@@ -33,17 +24,14 @@ export const getRuleMap = ({ theme, ...props }) => {
     color: {
       __label__: 'color',
       enums: theme.colors,
-      derive: (selector, base) => theme.colors[`${selector}`](theme.colors[base]),
     },
     background: {
       __label__: 'background',
       enums: theme.colors,
-      derive: (selector, base) => theme.colors[`${selector}`](theme.colors[base]),
     },
     borderColor: {
       __label__: 'border-color',
       enums: theme.colors,
-      derive: (selector, base) => theme.colors[`${selector}`](theme.colors[base]),
     },
   };
 };

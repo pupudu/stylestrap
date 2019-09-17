@@ -2,6 +2,7 @@ class EngineState {
   theme = {
     breakpoints: {},
     defaultStyles: {},
+    overrideStyles: {},
     sizes: {},
     colors: {},
   };
@@ -11,7 +12,6 @@ class EngineState {
     if (Object.keys(theme).length > 0) {
       this.theme = theme;
     }
-    return this.theme;
   }
 }
 
