@@ -13,6 +13,7 @@ const Container = makeComponent('RangeContainer')
   .create('section');
 
 const RangeInput = makeComponent('RangeInput')
+  .classNames('custom-range')
   .styles({
     position: 'absolute',
     left: 0,
@@ -23,58 +24,38 @@ const RangeInput = makeComponent('RangeInput')
   .create('input');
 
 const BaseRangeSlider = props => {
-  const {
-    value = [],
-    min = 0,
-    max = 10,
-    step = 1,
-    width,
-    onChange = () => undefined,
-    className,
-  } = props;
+  const { start, end, width, className, min = 0, max = 10, step = 1, onChange = () => {} } = props;
 
-  const [apparentMax, apparentMin] = [max + 1, min - 1];
-  const [start, end] = value;
-
-  const [low, setLow] = useState(start === null ? apparentMin : start);
-  const [high, setHigh] = useState(end === null ? apparentMax : end);
-
-  const apparentHigh = high >= apparentMax ? null : high;
-  const apparentLow = low <= apparentMin ? null : low;
+  const [low, setLow] = useState(start);
+  const [high, setHigh] = useState(end);
 
   const baseProps = {
-    min: apparentMin,
-    max: apparentMax,
+    min,
+    max,
     step: step,
     type: 'range',
     onMouseUp: () => {
-      onChange([apparentLow, apparentHigh]);
+      onChange([low, high]);
     },
   };
 
   return (
     <Container width={width} className={className}>
       <span>
-        {low <= apparentMin ? `<${min}` : low} → {high >= apparentMax ? `>${max}` : high}
+        {low} → {high}
       </span>
       <RangeInput
         {...baseProps}
         value={low}
         onChange={e => {
-          const valueNext = Number(e.target.value);
-          if (valueNext < high) {
-            setLow(valueNext);
-          }
+          setLow(Math.min(Number(e.target.value), high - 1));
         }}
       />
       <RangeInput
         {...baseProps}
         value={high}
         onChange={e => {
-          const valueNext = Number(e.target.value);
-          if (valueNext > low) {
-            setHigh(valueNext);
-          }
+          setHigh(Math.max(Number(e.target.value), low + 1));
         }}
       />
     </Container>
