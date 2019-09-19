@@ -16,4 +16,51 @@ const Button = makeComponent<ButtonProps>('Button')
   .styles((props, theme) => getStylesByFlavor(props, theme, true))
   .create('button');
 
-export { Button };
+type ButtonGroupProps = {
+  vertical: boolean;
+  label: string;
+  margin: object;
+  padding: object;
+};
+
+const ButtonGroup = makeComponent<ButtonGroupProps>('ButtonGroup')
+  .classNames(props => ({
+    'btn-group': true,
+    'btn-group-vertical': props.vertical,
+  }))
+  .defaultProps({
+    role: 'group',
+    label: 'Button Group',
+  })
+  .props(props => ({
+    'aria-label': props.label,
+  }))
+  .styles(props => ({
+    margin: props.margin,
+    padding: props.padding,
+  }))
+  .create();
+
+type ButtonToolbarProps = {
+  vertical: boolean;
+  label: string;
+  margin: object;
+  padding: object;
+};
+
+const ButtonToolbar = makeComponent<ButtonToolbarProps>('ButtonToolbar')
+  .classNames('btn-toolbar')
+  .defaultProps({
+    role: 'toolbar',
+    label: 'Button Toolbar',
+  })
+  .props(props => ({
+    'aria-label': props.label,
+  }))
+  .styles(props => ({
+    margin: props.margin,
+    padding: props.padding,
+  }))
+  .create();
+
+export { Button, ButtonGroup, ButtonToolbar };

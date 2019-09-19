@@ -1,0 +1,53 @@
+---
+name: ButtonGroup
+menu: Components
+---
+
+import { PropsTable, Preview } from './utils';
+import { Grid, Cell, Styled, Button, ButtonGroup, ButtonToolbar } from './';
+
+# ButtonGroup
+
+<PropsTable1 of={Button} />
+
+## Basic example
+
+Group a series of buttons together on a single line with the button group. 
+
+<Preview>
+  <ButtonGroup>
+    <Button color="secondary">Left</Button>
+    <Button color="secondary">Middle</Button>
+    <Button color="secondary">Right</Button>
+  </ButtonGroup>
+</Preview>
+
+```typescript jsx
+<ButtonGroup>
+    <Button>Left Primary</Button>
+    <Button color="secondary">Middle Secondary</Button>
+    <Button color="success">Right Success</Button>
+</ButtonGroup>
+```
+
+## Button toolbar
+
+Combine sets of button groups into button toolbars for more complex components.
+
+<Preview>
+  <ButtonToolbar>
+    <ButtonGroup margin={{right: '1rem'}}>
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
+    <ButtonGroup margin={{right: '1rem'}}>
+      <Button>4</Button>
+      <Button>5</Button>
+    </ButtonGroup>
+    <ButtonGroup>
+      <Button>6</Button>
+      <Button>7</Button>
+    </ButtonGroup>
+  </ButtonToolbar>
+</Preview>
