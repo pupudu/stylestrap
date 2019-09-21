@@ -9,8 +9,8 @@ const theme = {
     warning: '#ffc107',
     info: '#17a2b8',
     danger: '#dc3545',
-    blend: '#f8f9fa',
-    flip: '#343a40',
+    light: '#f8f9fa',
+    dark: '#343a40',
   },
   breakpoints: {
     xs: 0,
