@@ -3,7 +3,7 @@ name: Button
 menu: Components
 ---
 
-import { PropsTable, Preview, Spaced } from './utils';
+import { PropsTable, Preview, Spaced, Playground } from './utils';
 import { Grid, Cell, Styled, Button } from './';
 
 # Button
@@ -124,3 +124,12 @@ Note that contextual variants like `color="light"` will work best with dark back
 <Button color="dark" flavor="accent">Dark</Button>
 <Button color="light" flavor="accent">Light</Button>
 ```
+
+
+## Playground
+
+<Playground>
+  <Button size="lg" color="success" flavor="outline" css={{boxShadow: '10px 5px 5px #6d8'}}>
+    Play With Me
+  </Button>
+</Playground>

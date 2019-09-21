@@ -3,7 +3,7 @@ name: ButtonGroup
 menu: Components
 ---
 
-import { PropsTable, Preview } from './utils';
+import { PropsTable, Preview, Playground } from './utils';
 import { Grid, Cell, Styled, Button, ButtonGroup, ButtonToolbar } from './';
 
 # ButtonGroup
@@ -100,3 +100,15 @@ Width of the largest button is taken as the group width.
   <Button>Long Button</Button>
 </ButtonGroup>
 ```
+
+## Playground
+
+<Playground>
+  {/* Eg: Try adding the vertical prop to the ButtonGroup */}
+  {/* Or wrap multiple ButtonGroups with a ButtonToolbar */}
+  <ButtonGroup>
+    <Button color="success">Left</Button>
+    <Button color="secondary">Middle</Button>
+    <Button color="danger">Right</Button>
+  </ButtonGroup>
+</Playground>

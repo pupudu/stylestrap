@@ -3,7 +3,7 @@ name: Badge
 menu: Components
 ---
 
-import { PropsTable, Preview, Spaced } from './utils';
+import { PropsTable, Preview, Spaced, Playground } from './utils';
 import { Grid, Cell, Badge, Heading, Button, Link } from './';
 
 # Badge
@@ -141,3 +141,19 @@ The HTML tag will be changed to the anchor tag (unless you override it with the 
 <Badge href="#" color="dark">Dark</Badge>
 <Badge href="#" color="light">Light</Badge>
 ```
+
+## Playground
+
+<Playground>
+  <Heading size="h4">
+    Badge in Heading <Badge>new</Badge>
+  </Heading>
+  <Button color="dark">
+    Notifications <Badge color="danger">4</Badge>
+  </Button>
+  <div>
+    <Link color="success">
+      Notifications <Badge color="danger">4</Badge>
+    </Link>
+  </div>
+</Playground>
