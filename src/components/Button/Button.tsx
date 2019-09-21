@@ -5,12 +5,20 @@ type ButtonProps = {
 };
 
 const Button = makeComponent<ButtonProps>('Button')
+  .raw(
+    `
+      &.btn-xs {
+        padding: 0.125rem 0.25rem;
+        font-size: 0.75rem;
+        line-height: 1.25;
+        border-radius: 0.15rem;
+      }
+    `
+  )
   .classNames(props => ({
     btn: true,
-    'btn-xs': props.size === 'xs', // TODO This needs to be supported
-    'btn-sm': props.size === 'sm',
-    'btn-lg': props.size === 'lg',
     'btn-block': props.block,
+    [`btn-${props.size}`]: !!props.size,
   }))
   .defaultProps({ color: 'primary' })
   .styles((props, theme) => getStylesByFlavor(props, theme, true))

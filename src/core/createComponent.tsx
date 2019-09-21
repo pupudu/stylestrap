@@ -11,10 +11,16 @@ class Builder<T> {
     initialStyles: undefined,
     transformedProps: {},
     defaultProps: {},
+    raw: '',
   };
 
   constructor(name) {
     this.state.name = name;
+  }
+
+  raw(raw) {
+    this.state.raw = raw;
+    return this;
   }
 
   classNames(classNames) {
@@ -38,17 +44,27 @@ class Builder<T> {
   }
 
   create(component: any = 'div'): React.FC<T> {
-    const { name, transformedProps, defaultProps, initialStyles, initialClassNames } = this.state;
+    const {
+      name,
+      transformedProps,
+      defaultProps,
+      initialStyles,
+      initialClassNames,
+      raw,
+    } = this.state;
 
     const styleMapper = props => ({
       ...callOrReturn(initialStyles, props, props.theme),
       ...callOrReturn(props.css, props, props.theme),
     });
 
+    const getRawStyles = props => callOrReturn(raw, props, props.theme);
+
     // @ts-ignore
     const StyledComponent = (styled[component] || styled(component))`
       &&& {
         ${propsWithTheme => getStyleString(propsWithTheme, styleMapper, name)};
+        ${propsWithTheme => getRawStyles(propsWithTheme)}
       }
     `;
 
