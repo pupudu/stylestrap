@@ -19,13 +19,31 @@ function getOutlineStyles(theme, color, effects) {
   };
 }
 
+function getGhostStyles(theme, color, effects) {
+  return {
+    color: {
+      base: color,
+      '&:hover': effects && theme.colorByLuminance(color),
+      '&:active': effects && theme.colorByLuminance(color),
+    },
+    background: {
+      base: 'rgba(0,0,0,0)',
+      '&:hover': effects && color,
+      '&:active': effects && theme.getColorShade(color, 2),
+    },
+    boxShadow: {
+      '&:focus': effects && `0 0 0 0.2rem ${transparentize(0.5, theme.colors[color])}`,
+    },
+  };
+}
+
 function getAccentStyles(theme, color, effects) {
   return {
     border: {
       top: `1px solid ${theme.borderColorByLuminance(color)}`,
       right: `1px solid ${theme.borderColorByLuminance(color)}`,
       bottom: `1px solid ${theme.borderColorByLuminance(color)}`,
-      left: `3px solid ${theme.colors[color]}`,
+      left: `4px solid ${theme.colors[color]}`,
     },
     color: {
       base: color,
@@ -69,6 +87,8 @@ export function getStylesByFlavor(props, theme, effects) {
       return getOutlineStyles(theme, color, effects);
     case 'accent':
       return getAccentStyles(theme, color, effects);
+    case 'ghost':
+      return getGhostStyles(theme, color, effects);
     default:
       return getPlainStyles(theme, color, effects);
   }
