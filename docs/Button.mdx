@@ -32,7 +32,7 @@ and easier to extend.
 </Preview>
 
 ```typescript jsx
-<Button>Primary</Button> <!-- You can pass color="primary" explicitly as well -->
+<Button>Primary</Button> { /*You can pass color="primary" explicitly as well */}
 <Button color="secondary">Secondary</Button>
 <Button color="success">Success</Button>
 <Button color="warning">Warning</Button>
@@ -50,6 +50,9 @@ or is included through alternative means, such as additional text hidden with th
 ## Button tags
 The buttons by default uses the html button tag. However, just like any other stylestrap component,
 can be customized to use other tags like `input` or `a` using the styled-components' `as` prop.
+
+When you set the tag as `a`(anchor), stylestrap will automatically
+set the `role` attribute as "button".
 
 <Preview>
   <Spaced>
@@ -71,7 +74,7 @@ can be customized to use other tags like `input` or `a` using the styled-compone
 Stylestrap includes few other variants of Buttons which can be changed using
 the `flavor` prop.
 
-Note that contextual variants like `color="light"` will work best with dark backgrounds. 
+>Contextual variants like `color="light"` will work best with dark backgrounds.
 
 ### Outline Buttons
 
@@ -90,41 +93,167 @@ Note that contextual variants like `color="light"` will work best with dark back
 
 ```typescript jsx
 <Button color="primary" flavor="outline">Primary</Button>
-<Button color="secondary" flavor="outline">Secondary</Button>
-<Button color="success" flavor="outline">Success</Button>
-<Button color="warning" flavor="outline">Warning</Button>
-<Button color="danger" flavor="outline">Danger</Button>
-<Button color="info" flavor="outline">Info</Button>
-<Button color="dark" flavor="outline">Dark</Button>
-<Button color="light" flavor="outline">Light</Button>
+{/* Similar markup for other color variants */}
+```
+
+### Ghost Buttons
+
+<Preview>
+  <Grid columns="8" gap="xxs">
+    <Button color="primary" flavor="ghost">Primary</Button>
+    <Button color="secondary" flavor="ghost">Secondary</Button>
+    <Button color="success" flavor="ghost">Success</Button>
+    <Button color="warning" flavor="ghost">Warning</Button>
+    <Button color="danger" flavor="ghost">Danger</Button>
+    <Button color="info" flavor="ghost">Info</Button>
+    <Button color="dark" flavor="ghost">Dark</Button>
+    <Button color="light" flavor="ghost">Light</Button>
+  </Grid>
+</Preview>
+
+```typescript jsx
+<Button color="primary" flavor="ghost">Primary</Button>
+{/* Similar markup for other color variants */}
 ```
 
 ### Accent Buttons
 
 <Preview>
   <Grid columns="8" gap="xxs">
-<Button color="primary" flavor="accent">Primary</Button>
-<Button color="secondary" flavor="accent">Secondary</Button>
-<Button color="success" flavor="accent">Success</Button>
-<Button color="warning" flavor="accent">Warning</Button>
-<Button color="danger" flavor="accent">Danger</Button>
-<Button color="info" flavor="accent">Info</Button>
-<Button color="dark" flavor="accent">Dark</Button>
-<Button color="light" flavor="accent">Light</Button>
+    <Button color="primary" flavor="accent">Primary</Button>
+    <Button color="secondary" flavor="accent">Secondary</Button>
+    <Button color="success" flavor="accent">Success</Button>
+    <Button color="warning" flavor="accent">Warning</Button>
+    <Button color="danger" flavor="accent">Danger</Button>
+    <Button color="info" flavor="accent">Info</Button>
+    <Button color="dark" flavor="accent">Dark</Button>
+    <Button color="light" flavor="accent">Light</Button>
   </Grid>
 </Preview>
 
 ```typescript jsx
 <Button color="primary" flavor="accent">Primary</Button>
-<Button color="secondary" flavor="accent">Secondary</Button>
-<Button color="success" flavor="accent">Success</Button>
-<Button color="warning" flavor="accent">Warning</Button>
-<Button color="danger" flavor="accent">Danger</Button>
-<Button color="info" flavor="accent">Info</Button>
-<Button color="dark" flavor="accent">Dark</Button>
-<Button color="light" flavor="accent">Light</Button>
+{/* Similar markup for other color variants */}
 ```
 
+## Button Sizes
+Fancy larger or smaller buttons? Change the button size using the `size` prop.
+
+<Preview>
+  <Grid gap="xs">
+    <div>
+      <Spaced>
+        <Button size="lg">Large Button</Button>
+        <Button size="lg" color="secondary">Large Button</Button>
+      </Spaced>
+    </div>
+    <div>
+      <Spaced>
+        <Button>Regular Button</Button>
+        <Button color="secondary">Regular Button</Button>
+      </Spaced>
+    </div>
+    <div>
+      <Spaced>
+        <Button size="sm">Small Button</Button>
+        <Button size="sm" color="secondary">Small Button</Button>
+      </Spaced>
+    </div>
+    <div>
+      <Spaced>
+        <Button size="xs">Extra Small Button</Button>
+        <Button size="xs" color="secondary">Extra Small Button</Button>
+      </Spaced>
+    </div>
+  </Grid>
+</Preview>
+
+```typescript jsx
+<Button size="lg">Large Button</Button>
+<Button>Regular Button</Button>
+<Button size="sm">Small Button</Button>
+<Button size="xs">Extra Small Button</Button>
+{/* Note: Markup shown here excludes the layout */}
+```
+
+Create block buttons which take full width of the parent by passing the `block` prop.
+
+<Preview>
+  <Button block color="primary">Primary</Button>
+  <Button block color="secondary">Secondary</Button>
+</Preview>
+
+```typescript jsx
+<Button block color="primary">Primary</Button>
+<Button block color="secondary">Secondary</Button>
+```
+
+## Active state
+Buttons will appear pressed (with a darker background, darker border, and inset shadow) when active.
+you can still force the same active appearance with the `active` prop
+should you need to replicate the state programmatically.
+
+<Preview>
+  <Grid columns="8" gap="xxs">
+    <Button active>Primary</Button>
+    <Button active color="secondary">Secondary</Button>
+    <Button active color="success">Success</Button>
+    <Button active color="warning">Warning</Button>
+    <Button active color="danger">Danger</Button>
+    <Button active color="info">Info</Button>
+    <Button active color="dark">Dark</Button>
+    <Button active color="light">Light</Button>
+  </Grid>
+</Preview>
+
+```typescript jsx
+<Button active color="primary">Primary</Button>
+{/* Note: Markup shown only for the first button */}
+```
+
+## Disabled state
+Make buttons look inactive by setting the disabled prop.
+
+<Preview>
+  <Grid columns="8" gap="xxs">
+    <Button disabled as="a">Primary</Button>
+    <Button disabled color="secondary">Secondary</Button>
+    <Button disabled color="success">Success</Button>
+    <Button disabled color="warning">Warning</Button>
+    <Button disabled color="danger">Danger</Button>
+    <Button disabled color="info">Info</Button>
+    <Button disabled color="dark">Dark</Button>
+    <Button disabled color="light">Light</Button>
+
+    <Button disabled flavor="outline">Primary</Button>
+    <Button disabled flavor="outline" color="secondary">Secondary</Button>
+    <Button disabled flavor="outline" color="success">Success</Button>
+    <Button disabled flavor="outline" color="warning">Warning</Button>
+    <Button disabled flavor="outline" color="danger">Danger</Button>
+    <Button disabled flavor="outline" color="info">Info</Button>
+    <Button disabled flavor="outline" color="dark">Dark</Button>
+    <Button disabled flavor="outline" color="light">Light</Button>
+
+    <Button disabled flavor="ghost">Primary</Button>
+    <Button disabled flavor="ghost" color="secondary">Secondary</Button>
+    <Button disabled flavor="ghost" color="success">Success</Button>
+    <Button disabled flavor="ghost" color="warning">Warning</Button>
+    <Button disabled flavor="ghost" color="danger">Danger</Button>
+    <Button disabled flavor="ghost" color="info">Info</Button>
+    <Button disabled flavor="ghost" color="dark">Dark</Button>
+    <Button disabled flavor="ghost" color="light">Light</Button>
+  </Grid>
+</Preview>
+
+```typescript jsx
+<Button disabled color="primary">Primary</Button>
+{/* Note: Markup shown only for the first button */}
+```
+
+>Disabled buttons using the `<a>` element behave a bit different.
+With raw bootstrap, you will have to adjust the css classnames, aria-role
+and tabindex attribute to avoid unintended behavior. However stylestrap
+takes care of all those cases based on the `disabled` prop.
 
 ## Playground
 

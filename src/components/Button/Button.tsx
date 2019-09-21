@@ -1,10 +1,74 @@
-import { makeComponent, getStylesByFlavor } from '../../core';
+import { makeComponent } from '../../core';
+import { transparentize } from 'polished';
+
+function getStatus(active, hover, disabled) {
+  if (disabled) return 'disabled';
+  if (active) return 'active';
+  if (hover) return 'hover';
+  return 'none';
+}
+
+function getButtonStyle(props, theme) {
+  const { flavor, color, active, disabled } = props;
+  if (!color || !theme.colors[color]) return;
+
+  const dark = theme.getColorShade(color, 1);
+  const darker = theme.getColorShade(color, 2);
+  const lighter = theme.getColorShade(color, -2);
+  const transparent = 'rgba(0,0,0,0)';
+  const semiTransparent = transparentize(0.5, theme.colors[color]);
+  const white = theme.colorByLuminance(color);
+
+  const backgroundColor = {
+    disabled: flavor ? transparent : lighter,
+    active: darker,
+    hover: flavor ? color : dark,
+    none: flavor ? transparent : color,
+  };
+
+  const textColor = {
+    disabled: flavor ? lighter : white,
+    active: white,
+    hover: white,
+    none: flavor ? color : white,
+  };
+
+  const borderColor = {
+    disabled: lighter,
+    active: darker,
+    hover: dark,
+    none: color,
+  };
+
+  return {
+    color: {
+      base: textColor[getStatus(active, false, disabled)],
+      '&:hover': textColor[getStatus(active, true, disabled)],
+      '&:active': textColor[getStatus(true, false, disabled)],
+    },
+    backgroundColor: {
+      base: backgroundColor[getStatus(active, false, disabled)],
+      '&:hover': backgroundColor[getStatus(active, true, disabled)],
+      '&:active': backgroundColor[getStatus(true, false, disabled)],
+    },
+    borderColor: {
+      base: borderColor[getStatus(active, false, disabled)],
+      '&:hover': borderColor[getStatus(active, true, disabled)],
+      '&:active': borderColor[getStatus(true, false, disabled)],
+    },
+    borderWidth: flavor === 'ghost' ? 0 : '1px',
+    borderLeftWidth: flavor === 'accent' ? '4px' : flavor === 'ghost' ? 0 : '1px',
+    boxShadow: {
+      '&:focus': `0 0 0 0.2rem ${semiTransparent}`,
+    },
+  };
+}
 
 type ButtonProps = {
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'light' | 'dark';
 };
 
-const Button = makeComponent<ButtonProps>('Button')
+export const Button = makeComponent<ButtonProps>('Button')
   .raw(
     `
       &.btn-xs {
@@ -19,46 +83,15 @@ const Button = makeComponent<ButtonProps>('Button')
     btn: true,
     'btn-block': props.block,
     [`btn-${props.size}`]: !!props.size,
+    active: props.active,
+    disabled: props.disabled,
   }))
   .defaultProps({ color: 'primary' })
-  .styles((props, theme) => getStylesByFlavor(props, theme, true))
+  .props(props => ({
+    'aria-pressed': props.active,
+    'aria-disabled': props.disabled,
+    role: props.as === 'a' ? 'button' : undefined,
+    tabIndex: props.as === 'a' && props.disabled ? '-1' : props.tabindex || 0,
+  }))
+  .styles(getButtonStyle)
   .create('button');
-
-type ButtonGroupProps = {
-  vertical: boolean;
-  margin: object;
-  padding: object;
-};
-
-const ButtonGroup = makeComponent<ButtonGroupProps>('ButtonGroup')
-  .classNames(props => ({
-    'btn-group': !props.vertical,
-    'btn-group-vertical': props.vertical,
-  }))
-  .defaultProps({
-    role: 'group',
-  })
-  .styles(props => ({
-    margin: props.margin,
-    padding: props.padding,
-  }))
-  .create();
-
-type ButtonToolbarProps = {
-  vertical: boolean;
-  margin: object;
-  padding: object;
-};
-
-const ButtonToolbar = makeComponent<ButtonToolbarProps>('ButtonToolbar')
-  .classNames('btn-toolbar')
-  .defaultProps({
-    role: 'toolbar',
-  })
-  .styles(props => ({
-    margin: props.margin,
-    padding: props.padding,
-  }))
-  .create();
-
-export { Button, ButtonGroup, ButtonToolbar };
