@@ -1,7 +1,7 @@
 import { makeComponent, getStylesByFlavor } from '../../core';
 
 type ButtonProps = {
-  color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'blend' | 'flip';
+  color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'light' | 'dark';
 };
 
 const Button = makeComponent<ButtonProps>('Button')
@@ -18,23 +18,18 @@ const Button = makeComponent<ButtonProps>('Button')
 
 type ButtonGroupProps = {
   vertical: boolean;
-  label: string;
   margin: object;
   padding: object;
 };
 
 const ButtonGroup = makeComponent<ButtonGroupProps>('ButtonGroup')
   .classNames(props => ({
-    'btn-group': true,
+    'btn-group': !props.vertical,
     'btn-group-vertical': props.vertical,
   }))
   .defaultProps({
     role: 'group',
-    label: 'Button Group',
   })
-  .props(props => ({
-    'aria-label': props.label,
-  }))
   .styles(props => ({
     margin: props.margin,
     padding: props.padding,
@@ -43,7 +38,6 @@ const ButtonGroup = makeComponent<ButtonGroupProps>('ButtonGroup')
 
 type ButtonToolbarProps = {
   vertical: boolean;
-  label: string;
   margin: object;
   padding: object;
 };
@@ -52,11 +46,7 @@ const ButtonToolbar = makeComponent<ButtonToolbarProps>('ButtonToolbar')
   .classNames('btn-toolbar')
   .defaultProps({
     role: 'toolbar',
-    label: 'Button Toolbar',
   })
-  .props(props => ({
-    'aria-label': props.label,
-  }))
   .styles(props => ({
     margin: props.margin,
     padding: props.padding,
