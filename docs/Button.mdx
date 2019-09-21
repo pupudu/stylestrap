@@ -3,14 +3,20 @@ name: Button
 menu: Components
 ---
 
-import { PropsTable, Preview } from './utils';
+import { PropsTable, Preview, Spaced } from './utils';
 import { Grid, Cell, Styled, Button } from './';
 
 # Button
+### For actions in forms, dialogs, and more with default support for multiple sizes, variants, and more.
 
 <PropsTable of={Button} />
 
-## Basic usage
+## Examples
+Stylestrap includes several predefined button styles, each serving its own semantic purpose.
+
+Note that unlike in raw bootstrap, we don't include the "link" style in our buttons.
+Instead, we have dedicated Link and Anchor components, which are more flexible
+and easier to extend.
 
 <Preview>
   <Grid columns="8" gap="xxs">
@@ -20,95 +26,101 @@ import { Grid, Cell, Styled, Button } from './';
     <Button color="warning">Warning</Button>
     <Button color="danger">Danger</Button>
     <Button color="info">Info</Button>
-    <Button color="flip">Flip</Button>
-    <Button color="blend">Blend</Button>
+    <Button color="dark">Dark</Button>
+    <Button color="light">Light</Button>
   </Grid>
 </Preview>
+
+```typescript jsx
+<Button>Primary</Button> <!-- You can pass color="primary" explicitly as well -->
+<Button color="secondary">Secondary</Button>
+<Button color="success">Success</Button>
+<Button color="warning">Warning</Button>
+<Button color="danger">Danger</Button>
+<Button color="info">Info</Button>
+<Button color="dark">Dark</Button>
+<Button color="light">Light</Button>
+```
+
+>Using color to add meaning only provides a visual indication,
+which will not be conveyed to users of assistive technologies – such as screen readers.
+Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text),
+or is included through alternative means, such as additional text hidden with the ScreenReader component.
+
+## Button tags
+The buttons by default uses the html button tag. However, just like any other stylestrap component,
+can be customized to use other tags like `input` or `a` using the styled-components' `as` prop.
+
+<Preview>
+  <Spaced>
+    <Button as="a">Primary</Button>
+    <Button as="input" type="button" value="Input" />
+    <Button as="input" type="submit" value="Submit" />
+    <Button as="input" type="reset" value="Reset" />
+  </Spaced>
+</Preview>
+
+```typescript jsx
+<Button as="a">Primary</Button>
+<Button as="input" type="button" value="Input" />
+<Button as="input" type="submit" value="Submit" />
+<Button as="input" type="reset" value="Reset" />
+```
 
 ## Button Flavors
+Stylestrap includes few other variants of Buttons which can be changed using
+the `flavor` prop.
 
-<Preview bg="#eee">
-    
-  <div>Plain Buttons</div>
+Note that contextual variants like `color="light"` will work best with dark backgrounds. 
 
+### Outline Buttons
+
+<Preview>
   <Grid columns="8" gap="xxs">
-    <Button color={'primary'}>Primary</Button>
-    <Button color={'secondary'}>Secondary</Button>
-    <Button color={'success'}>Success</Button>
-    <Button color={'warning'}>Warning</Button>
-    <Button color={'danger'}>Danger</Button>
-    <Button color={'info'}>Info</Button>
-    <Button color={'flip'}>Flip</Button>
-    <Button color={'blend'}>Blend</Button>  
-  </Grid>
-
-  <div>Outline flavor</div>
-
-  <Grid columns="8" gap="xxs">
-    <Button color={'primary'} flavor="outline">Primary</Button>
-    <Button color={'secondary'} flavor="outline">Secondary</Button>
-    <Button color={'success'} flavor="outline">Success</Button>
-    <Button color={'warning'} flavor="outline">Warning</Button>
-    <Button color={'danger'} flavor="outline">Danger</Button>
-    <Button color={'info'} flavor="outline">Info</Button>
-    <Button color={'flip'} flavor="outline">Flip</Button>
-    <Button color={'blend'} flavor="outline">Blend</Button>
-  </Grid>
-  
-  <div>Accent flavor</div>
-  
-  <Grid columns="8" gap="xxs">
-    <Button color={'primary'} flavor="accent">Primary</Button>
-    <Button color={'secondary'} flavor="accent">Secondary</Button>
-    <Button color={'success'} flavor="accent">Success</Button>
-    <Button color={'warning'} flavor="accent">Warning</Button>
-    <Button color={'danger'} flavor="accent">Danger</Button>
-    <Button color={'info'} flavor="accent">Info</Button>
-    <Button color={'flip'} flavor="accent">Flip</Button>
-    <Button color={'blend'} flavor="accent">Blend</Button>
+    <Button color="primary" flavor="outline">Primary</Button>
+    <Button color="secondary" flavor="outline">Secondary</Button>
+    <Button color="success" flavor="outline">Success</Button>
+    <Button color="warning" flavor="outline">Warning</Button>
+    <Button color="danger" flavor="outline">Danger</Button>
+    <Button color="info" flavor="outline">Info</Button>
+    <Button color="dark" flavor="outline">Dark</Button>
+    <Button color="light" flavor="outline">Light</Button>
   </Grid>
 </Preview>
 
-### Dark Background
+```typescript jsx
+<Button color="primary" flavor="outline">Primary</Button>
+<Button color="secondary" flavor="outline">Secondary</Button>
+<Button color="success" flavor="outline">Success</Button>
+<Button color="warning" flavor="outline">Warning</Button>
+<Button color="danger" flavor="outline">Danger</Button>
+<Button color="info" flavor="outline">Info</Button>
+<Button color="dark" flavor="outline">Dark</Button>
+<Button color="light" flavor="outline">Light</Button>
+```
 
-<Preview bg="flip">
+### Accent Buttons
 
-    <Styled css={{color: "white"}}>Plain Buttons</Styled>
-
-    <Grid columns="8" gap="xxs">
-      <Button color={'primary'}>Primary</Button>
-      <Button color={'secondary'}>Secondary</Button>
-      <Button color={'success'}>Success</Button>
-      <Button color={'warning'}>Warning</Button>
-      <Button color={'danger'}>Danger</Button>
-      <Button color={'info'}>Info</Button>
-      <Button color={'flip'}>Flip</Button>
-      <Button color={'blend'}>Blend</Button>
-    </Grid>
-
-    <Styled css={{color: "white"}}>Outline Flavor</Styled>
-
-    <Grid columns="8" gap="xxs">
-      <Button color={'primary'} flavor="outline">Primary</Button>
-      <Button color={'secondary'} flavor="outline">Secondary</Button>
-      <Button color={'success'} flavor="outline">Success</Button>
-      <Button color={'warning'} flavor="outline">Warning</Button>
-      <Button color={'danger'} flavor="outline">Danger</Button>
-      <Button color={'info'} flavor="outline">Info</Button>
-      <Button color={'flip'} flavor="outline">Flip</Button>
-      <Button color={'blend'} flavor="outline">Blend</Button>
-    </Grid>
-
-    <Styled css={{color: "white"}}>Accent Flavor</Styled>
-
-    <Grid columns="8" gap="xxs">
-      <Button color={'primary'} flavor="accent">Primary</Button>
-      <Button color={'secondary'} flavor="accent">Secondary</Button>
-      <Button color={'success'} flavor="accent">Success</Button>
-      <Button color={'warning'} flavor="accent">Warning</Button>
-      <Button color={'danger'} flavor="accent">Danger</Button>
-      <Button color={'info'} flavor="accent">Info</Button>
-      <Button color={'flip'} flavor="accent">Flip</Button>
-      <Button color={'blend'} flavor="accent">Blend</Button>
-    </Grid>
+<Preview>
+  <Grid columns="8" gap="xxs">
+<Button color="primary" flavor="accent">Primary</Button>
+<Button color="secondary" flavor="accent">Secondary</Button>
+<Button color="success" flavor="accent">Success</Button>
+<Button color="warning" flavor="accent">Warning</Button>
+<Button color="danger" flavor="accent">Danger</Button>
+<Button color="info" flavor="accent">Info</Button>
+<Button color="dark" flavor="accent">Dark</Button>
+<Button color="light" flavor="accent">Light</Button>
+  </Grid>
 </Preview>
+
+```typescript jsx
+<Button color="primary" flavor="accent">Primary</Button>
+<Button color="secondary" flavor="accent">Secondary</Button>
+<Button color="success" flavor="accent">Success</Button>
+<Button color="warning" flavor="accent">Warning</Button>
+<Button color="danger" flavor="accent">Danger</Button>
+<Button color="info" flavor="accent">Info</Button>
+<Button color="dark" flavor="accent">Dark</Button>
+<Button color="light" flavor="accent">Light</Button>
+```

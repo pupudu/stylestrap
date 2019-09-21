@@ -8,14 +8,14 @@ import { Grid, Cell, Styled, Button, ButtonGroup, ButtonToolbar } from './';
 
 # ButtonGroup
 
-<PropsTable1 of={Button} />
+### Group a series of buttons together on a single line with button groups and button toolbars.
+
+<PropsTable of={Button} />
 
 ## Basic example
 
-Group a series of buttons together on a single line with the button group. 
-
 <Preview>
-  <ButtonGroup>
+  <ButtonGroup aria-label="My Button Group">
     <Button color="secondary">Left</Button>
     <Button color="secondary">Middle</Button>
     <Button color="secondary">Right</Button>
@@ -23,16 +23,23 @@ Group a series of buttons together on a single line with the button group.
 </Preview>
 
 ```typescript jsx
-<ButtonGroup>
+<ButtonGroup aria-label="My Button Group">
     <Button>Left Primary</Button>
     <Button color="secondary">Middle Secondary</Button>
     <Button color="success">Right Success</Button>
 </ButtonGroup>
 ```
+> By default, stylestrap sets the role of the button group as role="group".
+So you don't need to do that explicitly unlike in raw bootstrap.
+
+> Groups and toolbars should be given an explicit label, as most assistive technologies will otherwise not announce them,
+despite the presence of the correct role attribute.
+In the examples provided here, we use aria-label, but alternatives such as aria-labelledby can also be used.
 
 ## Button toolbar
 
 Combine sets of button groups into button toolbars for more complex components.
+You can use the margin and padding props to adjust spacing as required.
 
 <Preview>
   <ButtonToolbar>
@@ -40,14 +47,56 @@ Combine sets of button groups into button toolbars for more complex components.
       <Button>1</Button>
       <Button>2</Button>
       <Button>3</Button>
+      <Button>4</Button>
     </ButtonGroup>
     <ButtonGroup margin={{right: '1rem'}}>
-      <Button>4</Button>
-      <Button>5</Button>
+      <Button color="success">5</Button>
+      <Button color="success">6</Button>
+      <Button color="success">7</Button>
     </ButtonGroup>
     <ButtonGroup>
-      <Button>6</Button>
-      <Button>7</Button>
+      <Button color="danger">8</Button>
     </ButtonGroup>
   </ButtonToolbar>
 </Preview>
+
+```typescript jsx
+<ButtonToolbar>
+  <ButtonGroup margin={{right: '1rem'}}>
+    <Button>1</Button>
+    <Button>2</Button>
+    <Button>3</Button>
+    <Button>4</Button>
+  </ButtonGroup>
+  <ButtonGroup margin={{right: '1rem'}}>
+    <Button color="success">5</Button>
+    <Button color="success">6</Button>
+    <Button color="success">7</Button>
+  </ButtonGroup>
+  <ButtonGroup>
+    <Button color="danger">8</Button>
+  </ButtonGroup>
+</ButtonToolbar>
+```
+
+## Vertical variation
+Make a set of buttons appear vertically stacked rather than horizontally.
+Width of the largest button is taken as the group width.
+
+<Preview>
+  <ButtonGroup vertical>
+    <Button>1</Button>
+    <Button>2</Button>
+    <Button>3</Button>
+    <Button>Diff Length</Button>
+  </ButtonGroup>
+</Preview>
+
+```
+<ButtonGroup vertical>
+  <Button>1</Button>
+  <Button>2</Button>
+  <Button>3</Button>
+  <Button>Long Button</Button>
+</ButtonGroup>
+```
