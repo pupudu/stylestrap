@@ -1,10 +1,10 @@
-import { makeComponent } from '../../core';
+import { makeComponent, StylestrapComponent } from '../../core';
 
-type ButtonGroupProps = {
+interface ButtonGroupProps extends StylestrapComponent {
   vertical: boolean;
   margin: object;
   padding: object;
-};
+}
 
 export const ButtonGroup = makeComponent<ButtonGroupProps>('ButtonGroup')
   .classNames(props => ({

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormGroup, Feedback, HelpText, Input, Label } from './FormComponents';
-import { makeComponent } from '../../core';
+import { makeComponent, StylestrapComponent } from '../../core';
 
 const FormInputBase = props => {
   const { error, touched, label, id, helpText, className, children, ...rest } = props;
@@ -20,12 +20,13 @@ const FormInputBase = props => {
   );
 };
 
-interface FormInputProps extends HTMLInputElement {
-  error: string;
-  touched: boolean;
-  label: string;
-  helpText: string;
-  readOnly: boolean;
+interface FormInputProps extends StylestrapComponent<HTMLInputElement> {
+  error?: string;
+  touched?: boolean;
+  label?: string;
+  helpText?: string;
+  readOnly?: boolean;
+  type?: 'text' | 'textarea' | 'date' | 'datetime-local' | 'password' | 'number' | 'email' | string;
 }
 
 const FormInput = makeComponent<FormInputProps>('FormInput').create(FormInputBase);

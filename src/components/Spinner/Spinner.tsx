@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { makeComponent } from '../../core';
+import { makeComponent, StylestrapComponent } from '../../core';
 
 const iconMap = {
   arrow: '↻',
@@ -25,13 +25,13 @@ const Icon: React.FC<Icon> = props => {
   );
 };
 
-type Spinner = {
+interface SpinnerProps extends StylestrapComponent<HTMLSpanElement> {
   speed: number;
   icon: 'arrow' | 'star' | 'yinyang' | 'flower' | 'flake' | 'svastik' | 'ball';
   size: string | number;
-};
+}
 
-const Spinner: React.FC<Spinner> = makeComponent('Spinner')
+const Spinner = makeComponent<SpinnerProps>('Spinner')
   .classNames('spinner')
   .styles(props => ({
     animation: `spin ${props.speed || 0.8}s linear infinite`,
@@ -43,6 +43,6 @@ const Spinner: React.FC<Spinner> = makeComponent('Spinner')
       transform: rotate(360deg);
     }
   }
-`);
+`); // TODO - use raw prop for keyFrames
 
 export { Spinner };

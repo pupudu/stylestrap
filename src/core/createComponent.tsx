@@ -88,11 +88,22 @@ class Builder<T> {
   }
 }
 
-type StyledProps = {
-  css: any;
-  as: any;
+export const makeComponent = function<T = any>(name) {
+  return new Builder<T>(name);
 };
 
-export const makeComponent = function<T = any>(name) {
-  return new Builder<T | React.HTMLAttributes<HTMLDivElement> | StyledProps>(name);
-};
+export interface StylestrapComponent<T = HTMLDivElement> extends React.HTMLAttributes<T> {
+  css?: any;
+  as?: any;
+}
+
+export type ThemeColors =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+  | 'light'
+  | 'dark'
+  | string;

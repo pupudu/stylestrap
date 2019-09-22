@@ -1,14 +1,11 @@
-import React from 'react';
-import { makeComponent } from '../../core';
+import { makeComponent, StylestrapComponent } from '../../core';
 
-const Navbar = makeComponent('Navbar')
+interface HeaderProps extends StylestrapComponent {
+  minHeight: string | number;
+}
+
+const Header = makeComponent<HeaderProps>('Navbar')
   .classNames('navbar')
   .create();
-
-type HeaderProps = {
-  minHeight: string | number;
-};
-
-const Header: React.FC<HeaderProps> = props => <Navbar {...props} />;
 
 export default Header;

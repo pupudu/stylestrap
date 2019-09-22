@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Label, Feedback, HelpText } from './FormComponents';
 import { Select } from './ReactSelect';
-import { makeComponent } from '../../core';
+import { makeComponent, StylestrapComponent } from '../../core';
 
 const FormSelectBase = props => {
   const { id, label, helpText, className, ...rest } = props;
@@ -18,11 +18,8 @@ const FormSelectBase = props => {
   );
 };
 
-type FormSelect = {
-  id: string;
+interface FormSelectProps extends StylestrapComponent {
   label: string;
-  onChange: Function;
-  onBlur: Function;
   value: {
     label: string;
     value: any;
@@ -40,8 +37,8 @@ type FormSelect = {
     label: string;
     value: any;
   }[];
-};
+}
 
-const FormSelect: React.FC<FormSelect> = makeComponent('FormSelect').create(FormSelectBase);
+const FormSelect = makeComponent<FormSelectProps>('FormSelect').create(FormSelectBase);
 
 export { FormSelect };

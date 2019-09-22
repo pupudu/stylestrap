@@ -1,10 +1,10 @@
-import { makeComponent } from '../../core';
+import { makeComponent, StylestrapComponent } from '../../core';
 
-type Heading = {
+interface HeadingProps extends StylestrapComponent<HTMLHeadingElement> {
   size: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-};
+}
 
-const Heading = makeComponent<Heading>('Heading')
+const Heading = makeComponent<HeadingProps>('Heading')
   .classNames('heading')
   .styles(({ size = 'h1' }, theme) => ({
     fontSize: theme.headingSizes[size],

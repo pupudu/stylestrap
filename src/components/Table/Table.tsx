@@ -1,14 +1,13 @@
-import React from 'react';
-import { makeComponent } from '../../core';
+import { makeComponent, StylestrapComponent } from '../../core';
 import './table.css';
 
-type Table = {
+interface TableProps extends StylestrapComponent<HTMLTableElement> {
   stripped: boolean;
   hover: boolean;
   borders: boolean | 'all';
-};
+}
 
-const Table: React.FC<Table> = makeComponent('Table')
+const Table = makeComponent<TableProps>('Table')
   .classNames(props => ({
     table: true,
     'table-stripped': props.stripped,

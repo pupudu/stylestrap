@@ -1,11 +1,12 @@
-import React from 'react';
-import { makeComponent } from '../../core';
+import { makeComponent, StylestrapComponent, ThemeColors } from '../../core';
 
-type Badge = {
-  color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'light' | 'dark';
-};
+interface Badge extends StylestrapComponent<HTMLSpanElement> {
+  color?: ThemeColors;
+  href?: string;
+  variant?: 'pill' | string;
+}
 
-const Badge: React.FC<Badge> = makeComponent('Badge')
+const Badge = makeComponent<Badge>('Badge')
   .classNames(props => ({
     badge: true,
     'badge-pill': props.variant === 'pill',

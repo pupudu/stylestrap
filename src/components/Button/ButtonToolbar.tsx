@@ -1,10 +1,9 @@
-import { makeComponent } from '../../core';
+import { makeComponent, StylestrapComponent } from '../../core';
 
-type ButtonToolbarProps = {
-  vertical: boolean;
+interface ButtonToolbarProps extends StylestrapComponent {
   margin: object;
   padding: object;
-};
+}
 
 export const ButtonToolbar = makeComponent<ButtonToolbarProps>('ButtonToolbar')
   .classNames('btn-toolbar')
