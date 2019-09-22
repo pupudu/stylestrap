@@ -66,6 +66,9 @@ function getButtonStyle(props, theme) {
 
 type ButtonProps = {
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'light' | 'dark';
+  size: string;
+  block: boolean;
+  active: boolean;
 };
 
 export const Button = makeComponent<ButtonProps>('Button')

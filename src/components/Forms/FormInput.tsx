@@ -20,14 +20,14 @@ const FormInputBase = props => {
   );
 };
 
-type FormInput = {
+interface FormInputProps extends HTMLInputElement {
   error: string;
   touched: boolean;
   label: string;
   helpText: string;
-  id: string | number;
-};
+  readOnly: boolean;
+}
 
-const FormInput: React.FC<FormInput> = makeComponent('FormInput').create(FormInputBase);
+const FormInput = makeComponent<FormInputProps>('FormInput').create(FormInputBase);
 
 export { FormInput };
