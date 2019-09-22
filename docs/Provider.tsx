@@ -29,5 +29,13 @@ export default function DoczRoot(props) {
     cacheState.state = state;
     cacheState.setState = setState;
   }, [state]);
-  return <ThemeProvider theme={state} {...props} />;
+  return (
+    <div>
+      <link
+        href="https://fonts.googleapis.com/css?family=Barriecito&display=swap"
+        rel="stylesheet"
+      />
+      <ThemeProvider theme={state} {...props} />
+    </div>
+  );
 }
