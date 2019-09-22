@@ -1,7 +1,7 @@
-import { makeComponent, StylestrapComponent, ThemeColors } from '../../core';
+import { makeComponent, StylestrapComponent } from '../../core';
 
 interface Badge extends StylestrapComponent<HTMLSpanElement> {
-  color?: ThemeColors;
+  color?: string;
   href?: string;
   variant?: 'pill' | string;
 }

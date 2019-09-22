@@ -4,12 +4,11 @@ menu: Components
 ---
 
 import { PropsTable, Preview, Spaced, Playground } from './utils';
-import { Grid, Cell, Styled, Button } from './';
+import { Grid, Cell, Styled, Button, Badge } from './';
+import { ButtonType } from './TypeComponents/ButtonType'
 
 # Button
 ### For actions in forms, dialogs, and more with default support for multiple sizes, variants, and more.
-
-<PropsTable of={Button} />
 
 ## Examples
 Stylestrap includes several predefined button styles, each serving its own semantic purpose.
@@ -254,6 +253,9 @@ Make buttons look inactive by setting the disabled prop.
 With raw bootstrap, you will have to adjust the css classnames, aria-role
 and tabindex attribute to avoid unintended behavior. However stylestrap
 takes care of all those cases based on the `disabled` prop.
+
+## Props Table
+<PropsTable of={ButtonType} />
 
 ## Playground
 
