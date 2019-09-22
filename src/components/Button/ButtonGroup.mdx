@@ -3,14 +3,14 @@ name: ButtonGroup
 menu: Components
 ---
 
-import { PropsTable, Preview, Playground } from './utils';
-import { Grid, Cell, Styled, Button, ButtonGroup, ButtonToolbar } from './';
+import { PropsTable, Preview, Playground } from '../docs';
+import { Grid, Cell, Styled, Button, ButtonGroup, ButtonToolbar } from '../';
+import { ButtonGroupType } from './ButtonGroupProps'
+import { ButtonToolbarType } from './ButtonToolbarProps'
 
 # ButtonGroup
 
 ### Group a series of buttons together on a single line with button groups and button toolbars.
-
-<PropsTable of={Button} />
 
 ## Basic example
 
@@ -100,6 +100,14 @@ Width of the largest button is taken as the group width.
   <Button>Long Button</Button>
 </ButtonGroup>
 ```
+
+## Props Tables
+
+### ButtonGroup
+<PropsTable of={ButtonGroupType} />
+
+### ButtonToolbar
+<PropsTable of={ButtonToolbarType} />
 
 ## Playground
 
