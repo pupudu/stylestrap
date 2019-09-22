@@ -1,4 +1,4 @@
 import React from 'react';
-import { ButtonPropsBase } from '../index';
+import { ButtonPropsBase } from './Button';
 
 export const ButtonType: React.FC<ButtonPropsBase> = () => null;
