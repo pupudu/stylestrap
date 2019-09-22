@@ -82,6 +82,7 @@
     "polished": "^3.4.0",
     "prop-types": "^15.6.2",
     "react": "^16.9.0",
+    "react-color": "^2.17.3",
     "react-dom": "^16.9.0",
     "react-hot-loader": "^4.12.13",
     "react-select": "^3.0.3",
