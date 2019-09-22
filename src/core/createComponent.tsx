@@ -90,6 +90,7 @@ class Builder<T> {
 
 type StyledProps = {
   css: any;
+  as: any;
 };
 
 export const makeComponent = function<T = any>(name) {
