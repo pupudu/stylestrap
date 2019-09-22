@@ -88,6 +88,10 @@ class Builder<T> {
   }
 }
 
+type StyledProps = {
+  css: any;
+};
+
 export const makeComponent = function<T = any>(name) {
-  return new Builder<T | React.HTMLAttributes<HTMLDivElement>>(name);
+  return new Builder<T | React.HTMLAttributes<HTMLDivElement> | StyledProps>(name);
 };
