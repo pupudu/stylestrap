@@ -89,5 +89,5 @@ class Builder<T> {
 }
 
 export const makeComponent = function<T = any>(name) {
-  return new Builder<T>(name);
+  return new Builder<T | React.HTMLAttributes<HTMLDivElement>>(name);
 };
