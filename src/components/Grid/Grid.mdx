@@ -4,13 +4,169 @@ menu: Layout
 ---
 
 import { Grid, Cell } from '../';
+import { Preview, ColoredDiv } from '../docs'
 
-# Container
+# Grid
+### An alternative to the classic Bootstrap flex layout, built with the CSS Grid.
 
-<Grid columns="1fr 1fr 1fr">
-    <Cell row={2} col={[1,4]}>Pubudu1</Cell>
-    <div>Pubudu2</div>
-    <div>Pubudu3</div>
-    <div>Pubudu4</div>
-    <div>Pubudu5</div>
+The Grid component can be used to create advanced layouts spanning across the 2D
+space, based on both Rows and Columns.
+
+## Column Based Layout
+
+One of the primitive requirement of any website is a column based layout.
+
+Let's create a 3 column layout, with 6 items. Note that we are
+using the colors interchangeably to make the distinction among the boxes.
+
+<Preview>
+  <Grid columns="3">
+    <ColoredDiv color="info" />
+    <ColoredDiv color="dark" />
+    <ColoredDiv color="info" />
+    <ColoredDiv color="dark" />
+    <ColoredDiv color="info" />
+    <ColoredDiv color="dark" />
+  </Grid>
+</Preview>
+
+```typescript jsx
+<Grid columns="3">
+  <ColoredDiv color="info" />
+  <ColoredDiv color="dark" />
+  <ColoredDiv color="info" />
+  <ColoredDiv color="dark" />
+  <ColoredDiv color="info" />
+  <ColoredDiv color="dark" />
 </Grid>
+```
+
+A common requirement is to add an equal amount of gaps among the
+grid children. This can be achieved by specifying the `gap` prop.
+
+<Preview>
+  <Grid columns="3" gap="0.5rem">
+    <ColoredDiv color="info" />
+    <ColoredDiv color="dark" />
+    <ColoredDiv color="info" />
+    <ColoredDiv color="dark" />
+    <ColoredDiv color="info" />
+    <ColoredDiv color="dark" />
+  </Grid>
+</Preview>
+
+```typescript jsx
+<Grid columns="3" gap="1rem">
+  <ColoredDiv color="info" />
+  {/* ... */}
+</Grid>
+```
+
+## Uneven columns
+Suppose that we want to create a two-column layout where the first
+column is twice as wide as the second one.
+
+There are two ways to do this with the Grid component.
+
+### 1. By using uneven columns explicitly
+Since the Grid is made up of the CSS grid, we can use `fr` units to
+create columns as fractions of the full width.
+
+<Preview>
+  <Grid columns="2fr 1fr" gap="0.5rem">
+    <ColoredDiv color="info" />
+    <ColoredDiv color="dark" />
+    <ColoredDiv color="dark" />
+    <ColoredDiv color="info" />
+  </Grid>
+</Preview>
+
+```typescript jsx
+<Grid columns="2fr 1fr" gap="1rem">
+  <ColoredDiv color="info" />
+  {/* ... */}
+</Grid>
+```
+
+Using this notation, similarly, we can create a three-column layout such that,
+* the first column has a fixed width of 50px,
+* and the other two columns equally occupy the remaining width.
+
+<Preview>
+  <Grid columns="50px 1fr 1fr" gap="0.5rem">
+    <ColoredDiv color="info" />
+    <ColoredDiv color="dark" />
+    <ColoredDiv color="info" />
+  </Grid>
+</Preview>
+
+```typescript jsx
+<Grid columns="50px 1fr 1fr" gap="1rem">
+  <ColoredDiv color="info" />
+  {/* ... */}
+</Grid>
+```
+
+> The Grid component internally uses the `grid-template-columns` attribute of the
+CSS Grid layout to achieve this behavior. You can view the complete reference of the `grid-template-columns`
+attribute from the [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns)
+
+### 2. Using the Cell component
+The Grid Component is made of the [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout),
+and therefore, the children behave as [Grid Cells](https://developer.mozilla.org/en-US/docs/Glossary/Grid_cell).
+Since the CSS Grid is a 2D layout, we can place a Cell anywhere on the grid using css properties.
+
+To make this easier, stylestrap exports a `Cell` component. We can specify the start and end
+tracks using the `col` prop. Let's configure the first cell to start from the 1st track and end
+on the 3rd track.
+
+<Preview>
+  <Grid columns="3" gap="0.5rem">
+    <Cell as={ColoredDiv} col={[1, 3]} color="info" />
+    <ColoredDiv color="dark" />
+    <ColoredDiv color="#ddd" css={{ display: 'flex',  justifyContent: 'space-between', height: 'initial' }}>
+      <span>⇦1</span>
+      <span>2⇨</span>
+    </ColoredDiv>
+    <ColoredDiv color="#ddd" css={{ display: 'flex',  justifyContent: 'space-between', height: 'initial' }}>
+      <span>⇦2</span>
+      <span>3⇨</span>
+    </ColoredDiv>
+    <ColoredDiv color="#ddd" css={{ display: 'flex',  justifyContent: 'space-between', height: 'initial' }}>
+      <span>⇦3</span>
+      <span>4⇨</span>
+    </ColoredDiv>
+  </Grid>
+</Preview>
+
+```typescript jsx
+<Grid columns="3" gap="1rem">
+  <Cell col={[1, 3]}>
+    <ColoredDiv color="info" />
+  </Cell>
+  <ColoredDiv color="dark" />
+</Grid>
+```
+The markup can be further simplified using the Styled Components' `as` prop.
+
+```typescript jsx
+<Grid columns="3" gap="1rem">
+  <Cell as={ColoredDiv} col={[1, 3]} color="info" />
+  <ColoredDiv color="dark" />
+</Grid>
+```
+
+> More information about the concept of tracks can be referred
+from [MDN Docs](https://developer.mozilla.org/en-US/docs/Glossary/Grid_tracks)
+
+## 2D Layout
+TODO
+
+## Placement with both Rows and Columns
+TODO
+
+## Props Tables
+TODO
+
+## Playground
+TODO
