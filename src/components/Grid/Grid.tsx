@@ -21,11 +21,11 @@ const Grid = makeComponent('Grid')
 const Cell = makeComponent('Cell')
   .styles(({ align: alignSelf, position, ...props }) => {
     const [gridRowStart, gridRowEnd] = transform(
-      row => (typeof row === 'number' ? [row, row + 1] : row),
+      (row = []) => (typeof row === 'number' ? [row, row + 1] : row),
       props.row
     );
     const [gridColumnStart, gridColumnEnd] = transform(
-      col => (typeof col === 'number' ? [col, col + 1] : col),
+      (col = []) => (typeof col === 'number' ? [col, col + 1] : col),
       props.col
     );
     return { alignSelf, position, gridRowStart, gridRowEnd, gridColumnStart, gridColumnEnd };
