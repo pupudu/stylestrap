@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './ButtonGroup';
 export * from './Link';
 export * from './Grid';
 export * from './FlexBox';

@@ -1,6 +1,6 @@
 import { makeComponent } from '../../core';
 import { transparentize } from 'polished';
-import { ButtonProps } from './ButtonType';
+import { ButtonProps } from './Types';
 
 function getStatus(active, hover, disabled) {
   if (disabled) return 'disabled';
