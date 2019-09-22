@@ -14,7 +14,7 @@ export default {
       .loader('sass-loader')
       .end();
   },
-  wrapper: 'docs/Provider',
+  wrapper: 'src/docs/Provider',
   menu: ['Introduction', 'Layout', 'Components', 'Themes'],
   typescript: true,
   files: '**/*.{markdown,mdx}',

@@ -2,7 +2,7 @@ import React from 'react';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/theme/material.css';
 import 'codemirror/mode/javascript/javascript';
-import { Button, Card, FormInput as Input, Styled } from './';
+import { Button, Card, FormInput as Input, Styled } from './index';
 import { getState, setState, setBaseCssUrl, getBaseCssUrl } from './Provider';
 
 export function Editor() {

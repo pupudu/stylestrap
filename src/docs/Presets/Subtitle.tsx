@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Badge, Styled } from '../';
+import { Heading, Badge, Styled } from '../index';
 
 function StyledH() {
   return (

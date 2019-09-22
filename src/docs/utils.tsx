@@ -1,6 +1,6 @@
 import React from 'react';
 import { Playground as PlaygroundBase, Props } from 'docz';
-import { Card, CardBody } from './';
+import { Card, CardBody } from './index';
 
 export function Playground(props) {
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from './';
+import { defaultTheme } from './index';
 
 const defaultCssUrl = 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css';
 
