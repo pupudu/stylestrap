@@ -96,3 +96,14 @@ export interface StylestrapComponent<T = HTMLDivElement> extends React.HTMLAttri
   css?: any;
   as?: any;
 }
+
+export type ThemeColors =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+  | 'light'
+  | 'dark'
+  | string;

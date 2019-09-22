@@ -1,4 +1,4 @@
-import { makeComponent, StylestrapComponent } from '../../core';
+import { makeComponent, StylestrapComponent, ThemeColors } from '../../core';
 import { transparentize } from 'polished';
 
 function getStatus(active, hover, disabled) {
@@ -69,9 +69,12 @@ export interface ButtonPropsBase {
    * One of "primary", "secondary", "success", "warning", "danger", "info", "dark" or "light"
    * unless different color names are used in the theme object
    */
-  color?: string;
+  color?: ThemeColors;
   size?: 'xs' | 'sm' | 'lg';
   flavor?: 'outline' | 'ghost' | 'accent';
+  /**
+   * Make the button take full width of the container
+   */
   block?: boolean;
   active?: boolean;
   disabled?: boolean;
