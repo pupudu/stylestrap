@@ -1,5 +1,6 @@
-import { makeComponent, StylestrapComponent, ThemeColors } from '../../core';
+import { makeComponent } from '../../core';
 import { transparentize } from 'polished';
+import { ButtonProps } from './ButtonType';
 
 function getStatus(active, hover, disabled) {
   if (disabled) return 'disabled';
@@ -63,24 +64,6 @@ function getButtonStyle(props, theme) {
     },
   };
 }
-
-export interface ButtonPropsBase {
-  /**
-   * One of "primary", "secondary", "success", "warning", "danger", "info", "dark" or "light"
-   * unless different color names are used in the theme object
-   */
-  color?: ThemeColors;
-  size?: 'xs' | 'sm' | 'lg';
-  flavor?: 'outline' | 'ghost' | 'accent';
-  /**
-   * Make the button take full width of the container
-   */
-  block?: boolean;
-  active?: boolean;
-  disabled?: boolean;
-}
-
-interface ButtonProps extends ButtonPropsBase, StylestrapComponent<HTMLButtonElement> {}
 
 export const Button = makeComponent<ButtonProps>('Button')
   .raw(

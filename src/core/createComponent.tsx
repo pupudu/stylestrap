@@ -92,10 +92,14 @@ export const makeComponent = function<T = any>(name) {
   return new Builder<T>(name);
 };
 
-export interface StylestrapComponent<T = HTMLDivElement> extends React.HTMLAttributes<T> {
+export interface StyledBase {
   css?: any;
   as?: any;
 }
+
+export interface StylestrapComponent<T = HTMLDivElement>
+  extends React.HTMLAttributes<T>,
+    StyledBase {}
 
 export type ThemeColors =
   | 'primary'
