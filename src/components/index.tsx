@@ -5,7 +5,6 @@ export * from './FlexBox';
 export * from './Card';
 export * from './Typography';
 export * from './Spinner';
-export * from './Slider';
 export * from './Table';
 export * from './Badge';
 export * from './Modal';
