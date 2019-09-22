@@ -26,13 +26,13 @@
   },
   "homepage": "https://github.com/pupudu/stylestrap#readme",
   "scripts": {
-    "start": "tsdx watch",
+    "start": "docz dev",
     "build": "tsdx build",
+    "watch": "tsdx watch",
     "test": "tsdx test --env=jsdom",
     "lint": "tsdx lint src",
-    "docz": "docz dev",
     "docz:build": "docz build",
-    "prepublish": "yarn build"
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -87,7 +87,7 @@
     "react-hot-loader": "^4.12.13",
     "react-select": "^3.0.3",
     "rollup-plugin-postcss": "^2.0.3",
-    "styled-components": "^4.1.2",
+    "styled-components": "^5.0.0-beta.8",
     "tsdx": "^0.9.2",
     "tslib": "^1.10.0",
     "typescript": "^3.6.3"
