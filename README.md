@@ -8,5 +8,6 @@ The Bootstrap you know; reimagined with Styled Components.
 * Do more with less code
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9c5bac7d-8f76-48ea-a546-f7cecf4f1418/deploy-status)](https://app.netlify.com/sites/stylestrap/deploys)
+[![bundlephobia](https://badgen.net/bundlephobia/minzip/stylestrap)](https://bundlephobia.com/result?p=stylestrap)
 
 View docs and API reference at **[stylestrap.netlify.com](https://stylestrap.netlify.com )**
