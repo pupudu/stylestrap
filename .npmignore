@@ -71,7 +71,6 @@ babel.config.js
 yarn.lock
 .eslintrc
 .babelrc.js
-src
 .DS_Store
 .cache
 .rts2_cache_cjs
