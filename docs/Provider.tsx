@@ -5,7 +5,7 @@ import '../src/Stylestrap';
 
 const cacheState: {
   setState?: Function;
-  state?: object;
+  state?: any;
 } = {};
 
 export function setState(theme) {

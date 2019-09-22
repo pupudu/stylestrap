@@ -1,5 +1,5 @@
 ---
-name: Themes
+name: Build Your Own Theme
 menu: Themes
 ---
 
@@ -7,17 +7,10 @@ menu: Themes
 
 import { setState, getState } from './Provider';
 import { Button } from './';
+import { Editor } from './ThemeEditor'
 
-<Button color="primary" onClick={()=> {
-    const theme = getState();
-    setState({
-      ...theme,
-      colors: {
-        ...theme.colors,
-        primary: `#${Math.round(Math.random() * 10)}${Math.round(Math.random() * 10)}${Math.round(Math.random() * 10)}`,
-      }
-  });
-}}>Change</Button>
+### Use this live editor to customize your own theme, **and see the stylestrap docs in your theme.**
 
-// TODO: Show an input box with theme as a json to allow customizing or pasting a whole new theme
-// TODO: Show multiple themes and clicking on them would change the theme
+<div>
+  <Editor />
+</div>
