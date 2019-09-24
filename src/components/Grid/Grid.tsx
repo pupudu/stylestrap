@@ -8,7 +8,7 @@ const Grid = makeComponent('Grid')
     );
     const gridTemplateRows = transform(
       rows => (isNaN(+rows) ? rows : `repeat(${+rows}, 1fr)`),
-      props.columns
+      props.rows
     );
     return {
       display: 'grid',
@@ -18,21 +18,24 @@ const Grid = makeComponent('Grid')
       padding: props.padding,
       margin: props.margin,
       gridGap: props.gap,
+      gridTemplateAreas: props.areas,
+      height: props.height,
+      width: props.width,
     };
   })
   .create();
 
 const Cell = makeComponent('Cell')
   .styles(({ align: alignSelf, position, ...props }) => {
-    const [gridRowStart, gridRowEnd] = transform(
-      (row = []) => (typeof row !== 'number' ? row : row > 0 ? [row, row + 1] : [row, row - 1]),
-      Array.isArray(props.row) ? props.row : Number(props.row) || undefined
-    );
-    const [gridColumnStart, gridColumnEnd] = transform(
-      (col = []) => (typeof col !== 'number' ? col : col > 0 ? [col, col + 1] : [col, col - 1]),
-      Array.isArray(props.col) ? props.col : Number(props.col) || undefined
-    );
-    return { alignSelf, position, gridRowStart, gridRowEnd, gridColumnStart, gridColumnEnd };
+    return {
+      alignSelf,
+      position,
+      gridRowStart: props.top,
+      gridRowEnd: props.bottom,
+      gridColumnStart: props.left,
+      gridColumnEnd: props.right,
+      gridArea: props.area,
+    };
   })
   .create();
 
