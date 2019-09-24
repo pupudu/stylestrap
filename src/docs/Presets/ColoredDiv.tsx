@@ -1,15 +1,23 @@
 import React from 'react';
-import { Styled } from '../';
+import { Box } from '../';
 
-export function ColoredDiv({ color, css, ...props }) {
+type Props = {
+  color?;
+  css?;
+  height?;
+  width?;
+};
+
+export const ColoredDiv: React.FC<Props> = ({ color, css, height, width, ...props }) => {
   return (
-    <Styled
+    <Box
       {...props}
       css={{
         backgroundColor: color,
-        height: '50px',
+        height: height || '50px',
+        width,
         ...css,
       }}
     />
   );
-}
+};
