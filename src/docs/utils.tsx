@@ -19,9 +19,9 @@ export function PropsTable(props) {
   return <Props {...props} />;
 }
 
-export function Preview({ children, bg, ...props }) {
+export function Preview({ children, bg, css, ...props }) {
   return (
-    <Card css={{ background: bg }} {...props}>
+    <Card css={{ background: bg, ...css }} {...props}>
       <CardBody>{children}</CardBody>
     </Card>
   );
