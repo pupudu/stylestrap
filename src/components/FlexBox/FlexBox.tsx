@@ -1,64 +1,29 @@
 import { makeComponent } from '../../core';
+import { BoxProps } from '../Box';
 
-function getFlexProps(props) {
-  const breakpoints = Object.keys(props.theme.breakpoints || {});
-  const state = {
-    flex: {},
-    maxWidth: {},
-  };
-
-  for (const key of breakpoints) {
-    if (props[key]) {
-      const width = (props[key] * 100) / 12; // TODO get column count from theme
-      state.flex[key] = `0 0 ${width}%`;
-      state.maxWidth[key] = `${width}%`;
-    }
-  }
-
-  return Object.keys(state.flex).length
-    ? state
-    : {
-        flexBasis: props.flexBasis || 0,
-        flexGrow: props.flexGrow || 1,
-        flexShrink: props.flexShrink || 1,
-      };
+interface FlexBoxProps extends BoxProps {
+  direction?: string;
+  justifyContent?: string;
+  alignItems?: string;
 }
 
-const Container = makeComponent('Container')
-  .classNames('container')
+export const FlexBox = makeComponent<FlexBoxProps>('FlexBoxProps')
   .styles(props => ({
-    padding: props.padding || {
-      left: 'sm',
-      right: 'sm',
-    },
-    width: props.fluid,
-    margin: props.margin,
-    maxWidth: !props.fluid && props.maxWidth,
-  }))
-  .create();
-
-const Col = makeComponent('Col')
-  .classNames('col')
-  .styles(props => {
-    return {
-      padding: props.padding,
-      margin: props.margin,
-      ...getFlexProps(props),
-    };
-  })
-  .create();
-
-const Row = makeComponent('Row')
-  .classNames('row')
-  .styles(props => ({
-    padding: props.padding,
-    margin: props.margin,
-    flexBasis: props.basis,
-    flexGrow: props.grow,
+    display: 'flex',
+    padding: props.p,
+    paddingTop: props.pt,
+    paddingLeft: props.pl,
+    paddingRight: props.pr,
+    paddingBottom: props.pb,
+    margin: props.m,
+    marginTop: props.mt,
+    marginLeft: props.ml,
+    marginRight: props.mr,
+    marginBottom: props.mb,
+    flexDirection: props.direction,
     justifyContent: props.justifyContent,
-    flexShrink: props.shrink,
     alignItems: props.alignItems,
+    height: props.height,
+    width: props.width,
   }))
-  .create();
-
-export { Container, Col, Row };
+  .create('div');
