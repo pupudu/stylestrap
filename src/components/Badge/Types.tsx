@@ -19,4 +19,4 @@ interface BadgePropsBase {
 }
 export interface BadgeProps extends BadgePropsBase, StylestrapComponent<HTMLSpanElement> {}
 
-export const BadgeType: React.FC<BadgeProps & StyledBase> = () => null;
+export const BadgeType: React.FC<BadgePropsBase & StyledBase> = () => null;
