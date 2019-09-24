@@ -1,1 +1,1 @@
-export { Container, Col, Row } from './FlexBox';
+export { Container, Col, Row } from './FlexGrid';
