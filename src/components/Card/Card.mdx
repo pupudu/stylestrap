@@ -5,29 +5,105 @@ menu: Components
 
 import { PropsTable, Preview, Playground } from '../docs';
 import { Card, CardHeader, CardBody, Container, Col, Row, Grid } from '../';
+import { BasicCard } from '../docs';
 
 # Card
+### Flexible and extensible content container with multiple variants and options
 
-## Basic Usage
+## Example
+Below is an example of a basic card with mixed content and a fixed width.
+Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element.
 
-<Grid columns="3" gap="md">
-    <Card>
-        <CardHeader>Heading</CardHeader>
-        <CardBody>
-            Infos
-        </CardBody>
-    </Card>
-    <Card color={'secondary'}>
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    <Card color={'success'}>
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-</Grid>
+<Preview>
+  <BasicCard />
+</Preview>
 
-## Variations
+```typescript jsx
+<Card css={{ width: '18rem' }}>
+  <img src={src} alt="card-img-cap" className="card-img-top" />
+  <CardBody>
+    <Heading size="h5">Card Title</Heading>
+    <p>
+      Some quick example text to build on the card title and make up the bulk of the card's
+      content.
+    </p>
+    <Button>Go Somewhere</Button>
+  </CardBody>
+</Card>
+```
+
+## Content types
+Cards support a wide variety of content, including images, text, list groups, links, and more.
+Below are examples of what’s supported.
+
+### Body
+The building block of a card is the `CardBody`.
+Use it whenever you need a padded section within a card.
+
+<Preview>
+  <Card>
+    <CardBody>
+      This is some text within a card body.
+    </CardBody>
+  </Card>
+</Preview>
+
+```typescript jsx
+<Card>
+  <CardBody>
+    This is some text within a card body.
+  </CardBody>
+</Card>
+```
+### Titles, text, and links
+TODO
+
+### Images
+TODO
+
+### List Groups
+TODO
+
+### Kitchen Sink
+TODO
+
+### Header and Footer
+TODO
+
+## Sizing
+TODO
+
+## Text Alignment
+TODO
+
+## Navigation
+TODO
+
+## Images
+TODO
+
+### Image Caps
+TODO
+
+### Image Overlays
+TODO
+
+### Horizontal
+
+## Card Styles
+
+### Background Color
+
+### Border
+
+## Card Layout
+
+### Card Groups
+
+### Card Decks
+
+### Card Columns
+
 
 ### Plain Cards
 <Grid columns="3" gap="md">
