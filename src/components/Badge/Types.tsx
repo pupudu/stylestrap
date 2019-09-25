@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledBase, StylestrapComponent, ThemeColors } from '../../core';
+import { StyledBase, SS, ThemeColors } from '../../core';
 
 interface BadgePropsBase {
   /**
@@ -17,6 +17,6 @@ interface BadgePropsBase {
    */
   flavor?: 'pill';
 }
-export interface BadgeProps extends BadgePropsBase, StylestrapComponent<HTMLSpanElement> {}
+export interface BadgeProps extends BadgePropsBase, SS.Span {}
 
 export const BadgeType: React.FC<BadgePropsBase & StyledBase> = () => null;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StylestrapComponent, ThemeColors, StyledBase } from '../../core';
+import { ThemeColors, StyledBase, SS } from '../../core';
 
 interface ButtonPropsBase {
   /**
@@ -17,6 +17,6 @@ interface ButtonPropsBase {
   disabled?: boolean;
 }
 
-export interface ButtonProps extends ButtonPropsBase, StylestrapComponent<HTMLButtonElement> {}
+export interface ButtonProps extends ButtonPropsBase, SS.Button {}
 
 export const ButtonType: React.FC<ButtonPropsBase & StyledBase> = () => null;
