@@ -91,23 +91,3 @@ class Builder<T> {
 export const makeComponent = function<T = any>(name) {
   return new Builder<T>(name);
 };
-
-export interface StyledBase {
-  css?: any;
-  as?: any;
-}
-
-export interface StylestrapComponent<T = HTMLDivElement>
-  extends React.HTMLAttributes<T>,
-    StyledBase {}
-
-export type ThemeColors =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'warning'
-  | 'danger'
-  | 'info'
-  | 'light'
-  | 'dark'
-  | string;
