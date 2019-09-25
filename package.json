@@ -17,7 +17,8 @@
     "bootstrap",
     "react",
     "styled",
-    "components"
+    "components",
+    "styled components"
   ],
   "author": "Pubudu Dodangoda",
   "license": "MIT",
