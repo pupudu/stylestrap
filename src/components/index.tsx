@@ -14,3 +14,4 @@ export * from './Modal';
 export * from './Forms';
 export * from './Header';
 export * from './Styled';
+export * from './HTML';
