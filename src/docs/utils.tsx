@@ -1,6 +1,6 @@
 import React from 'react';
 import { Playground as PlaygroundBase, Props } from 'docz';
-import { Card, CardBody } from './index';
+import { Card, CardBody, Heading } from './index';
 
 export function Playground(props) {
   return (
@@ -21,8 +21,40 @@ export function PropsTable(props) {
 
 export function Preview({ children, bg, css, ...props }) {
   return (
-    <Card css={{ background: bg, ...css }} {...props}>
+    <Card
+      css={{
+        background: bg,
+        overflow: 'auto',
+        boxShadow: '2px 2px 5px #F8F8F8',
+        borderWidth: '2px',
+        borderColor: '#EEE',
+        ...css,
+      }}
+      {...props}
+    >
       <CardBody>{children}</CardBody>
+    </Card>
+  );
+}
+
+export function InfoCard(props) {
+  return (
+    <Card flavor="accent" color="info">
+      <CardBody>
+        <Heading size="h5">{props.title}</Heading>
+        {props.children}
+      </CardBody>
+    </Card>
+  );
+}
+
+export function WarnCard(props) {
+  return (
+    <Card flavor="accent" color="warning">
+      <CardBody>
+        <Heading size="h5">{props.title}</Heading>
+        {props.children}
+      </CardBody>
     </Card>
   );
 }
