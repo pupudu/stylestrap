@@ -3,10 +3,18 @@ name: Card
 menu: Components
 ---
 
-import { PropsTable, Preview, Playground } from '../docs';
-import { Card, CardHeader, CardBody, Container, Col, Row, Grid, CardTitle, CardSubTitle, CardLink, CardText } from '../';
-import { InfoCard, WarnCard } from '../docs';
-import { BasicCard } from './Presets';
+import { PropsTable, Preview, Playground, InfoCard, WarnCard } from '../../docs';
+import { Card, CardHeader, CardBody, Container, Col, Row, Grid, CardTitle, CardSubTitle, CardLink, CardText } from '../../';
+import {
+  BasicCard,
+  CardImagePreview,
+  ListGroupPreset,
+  KitchenSink,
+  OptionalHeader,
+  OptionalHeaderBold,
+  TextAlign,
+  BlockquoteCard,
+} from './Presets';
 
 # Card
 ### Flexible and extensible content container with multiple variants and options
@@ -105,23 +113,134 @@ props are supported by these helper components as well.
 Place images on top, bottom or in the middle of a Card.
 
 <Preview>
-  <Card width="18rem">
+  <CardImagePreview />
+</Preview>
+
+```typescript jsx
+import src from './cardImg.jpg';
+//...
+<Grid columns="3">
+  <Card width="15rem">
+    <CardImg src={src} />
+    <CardBody>
+      <CardText>Some text description of the image below the image</CardText>
+    </CardBody>
+  </Card>
+
+  <Card width="15rem">
+    <CardBody>
+      <CardText>Some text description of the image above the image</CardText>
+    </CardBody>
+    <CardImg src={src} />
+  </Card>
+
+  <Card width="15rem">
+    <CardBody>
+      <CardText>Some text above the image</CardText>
+    </CardBody>
     <CardImg src={src} />
     <CardBody>
       <CardText>Some text below the image</CardText>
     </CardBody>
   </Card>
-</Preview>
-
+</Grid>
+```
 
 ### List Groups
-TODO
+Create lists of content in a card with a flush list group. The flush prop is
+passed to ignore the default left and right borders of the ListGroup.
+
+<Preview>
+  <ListGroupPreset />
+</Preview>
+
+```typescript jsx
+<Card width="18rem">
+  <CardHeader>Optional Header</CardHeader>
+  <ListGroup flush>
+    <ListGroupItem>Cras justo odio</ListGroupItem>
+    <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
+    <ListGroupItem>Vestibulum at eros</ListGroupItem>
+  </ListGroup>
+</Card>
+```
 
 ### Kitchen Sink
-TODO
+Mix and match multiple content types to create the card you need, or throw everything in there.
+Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width card.
+
+<Preview>
+  <KitchenSink />
+</Preview>
 
 ### Header and Footer
-TODO
+Add an optional **header** and/or **footer** within a card.
+
+<Preview>
+  <OptionalHeader />
+</Preview>
+
+```typescript jsx
+<Card>
+  <CardHeader>Optional Header</CardHeader>
+  <CardBody>
+    <CardTitle>Special title treatment</CardTitle>
+    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+    <Button>Go Somewhere</Button>
+  </CardBody>
+  <CardFooter>Optional Footer</CardFooter>
+</Card>
+```
+
+You can use the StyledComponents' `as` prop to change the Header component to use
+any tag or component you like. Below you see how we can change the tag to an "h5".
+Similarly, you can change it to use the stylestrap `Heading` component and make
+use of all its props.
+
+<Preview>
+  <OptionalHeaderBold />
+</Preview>
+
+```typescript jsx
+<Card>
+  <CardHeader as="h5">Optional Header</CardHeader>
+  <CardBody>
+    <CardTitle>Special title treatment</CardTitle>
+    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+    <Button>Go Somewhere</Button>
+  </CardBody>
+</Card>
+```
+
+<Preview>
+  <BlockquoteCard />
+</Preview>
+
+### Text Align
+Align contents to left, right, center or justify using the `textAlign` prop.
+
+<Preview>
+  <TextAlign />
+</Preview>
+
+```typescript jsx
+<Card textAlign="justify" width="16rem">
+  <CardBody>
+    <CardTitle>Title</CardTitle>
+    <CardText>
+      With some supporting text justified to make a solid sense of order and standard. like
+      a newspaper column.
+    </CardText>
+    <Button>Button</Button>
+  </CardBody>
+</Card>
+<Card textAlign="center" width="16rem">
+/* Similar content as above */
+</Card>
+<Card textAlign="right" width="16rem">
+/* Similar content as above */
+</Card>
+```
 
 ## Sizing
 TODO
