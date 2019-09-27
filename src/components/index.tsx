@@ -2,6 +2,7 @@ export * from './Box';
 export * from './Button';
 export * from './ButtonGroup';
 export * from './Link';
+export * from './ListGroup';
 export * from './Grid';
 export * from './FlexGrid';
 export * from './FlexBox';
