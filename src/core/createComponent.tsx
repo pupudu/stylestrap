@@ -60,7 +60,6 @@ class Builder<T> {
 
     const getRawStyles = props => callOrReturn(raw, props, props.theme);
 
-    // @ts-ignore
     const StyledComponent = (styled[component] || styled(component))`
       &&& {
         ${propsWithTheme => getStyleString(propsWithTheme, styleMapper, name)};
