@@ -13,9 +13,10 @@ import {
   BlockquoteText,
   Blockquote,
   BlockquoteFooter,
+  ListGroup,
+  ListGroupItem,
 } from '../../../';
 import src from './cardImg.jpg';
-import { ListGroup, ListGroupItem } from '../../ListGroup/ListGroup';
 
 export function BasicCard() {
   return (
