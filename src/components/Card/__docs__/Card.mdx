@@ -4,23 +4,26 @@ menu: Components
 ---
 
 import { PropsTable, Preview, Playground } from '../docs';
-import { Card, CardHeader, CardBody, Container, Col, Row, Grid } from '../';
-import { BasicCard } from '../docs';
+import { Card, CardHeader, CardBody, Container, Col, Row, Grid, CardTitle, CardSubTitle, CardLink, CardText } from '../';
+import { InfoCard, WarnCard } from '../docs';
+import { BasicCard } from './Presets';
 
 # Card
 ### Flexible and extensible content container with multiple variants and options
 
 ## Example
 Below is an example of a basic card with mixed content and a fixed width.
-Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element.
+
+Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element
+unless specified explicitly like in this example.
 
 <Preview>
   <BasicCard />
 </Preview>
 
 ```typescript jsx
-<Card css={{ width: '18rem' }}>
-  <img src={src} alt="card-img-cap" className="card-img-top" />
+<Card width="18rem">
+  <CardImg src={src} alt="swiss-landscape" />
   <CardBody>
     <Heading size="h5">Card Title</Heading>
     <p>
@@ -34,7 +37,19 @@ Cards have no fixed width to start, so they’ll naturally fill the full width o
 
 ## Content types
 Cards support a wide variety of content, including images, text, list groups, links, and more.
-Below are examples of what’s supported.
+
+<InfoCard>
+  <div>
+    It maybe worth noting that most of the card subcomponents exported by Stylestrap are just
+    simple extensions to their default form. This means that you are
+    not bound to use these subcomponents. You have full flexibility on what you want to
+    render inside a card.
+    <br />
+    <br />
+    For example, <code>{` <CardTitle /> `}</code> is just a <code>{` <Heading /> `}</code> with
+    <code> size="h5" </code> and <code> margin-bottom=0.75rem</code>.
+  </div>
+</InfoCard>
 
 ### Body
 The building block of a card is the `CardBody`.
@@ -56,10 +71,48 @@ Use it whenever you need a padded section within a card.
 </Card>
 ```
 ### Titles, text, and links
-TODO
+
+Stylestrap comes bundled with a set of Card-* helper components
+which make styling inside cards pretty easy. All text based components
+extend from Stylestrap Typography components, which means all base
+props are supported by these helper components as well.
+
+<Preview>
+  <Card width="18rem">
+    <CardBody>
+      <CardTitle>Card Title</CardTitle>
+      <CardSubTitle muted>Card Subtitle</CardSubTitle>
+      <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+      <CardLink>Card Link</CardLink>
+      <CardLink>Another Link</CardLink>
+    </CardBody>
+  </Card>
+</Preview>
+
+```typescript jsx
+<Card width="18rem">
+  <CardBody>
+    <CardTitle>Card Title</CardTitle>
+    <CardSubTitle muted>Card Subtitle</CardSubTitle>
+    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+    <CardLink>Card Link</CardLink>
+    <CardLink>Another Link</CardLink>
+  </CardBody>
+</Card>
+```
 
 ### Images
-TODO
+Place images on top, bottom or in the middle of a Card.
+
+<Preview>
+  <Card width="18rem">
+    <CardImg src={src} />
+    <CardBody>
+      <CardText>Some text below the image</CardText>
+    </CardBody>
+  </Card>
+</Preview>
+
 
 ### List Groups
 TODO
