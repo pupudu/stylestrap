@@ -1,17 +1,24 @@
-import { makeComponent, StylestrapComponent } from '../../core';
+import { makeComponent, SS } from '../../core';
+import { Text } from './Text';
 
-interface HeadingProps extends StylestrapComponent<HTMLHeadingElement> {
-  size: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+interface HeadingProps extends SS.Div {
+  size?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
 const Heading = makeComponent<HeadingProps>('Heading')
-  .classNames('heading')
-  .styles(({ size = 'h1' }, theme) => ({
+  .classNames(props => ({
+    heading: true,
+    'text-muted': props.muted,
+  }))
+  .defaultProps({
+    size: 'h1',
+  })
+  .styles(({ size }, theme) => ({
     fontSize: theme.headingSizes[size],
   }))
-  .props(({ size = 'h1', as: tag }) => ({
-    as: tag || size,
+  .props(({ size, as }) => ({
+    as: as || size,
   }))
-  .create('h1');
+  .create(Text);
 
 export { Heading };
