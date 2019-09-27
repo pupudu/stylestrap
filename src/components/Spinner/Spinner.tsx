@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { makeComponent, StylestrapComponent } from '../../core';
+import { makeComponent, SS } from '../../core';
 
 const iconMap = {
   arrow: '↻',
@@ -25,7 +25,7 @@ const Icon: React.FC<Icon> = props => {
   );
 };
 
-interface SpinnerProps extends StylestrapComponent<HTMLSpanElement> {
+interface SpinnerProps extends SS.Span {
   speed: number;
   icon: 'arrow' | 'star' | 'yinyang' | 'flower' | 'flake' | 'svastik' | 'ball';
   size: string | number;

@@ -1,7 +1,7 @@
-import { makeComponent, StylestrapComponent } from '../../core';
+import { makeComponent, SS } from '../../core';
 import './table.css';
 
-interface TableProps extends StylestrapComponent<HTMLTableElement> {
+interface TableProps extends SS.Table {
   stripped: boolean;
   hover: boolean;
   borders: boolean | 'all';

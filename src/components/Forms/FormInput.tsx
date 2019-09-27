@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormGroup, Feedback, HelpText, Input, Label } from './FormComponents';
-import { makeComponent, StylestrapComponent } from '../../core';
+import { makeComponent, SS } from '../../core';
 
 const FormInputBase = props => {
   const { error, touched, label, id, helpText, className, children, ...rest } = props;
@@ -20,7 +20,7 @@ const FormInputBase = props => {
   );
 };
 
-interface FormInputProps extends StylestrapComponent<HTMLInputElement> {
+interface FormInputProps extends SS.Input {
   error?: string;
   touched?: boolean;
   label?: string;

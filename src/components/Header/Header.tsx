@@ -1,6 +1,6 @@
-import { makeComponent, StylestrapComponent } from '../../core';
+import { makeComponent, SS } from '../../core';
 
-interface HeaderProps extends StylestrapComponent {
+interface HeaderProps extends SS.Div {
   minHeight: string | number;
 }
 

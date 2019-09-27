@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Label, Feedback, HelpText } from './FormComponents';
 import { Select } from './ReactSelect';
-import { makeComponent, StylestrapComponent } from '../../core';
+import { makeComponent, SS } from '../../core';
 
 const FormSelectBase = props => {
   const { id, label, helpText, className, ...rest } = props;
@@ -18,7 +18,7 @@ const FormSelectBase = props => {
   );
 };
 
-interface FormSelectProps extends StylestrapComponent {
+interface FormSelectProps extends Omit<SS.Select, 'value'> {
   label: string;
   value: {
     label: string;

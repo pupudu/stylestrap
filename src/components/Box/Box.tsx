@@ -1,6 +1,6 @@
-import { makeComponent, StylestrapComponent } from '../../core';
+import { makeComponent, SS } from '../../core';
 
-export interface BoxProps extends StylestrapComponent<HTMLButtonElement> {
+export interface BoxProps extends SS.Div {
   p?: string | any;
   pt?: string | any;
   pl?: string | any;
