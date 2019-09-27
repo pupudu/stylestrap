@@ -4,7 +4,6 @@
   "description": "Bootstrap based components library built using styled components",
   "main": "dist/index.js",
   "module": "dist/stylestrap.esm.js",
-  "sideEffects": false,
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
