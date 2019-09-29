@@ -21,7 +21,7 @@ export const NavLink = makeComponent('NavLink')
   }))
   .create('a');
 
-export const NavItem = makeComponent('NavLink')
+export const NavItem = makeComponent('NavItem')
   .classNames({
     'nav-item': true,
   })
