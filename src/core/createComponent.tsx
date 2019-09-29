@@ -9,7 +9,8 @@ class Builder<T> {
     name: '',
     initialClassNames: '',
     initialStyles: undefined,
-    transformedProps: {},
+    transformedProps: {} as any,
+    forwardProps: undefined,
     defaultProps: {},
     raw: '',
   };
@@ -41,6 +42,30 @@ class Builder<T> {
   defaultProps(props) {
     this.state.defaultProps = props;
     return this;
+  }
+
+  forwardProps(props) {
+    this.state.forwardProps = props;
+    return this;
+  }
+
+  __cloneChildren__(props) {
+    const { forwardProps } = this.state;
+    if (!forwardProps) {
+      return props;
+    }
+
+    const children = React.Children.map(props.children, (child: any) => {
+      if (child) {
+        return React.cloneElement(child, {
+          ...child.props,
+          ...callOrReturn(forwardProps, props),
+        });
+      }
+      return child;
+    });
+
+    return { ...props, children };
   }
 
   /**
@@ -84,7 +109,7 @@ class Builder<T> {
       /**
        * Merge default props, original props(with as) and transformed props
        */
-      const mergedProps = {
+      let mergedProps = {
         ...defaultProps,
         ...propsWithAs,
         ...callOrReturn(transformedProps, propsWithAs),
@@ -97,6 +122,8 @@ class Builder<T> {
         callOrReturn(initialClassNames, mergedProps),
         mergedProps.className
       );
+
+      mergedProps = this.__cloneChildren__(mergedProps);
 
       /**
        * If the component is not a string, we delete the as prop
