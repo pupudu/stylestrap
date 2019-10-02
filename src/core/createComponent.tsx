@@ -1,5 +1,5 @@
 import React from 'react';
-import { callOrReturn } from './utils';
+import { callOrReturn, filterEmptyKeys } from './utils';
 import classnames from 'classnames';
 import styled from 'styled-components';
 import { getStyleString } from './ruleEngine';
@@ -102,15 +102,15 @@ class Builder<T> {
        * either from the original as prop, or the renamed __as__ prop.
        */
       const propsWithAs = {
+        ...defaultProps,
         ...originalProps,
-        as: originalProps.as || originalProps.__as__,
+        ...filterEmptyKeys({ as: originalProps.__as__ }),
       };
 
       /**
        * Merge default props, original props(with as) and transformed props
        */
       let mergedProps = {
-        ...defaultProps,
         ...propsWithAs,
         ...callOrReturn(transformedProps, propsWithAs),
       };
