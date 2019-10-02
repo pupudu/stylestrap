@@ -50,6 +50,22 @@ const theme = {
       },
     },
   },
+  flavors: {
+    Card: {
+      accent: props => {
+        return {
+          border: {
+            top: `1px solid #eee`,
+            right: `1px solid #eee`,
+            bottom: `1px solid #eee`,
+            left: `0.25rem solid #eee`,
+          },
+          borderLeftColor: props.color,
+          background: 'rgba(0,0,0,0)',
+        };
+      },
+    },
+  },
 };
 
 export default theme;

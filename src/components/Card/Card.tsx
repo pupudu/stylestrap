@@ -1,48 +1,37 @@
-import { makeComponent } from '../../core';
+import { makeComponent, filterEmptyKeys, callOrReturn } from '../../core';
 import { Heading, Text } from '../Typography';
 import { Anchor } from '../Link';
 
-export function getStylesByFlavor(props, theme) {
-  const { flavor = 'plain', color } = props;
-
-  const baseCss = {
-    overflow: props.overflow || 'hidden',
-    width: props.width,
-    textAlign: props.textAlign,
-  };
-
-  if (!color || !theme.colors[color]) return baseCss;
+const getCardPreset = (props, theme) => {
+  const { color, flavor = 'plain' } = props;
+  if (!color) return;
+  if (theme.flavors.Card && theme.flavors.Card[flavor]) {
+    return callOrReturn(theme.flavors.Card[flavor], props, theme);
+  }
 
   const styleMap = {
-    outline: {
-      ...baseCss,
-      color: color,
-      background: 'rgba(0,0,0,0)',
-      borderColor: color,
-    },
-    accent: {
-      ...baseCss,
-      border: {
-        top: `1px solid #eee`,
-        right: `1px solid #eee`,
-        bottom: `1px solid #eee`,
-        left: `4px solid ${theme.colors[color]}`,
-      },
-      background: 'rgba(0,0,0,0)',
-    },
-    ghost: {
-      ...baseCss,
-      color: color,
-      background: 'rgba(0,0,0,0)',
-    },
     plain: {
-      ...baseCss,
       color: theme.colorByLuminance(color),
       background: color,
     },
   };
 
   return styleMap[flavor];
+};
+
+export function getStylesByFlavor(props, theme) {
+  const overrideCss = filterEmptyKeys({
+    overflow: props.overflow,
+    width: props.width,
+    textAlign: props.textAlign,
+    color: props.textColor,
+  });
+
+  return {
+    overflow: 'hidden',
+    ...getCardPreset(props, theme),
+    ...overrideCss,
+  };
 }
 
 export const CardBody = makeComponent('CardBody')
