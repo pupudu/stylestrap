@@ -1,6 +1,7 @@
 export * from './Box';
 export * from './Button';
 export * from './ButtonGroup';
+export * from './Background';
 export * from './Link';
 export * from './ListGroup';
 export * from './Grid';
@@ -12,6 +13,7 @@ export * from './Spinner';
 export * from './Table';
 export * from './Badge';
 export * from './Modal';
+export * from './Navs';
 export * from './Forms';
 export * from './Header';
 export * from './Styled';
