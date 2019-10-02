@@ -18,6 +18,11 @@ export const NavLink = makeComponent('NavLink')
     'nav-link': true,
     'nav-item': props.parentTag,
     active: props.active,
+    disabled: props.disabled,
+  }))
+  .props(props => ({
+    'aria-disabled': props.disabled ? true : undefined,
+    tabIndex: props.disabled ? -1 : undefined,
   }))
   .create('a');
 
