@@ -4,16 +4,40 @@ menu: Components
 ---
 
 import { PropsTable, Preview, Playground, InfoCard, WarnCard } from '../../docs';
-import { Card, CardHeader, CardBody, Container, Col, Row, Grid, CardTitle, CardSubTitle, CardLink, CardText } from '../../';
+import {
+  Card,
+  CardHeader,
+  CardHeaderNav,
+  CardBody,
+  Container,
+  Col,
+  Row,
+  Grid,
+  CardTitle,
+  CardSubTitle,
+  CardLink,
+  CardText,
+  Button,
+  NavItem,
+  NavLink
+} from '../../';
 import {
   BasicCard,
+  CardImageTop,
+  CardImageOverlay,
+  CardImageHorizontal,
   CardImagePreview,
+  CardBgImg,
+  CardBgImgOverlay,
   ListGroupPreset,
   KitchenSink,
   OptionalHeader,
   OptionalHeaderBold,
   TextAlign,
   BlockquoteCard,
+  CardStylePlain,
+  CardStyleAccent,
+  PlainCard,
 } from './Presets';
 
 # Card
@@ -110,40 +134,17 @@ props are supported by these helper components as well.
 ```
 
 ### Images
-Place images on top, bottom or in the middle of a Card.
-
 <Preview>
-  <CardImagePreview />
+  <CardImageTop />
 </Preview>
 
 ```typescript jsx
-import src from './cardImg.jpg';
-//...
-<Grid columns="3">
-  <Card width="15rem">
-    <CardImg src={src} />
-    <CardBody>
-      <CardText>Some text description of the image below the image</CardText>
-    </CardBody>
-  </Card>
-
-  <Card width="15rem">
-    <CardBody>
-      <CardText>Some text description of the image above the image</CardText>
-    </CardBody>
-    <CardImg src={src} />
-  </Card>
-
-  <Card width="15rem">
-    <CardBody>
-      <CardText>Some text above the image</CardText>
-    </CardBody>
-    <CardImg src={src} />
-    <CardBody>
-      <CardText>Some text below the image</CardText>
-    </CardBody>
-  </Card>
-</Grid>
+<Card width="15rem">
+  <CardImg src={src} />
+  <CardBody>
+    <CardText>Some text description of the image below the image</CardText>
+  </CardBody>
+</Card>
 ```
 
 ### List Groups
@@ -216,7 +217,52 @@ use of all its props.
   <BlockquoteCard />
 </Preview>
 
-### Text Align
+## Sizing
+Cards assume no specific width to start, so they’ll be 100% wide unless otherwise stated.
+You can change this as needed either using the `width` prop, or by embedding the cards
+within a grid layout.
+
+<Preview>
+  <Card width="36rem">
+    <CardBody>
+      <CardTitle>Using Width Prop</CardTitle>
+      <CardText>
+        The width of this card is explicitly set using the 'width' prop.
+        Width prop accepts values in all supported units of CSS (px, rem, em, %).
+      </CardText>
+      <Button>Button</Button>
+    </CardBody>
+  </Card>
+</Preview>
+
+```typescript jsx
+<Card width="36rem">
+  <CardBody>
+    <CardTitle>Using Width Prop</CardTitle>
+    <CardText>
+      The width of this card is explicitly set using the 'width' prop.
+      Width prop accepts values in all supported units of CSS (px, rem, em, %).
+    </CardText>
+    <Button>Button</Button>
+  </CardBody>
+</Card>
+```
+
+The same effect can be achieved by making the Card a child of a Grid.
+The Grid's column prop can be changed to give the card either a fixed width or a relative width.
+Similarly 'Row' and `Column` components can be used to control the Card size
+according to the Flexbox layout.
+
+```typescript jsx
+<Grid columns="36rem 1fr">
+  <Card>
+    {/* Card content */}
+  </Card>
+</Grid>
+```
+
+
+## Text Alignment
 Align contents to left, right, center or justify using the `textAlign` prop.
 
 <Preview>
@@ -235,38 +281,292 @@ Align contents to left, right, center or justify using the `textAlign` prop.
   </CardBody>
 </Card>
 <Card textAlign="center" width="16rem">
-/* Similar content as above */
+{/* Similar content as above */}
 </Card>
 <Card textAlign="right" width="16rem">
-/* Similar content as above */
+{/* Similar content as above */}
 </Card>
 ```
 
-## Sizing
-TODO
-
-## Text Alignment
-TODO
-
 ## Navigation
-TODO
+Add some navigation to a card’s header with the CardHeaderNav component.
+
+<Preview>
+  <Card>
+    <CardHeader>
+      <CardHeaderNav tabs>
+        <NavLink href="#" active>Active</NavLink>
+        <NavLink href="#">Other</NavLink>
+        <NavLink href="#" disabled>Disabled Tab</NavLink>
+      </CardHeaderNav>
+    </CardHeader>
+    <CardBody>
+      <CardTitle>Special title treatment</CardTitle>
+      <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+      <Button>Go Somewhere</Button>
+    </CardBody>
+  </Card>
+</Preview>
+
+```typescript jsx
+<Card>
+  {/* Header with tabs */}
+  <CardHeader>
+    <CardHeaderNav tabs>
+      <NavLink href="#" active>Active</NavLink>
+      <NavLink href="#">Other</NavLink>
+      <NavLink href="#" disabled>Disabled Tab</NavLink>
+    </CardHeaderNav>
+  </CardHeader>
+  {/* Followed by a regular card body */}
+  <CardBody>
+    <CardTitle>Special title treatment</CardTitle>
+    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+    <Button>Go Somewhere</Button>
+  </CardBody>
+</Card>
+```
+
+Similarly, you change tabs to pills by passing the `pills` prop instead of the `tabs` prop.
+
+<Preview>
+  <Card>
+    <CardHeader>
+      <CardHeaderNav pills>
+        <NavLink href="#" active>Active</NavLink>
+        <NavLink href="#">Other</NavLink>
+        <NavLink href="#" disabled>Disabled Pill</NavLink>
+      </CardHeaderNav>
+    </CardHeader>
+    <CardBody>
+      <CardTitle>Special title treatment</CardTitle>
+      <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+      <Button>Go Somewhere</Button>
+    </CardBody>
+  </Card>
+</Preview>
+
+```typescript jsx
+<Card>
+  <CardHeader>
+    <CardHeaderNav pills>
+      <NavLink href="#" active>Active</NavLink>
+      <NavLink href="#">Other</NavLink>
+      <NavLink href="#" disabled>Disabled Pill</NavLink>
+    </CardHeaderNav>
+  </CardHeader>
+  {/* Followed by a regular card body as above */}
+</Card>
+```
+
+<InfoCard>
+  <code>CardHeaderNav</code> component, and its children behave the exact same way as regular Navs, except
+  for the fact that a <code>CardHeaderNav</code> is only used inside a card header.
+</InfoCard>
 
 ## Images
-TODO
+Cards include a few options for working with images.
+Choose from appending “image caps” at either end of a card, overlaying images with card content,
+or simply embedding the image in a card.
 
 ### Image Caps
-TODO
+Similar to headers and footers, cards can include images at the top, bottom or middle of a card.
+
+<Preview>
+  <CardImagePreview />
+</Preview>
+
+```typescript jsx
+import src from './cardImg.jpg';
+//...
+<Grid columns="3">
+  <Card width="15rem">
+    <CardImg src={src} />
+    <CardBody>
+      <CardText>Some text description of the image below the image</CardText>
+    </CardBody>
+  </Card>
+
+  <Card width="15rem">
+    <CardBody>
+      <CardText>Some text description of the image above the image</CardText>
+    </CardBody>
+    <CardImg src={src} />
+  </Card>
+
+  <Card width="15rem">
+    <CardBody>
+      <CardText>Some text above the image</CardText>
+    </CardBody>
+    <CardImg src={src} />
+    <CardBody>
+      <CardText>Some text below the image</CardText>
+    </CardBody>
+  </Card>
+</Grid>
+```
 
 ### Image Overlays
-TODO
+Turn an image into a card background and overlay your card’s text.
+
+<Preview>
+  <CardImageOverlay />
+</Preview>
+
+```typescript jsx
+<Card width="20rem" textColor="#FFF">
+  <CardImg src={src} />
+  <CardImgOverlay>
+    <CardTitle>Card title</CardTitle>
+    <CardText>
+      This is a card with supporting text below as a natural lead-in to additional content. This
+      content is a little bit longer.
+    </CardText>
+    <CardText>Last updated 3 minutes ago</CardText>
+  </CardImgOverlay>
+</Card>
+```
+
+<WarnCard>
+Note that content should not be larger than the height of the image.
+If content is larger than the image the content will be displayed outside the image.
+<b>See the <a href="#image_size">Image Size</a> section for an alternative way to do this.</b>
+</WarnCard>
 
 ### Horizontal
+Cards with images can be made horizontal in a mobile-friendly and responsive way,
+easily by using one of Grid or Flex layouts inside the card.
+
+In the following example, we use a 2 column Grid inside the card.
+
+<Preview>
+  <CardImageHorizontal />
+</Preview>
+
+```
+<Card width="40rem">
+  <Grid columns="1fr 1fr">
+    <CardImg src={src} />
+    <CardBody>
+      <CardTitle>Card title</CardTitle>
+      <CardText>
+        This is a card with supporting text below as a natural lead-in to additional content.
+        This content is a little bit longer.
+      </CardText>
+      <CardText muted>Last updated 3 minutes ago</CardText>
+    </CardBody>
+  </Grid>
+</Card>
+```
+
+### Image Size
+The width of the `CardImg` is set to 100% by default. This can make it a bit tricky
+to correctly use an image either as an overlay, or as a horizontal image inside a card.
+Thus unlike in raw bootstrap, stylestrap exports a BgImg component which allows
+us to control the background size of the image using css properties.
+
+From the two cards below, the first card uses the BgImg component, and use the
+background size of "cover"(default). More details about this property can be found
+in [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)
+<Preview>
+  <CardBgImg />
+</Preview>
+
+```typescript jsx
+<Card width="25rem">
+  <Grid columns="2">
+    <BgImg src={src} />
+    <CardBody>
+      <CardTitle>Card title</CardTitle>
+      <CardText>
+        Image fits perfectly on the space available, by cropping the image horizontally.
+      </CardText>
+      <CardText muted>Last updated 3 minutes ago</CardText>
+    </CardBody>
+  </Grid>
+</Card>
+```
+Similarly, the issue with Image Overlays can be solved by
+wrapping CardBody in a BgImg component.
+
+<Preview>
+  <CardBgImgOverlay />
+</Preview>
+
+```typescript jsx
+<Card width="18rem" textColor="white">
+  <BgImg src={src}>
+    <CardBody>
+      <CardTitle>Card title</CardTitle>
+      <CardText>
+        This content is a little bit longer. This image is cropped to fit both the content
+        and image without any unintended white spaces
+      </CardText>
+      <CardText>Last updated 3 minutes ago</CardText>
+    </CardBody>
+  </BgImg>
+</Card>
+```
 
 ## Card Styles
 
-### Background Color
+Stylestrap cards come in different flavors for customizing their backgrounds, borders, and color.
+You can use preset styles by passing the `color` and `flavor` props, and also override the default
+preset styles using other props.
 
-### Border
+### Plain Background Color
+Set the main background color of the card by setting the color prop.
+
+<Preview>
+  <CardStylePlain />
+</Preview>
+
+```typescript jsx
+<Card color="primary">
+  <CardHeader>Heading</CardHeader>
+  <CardBody>
+    <CardTitle>Card Title</CardTitle>
+    <CardText>
+      Some quick example text to build on the card title and make up the bulk of the card's
+      content.
+    </CardText>
+  </CardBody>
+</Card>
+
+<Card color="secondary">{/* Similar content as above */}</Card>
+<Card color="success">{/* Similar content as above */}</Card>
+<Card color="warning">{/* Similar content as above */}</Card>
+<Card color="danger">{/* Similar content as above */}</Card>
+<Card color="info">{/* Similar content as above */}</Card>
+<Card color="light">{/* Similar content as above */}</Card>
+<Card color="dark">{/* Similar content as above */}</Card>
+```
+
+Notice that the text color is derived based on the luminosity of the
+main color. You can take control of this by passing the `textColor` prop explicitly.
+
+<Preview>
+  <PlainCard color="dark" textColor="warning" width="18rem" />
+</Preview>
+
+```typescript jsx
+<Card color="dark" textColor="warning" width="18rem">
+  {/* Similar content as above */}
+</Card>
+```
+
+### Accent Cards
+Create cards to place content which should standout from the rest using the accent flavor.
+
+<Preview>
+  <CardStyleAccent />
+</Preview>
+
+```typescript jsx
+<Card color="dark" textColor="warning" width="18rem">
+  {/* Similar content as above */}
+</Card>
+```
 
 ## Card Layout
 
@@ -275,101 +575,3 @@ TODO
 ### Card Decks
 
 ### Card Columns
-
-
-### Plain Cards
-<Grid columns="3" gap="md">
-    <Card color={'primary'}>
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    <Card color={'secondary'}>
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    <Card color={'success'}>
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    <Card color={'warning'}>
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    <Card color={'danger'}>
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    <Card color={'info'}>
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-</Grid>
-
-
-### Outline Card
-
-<Grid columns="3" gap="md">
-    <Card color={'primary'} flavor="outline">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    
-    <Card color={'secondary'} flavor="outline">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    
-    <Card color={'success'} flavor="outline">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    
-    <Card color={'warning'} flavor="outline">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    
-    <Card color={'danger'} flavor="outline">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    
-    <Card color={'info'} flavor="outline">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-</Grid>
-
-### Accent Card
-
-<Grid columns="3" gap="md">
-    <Card color={'primary'} flavor="accent">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    
-    <Card color={'secondary'} flavor="accent">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    
-    <Card color={'success'} flavor="accent">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    
-    <Card color={'warning'} flavor="accent">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    
-    <Card color={'danger'} flavor="accent">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-    
-    <Card color={'info'} flavor="accent">
-        <CardHeader>Heading</CardHeader>
-        Infos
-    </Card>
-</Grid>
