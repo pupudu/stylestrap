@@ -1,43 +1,25 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { makeComponent } from '../../core';
-import {
-  Modal as ModalBase,
-  ModalHeader as ModalHeaderBase,
-  ModalFooter as ModalFooterBase,
-  ModalBody as ModalBodyBase,
-} from 'reactstrap';
+import { Modal as ModalBase, ModalHeader as ModalHeaderBase } from 'reactstrap';
 
-const ModalComponent = makeComponent('Modal')
+const Modal = makeComponent('Modal')
+  .forwardProps(props => ({ toggle: props.toggle }))
   .classNames('react-admin')
   .create(ModalBase);
-const ModalHeader = makeComponent('ModalHeader').create(ModalHeaderBase);
-const ModalFooter = makeComponent('ModalFooter').create(ModalFooterBase);
-const ModalBody = makeComponent('ModalBody').create(ModalBodyBase);
 
-const useToggle = (initialState = false) => {
+const ModalHeader = makeComponent('ModalHeader').create(ModalHeaderBase);
+
+const ModalFooter = makeComponent('ModalFooter')
+  .classNames('modal-footer')
+  .create();
+
+const ModalBody = makeComponent('ModalBody')
+  .classNames('modal-body')
+  .create();
+
+const useToggle = (initialState = false): [boolean, () => any] => {
   const [state, setState] = useState(initialState);
   return [state, () => setState(!state)];
-};
-
-type ModalProps = {
-  initialState: boolean;
-  toggle: Function;
-};
-
-const Modal: React.FC<ModalProps> = ({ children, toggle, ...rest }) => {
-  return (
-    <ModalComponent {...rest} toggle={toggle}>
-      {React.Children.map(children, (child: any) => {
-        if (child && child.type && child.type === ModalHeader) {
-          return React.cloneElement(child, {
-            toggle,
-            ...child.props,
-          });
-        }
-        return child;
-      })}
-    </ModalComponent>
-  );
 };
 
 export { useToggle, Modal, ModalHeader, ModalFooter, ModalBody };
