@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { makeComponent } from '../../core';
+import { Box } from '../Box';
 import { Modal as ModalBase, ModalHeader as ModalHeaderBase } from 'reactstrap';
 
 const Modal = makeComponent('Modal')
@@ -11,11 +12,11 @@ const ModalHeader = makeComponent('ModalHeader').create(ModalHeaderBase);
 
 const ModalFooter = makeComponent('ModalFooter')
   .classNames('modal-footer')
-  .create();
+  .create(Box);
 
 const ModalBody = makeComponent('ModalBody')
   .classNames('modal-body')
-  .create();
+  .create(Box);
 
 const useToggle = (initialState = false): [boolean, () => any] => {
   const [state, setState] = useState(initialState);
