@@ -12,7 +12,12 @@ export interface BoxProps extends SS.Div {
   mr?: string | any;
   mb?: string | any;
   height?: string;
+  maxHeight?: string;
+  minHeight?: string;
   width?: string;
+  maxWidth?: string;
+  minWidth?: string;
+  overflow?: string;
 }
 
 export const Box = makeComponent<BoxProps>('Box')
@@ -29,6 +34,11 @@ export const Box = makeComponent<BoxProps>('Box')
     marginRight: props.mr,
     marginBottom: props.mb,
     height: props.height,
+    maxHeight: props.maxHeight,
+    minHeight: props.minHeight,
     width: props.width,
+    maxWidth: props.maxWidth,
+    minWidth: props.minWidth,
+    overflow: props.overflow,
   }))
   .create('div');
