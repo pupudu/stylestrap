@@ -1,6 +1,6 @@
 import React from 'react';
 import { Playground as PlaygroundBase, Props } from 'docz';
-import { Card, CardBody, Heading } from './index';
+import { Box, Card, CardBody, Heading } from './index';
 
 export function Playground(props) {
   return (
@@ -61,6 +61,10 @@ export function WarnCard(props) {
 
 export function Spaced(props) {
   return React.Children.map(props.children, (child: any) => {
-    return <>{child} </>;
+    return (
+      <>
+        <Box css={{ display: 'inline-block' }}>{child}</Box>{' '}
+      </>
+    );
   });
 }

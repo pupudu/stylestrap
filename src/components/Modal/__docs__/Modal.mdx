@@ -4,15 +4,116 @@ menu: Components
 ---
 
 import { PropsTable, Preview, Spaced, Playground } from '../../docs';
-import { Modal, Grid, Cell, Badge, Heading, Button, Link } from '../../';
+import { Modal, Cell, Badge, Heading, Button, Link } from '../../';
 import {
+  BasicModalLayout,
   BasicModal,
+  ModalLongContent,
+  ModalLongContentScrollable,
+  ModalLongContentScrollableHeight,
 } from './Presets';
 
 # Modal
+### Add dialogs to your site for lightboxes, user notifications, or completely custom content.
 
-## Example
+## Examples
+
+### Modal components
+Below is a static modal example, showing the basic components of a typical modal dialog.
+Included are the modal header, modal body (required for padding), and modal footer (optional).
+
+<Preview>
+ <BasicModalLayout />
+</Preview>
+
+```typescript jsx
+<Modal toggle={toggle}>
+  <ModalHeader>Modal Header</ModalHeader>
+  <ModalBody>
+    Modal body text goes here.
+  </ModalBody>
+  <ModalFooter>
+    <Button color="secondary">Close</Button>
+    <Button>Save Changes</Button>
+  </ModalFooter>
+</Modal>
+```
+
+### Live demo
+Toggle a working modal demo by clicking the button below. It will slide down and fade in from the top of the page.
 
 <Preview>
  <BasicModal />
 </Preview>
+
+```
+import { useToggle, Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'stylestrap';
+
+function ModalPreview() {
+  const [isOpen, toggle] = useToggle();
+
+  return (
+    {/* Modal Content */}
+    <Modal isOpen={isOpen} toggle={toggle}>
+      <ModalHeader>Modal Header</ModalHeader>
+      <ModalBody>Woohoo, you're reading this text in a modal!</ModalBody>
+      <ModalFooter>
+        <Button color="secondary">Close</Button>
+        <Button>Save Changes</Button>
+      </ModalFooter>
+    </Modal>
+
+    {/* Button to toggle the Modal */}
+    <Button onClick={toggle}>Launch Demo Modal</Button>
+  )
+}
+```
+
+### Scrolling Long Content
+
+When modals become too long for the user’s viewport or device, they scroll independent of the page itself.
+Try the demo below to see what we mean.
+
+<Preview>
+  <ModalLongContent />
+</Preview>
+
+```typescript jsx
+<Modal toggle={toggle}>
+  <ModalHeader>Modal Header</ModalHeader>
+  <ModalBody>
+    {/* Long modal body content */}
+  </ModalBody>
+  <ModalFooter>{/* Similar footer content */}</ModalFooter>
+</Modal>
+```
+
+Instead of making the modal itself scroll, you can make only the body do scrolling
+by passing the `scrollable` prop to the Modal.
+
+Note that the modal takes full height of the window before opting into scrolling.
+You can change that behavior by setting a height(or a maxHeight) on the ModalBody,
+and making it overflow auto.
+
+<Preview>
+  <Spaced>
+    <ModalLongContentScrollable />
+    <ModalLongContentScrollableHeight />
+  </Spaced>
+</Preview>
+
+```typescript jsx
+<Modal toggle={toggle}>
+  <ModalHeader>Modal Header</ModalHeader>
+  <ModalBody>
+    {/* Long modal body content */}
+  </ModalBody>
+  <ModalFooter>{/* Similar footer content */}</ModalFooter>
+</Modal>
+```
+
+```typescript
+<ModalBody maxHeight="20rem" overflow="auto">
+  {/* Long modal body content */}
+</ModalBody>
+```
