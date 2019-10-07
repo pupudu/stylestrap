@@ -1,5 +1,3 @@
-import React from 'react';
-import styled from 'styled-components';
 import { makeComponent, SS } from '../../core';
 
 const iconMap = {
@@ -12,37 +10,35 @@ const iconMap = {
   ball: '⚽',
 };
 
-type Icon = {
-  icon: 'arrow' | 'star' | 'yinyang' | 'flower' | 'flake' | 'svastik' | 'ball';
-  className: string;
-};
-
-const Icon: React.FC<Icon> = props => {
-  return (
-    <span className={props.className} role="img" aria-label="spinner">
-      {props.children || iconMap[props.icon] || iconMap['star']}
-    </span>
-  );
-};
-
 interface SpinnerProps extends SS.Span {
-  speed: number;
-  icon: 'arrow' | 'star' | 'yinyang' | 'flower' | 'flake' | 'svastik' | 'ball';
-  size: string | number;
+  speed?: number;
+  icon?: keyof typeof iconMap;
+  size?: string | number;
 }
 
-const Spinner = makeComponent<SpinnerProps>('Spinner')
+export const Spinner = makeComponent<SpinnerProps>('Spinner')
+  .raw(
+    `
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }`
+  )
+  .defaultProps({
+    icon: 'arrow',
+    speed: 2,
+    size: '2rem',
+  })
+  .props(props => ({
+    role: 'img',
+    'aria-label': 'spinner',
+    children: iconMap[props.icon],
+  }))
   .classNames('spinner')
   .styles(props => ({
     animation: `spin ${props.speed || 0.8}s linear infinite`,
     display: 'inline-block',
     fontSize: props.size || '1.5rem',
-  })).create(styled(Icon)`
-  @keyframes spin {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-`); // TODO - use raw prop for keyFrames
-
-export { Spinner };
+  }))
+  .create('span');
