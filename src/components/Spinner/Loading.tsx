@@ -14,8 +14,8 @@ const LoadingBase = props => {
   const theme = useContext(ThemeContext);
 
   useEffect(() => {
-    setTimeout(() => setState(true), 600);
-  }, [state]);
+    setTimeout(() => setState(true), props.wait);
+  }, [props.wait, state]);
 
   const color = theme.colors[props.color] || props.color;
 
@@ -29,6 +29,7 @@ export const Loading = makeComponent('Loading')
   .defaultProps({
     type: 'ripple',
     color: 'black',
+    wait: 500,
   })
   .raw(
     `
