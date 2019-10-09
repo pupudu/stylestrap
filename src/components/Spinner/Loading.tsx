@@ -4,9 +4,9 @@ import { makeComponent } from '../../core';
 import { ThemeContext } from 'styled-components';
 
 const ComponentMap = {
-  ring: Ring,
-  ripple: Ripple,
-  dots: Ellipsis,
+  ring: makeComponent('LoadingBaseComponent').create(Ring),
+  ripple: makeComponent('LoadingBaseComponent').create(Ripple),
+  dots: makeComponent('LoadingBaseComponent').create(Ellipsis),
 };
 
 const LoadingBase = props => {
@@ -19,7 +19,7 @@ const LoadingBase = props => {
 
   const color = theme.colors[props.color] || props.color;
 
-  const Component = makeComponent('LoadingBaseComponent').create(ComponentMap[props.type]);
+  const Component = ComponentMap[props.type];
   return <Component {...props} css={{ ...props.css, display: !state && 'none' }} color={color} />;
 };
 
