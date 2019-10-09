@@ -19,9 +19,13 @@ const LoadingBase = props => {
 
   const color = theme.colors[props.color] || props.color;
 
-  const SpinnerComponent = ComponentMap[props.type];
+  const Component = makeComponent('LoadingBaseComponent').create(ComponentMap[props.type]);
   return (
-    <SpinnerComponent {...props} style={{ display: state ? 'initial' : 'none' }} color={color} />
+    <Component
+      {...props}
+      css={{ ...props.css, display: state ? 'initial' : 'none' }}
+      color={color}
+    />
   );
 };
 
