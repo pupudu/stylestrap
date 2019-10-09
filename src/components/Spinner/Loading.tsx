@@ -20,13 +20,7 @@ const LoadingBase = props => {
   const color = theme.colors[props.color] || props.color;
 
   const Component = makeComponent('LoadingBaseComponent').create(ComponentMap[props.type]);
-  return (
-    <Component
-      {...props}
-      css={{ ...props.css, display: state ? 'initial' : 'none' }}
-      color={color}
-    />
-  );
+  return <Component {...props} css={{ ...props.css, display: !state && 'none' }} color={color} />;
 };
 
 export const Loading = makeComponent('Loading')
