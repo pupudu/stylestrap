@@ -33,7 +33,7 @@ const columns = [
 The data for the table would usually come from an API endpoint. For this example,
 let's define some fake data.
 
-The `key` attribute is used to pick the corresponding data for each row from the data array.
+The `key` attribute in columns metadata is used to pick the corresponding data for each row from the data array.
 Thus the data array should take the following shape.
 
 ```
@@ -43,6 +43,12 @@ const data = [
   // ...
 ]
 ```
+
+<InfoCard>
+  In this example, the data array needs to be an array of objects.
+  However, you can also use an array of arrays as data by tweaking the columns metadata.
+  See the "Shape Of Data" for an example scenario.
+</InfoCard>
 
 Now we can render the DataTable by passing columns and data as props.
 
@@ -171,3 +177,26 @@ are rendered below our custom table row. We can omit the `data` prop to avoid th
 
 The `DataTable.Rows` component works the same way as the `DataTable.Row` component,
 except that it accepts an array of data.
+
+## Shape Of Data
+In all above examples, we were using an array of objects as the data prop.
+Sometimes, it's rather convenient to pass an array of arrays as data.
+
+```
+const data = [
+  ['Nikola', 'Tesla', 'Electricity'],
+  ['Issac', 'Newton', 'Newtonian Physics'],
+  ['Albert', 'Einstein', 'Relativity'],
+];
+```
+
+To render the above data with DataTable, we can define the columns metadata as follows;
+The key idea is to use the array indices as the `key` attribute of columns metadata.
+
+```
+const columns = [
+  { key: 0, title: 'First Name' },
+  { key: 1, title: 'Last Name' },
+  { key: 2, title: 'Field of interest' },
+];
+```
