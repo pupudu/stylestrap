@@ -1,6 +1,6 @@
 import React from 'react';
-import { Column } from './Table';
-import { Td, Tr } from '../';
+import { Column } from './DataTable';
+import { Td, Tr } from '../Table';
 
 export const TableRow: React.FC<TableRowProps> = ({ columns, data, Cell, ...rest }) => {
   if (!data || typeof data !== 'object' || !columns) return null;

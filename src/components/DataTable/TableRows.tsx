@@ -1,6 +1,6 @@
 import React from 'react';
 import { TableRow } from './TableRow';
-import { Column } from './Table';
+import { Column } from './DataTable';
 
 export const TableRows: React.FC<TableRowsProps> = ({ data, ...rest }) => {
   if (!data) return null;
