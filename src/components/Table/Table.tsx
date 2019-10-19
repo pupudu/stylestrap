@@ -1,23 +1,34 @@
 import { makeComponent, SS } from '../../core';
 import './table.css';
 
-interface TableProps extends SS.Table {
-  stripped: boolean;
-  hover: boolean;
-  borders: boolean | 'all';
+export interface TableProps extends SS.Table {
+  striped?: boolean;
+  hover?: boolean;
+  borders?: boolean | 'all';
+  width?: string;
+  size?: 'sm';
 }
 
 const Table = makeComponent<TableProps>('Table')
   .classNames(props => ({
     table: true,
-    'table-stripped': props.stripped,
+    'table-striped': props.striped,
     'table-hover': props.hover,
     'table-borderless': props.borders === false,
     'table-bordered': props.borders === 'all',
+    'table-sm': props.size === 'sm',
   }))
-  .styles(() => {
-    return {}; // TODO: Change colors based on props
+  .styles((props, theme) => {
+    console.log({ props });
+    return {
+      width: props.width,
+      backgroundColor: props.color,
+      color: theme.colorByLuminance(props.color),
+    };
   })
+  .forwardProps(props => ({
+    color: props.color,
+  }))
   .create('table');
 
 export { Table };
