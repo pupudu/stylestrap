@@ -1,0 +1,173 @@
+---
+name: DataTable
+menu: Components
+---
+
+import { PropsTable, Preview, Playground, InfoCard, WarnCard } from '../docs';
+import {
+  Card,
+  CardHeader,
+  CardHeaderNav,
+  CardBody
+} from '../../';
+import {
+  BasicTable,
+  DarkHeadingsTable,
+  ColumnWidthTable,
+  CustomRowsTable,
+} from './Presets'
+
+# DataTable
+The DataTable component makes it easier to render a simple table with dynamic data.
+
+## Basic Example
+First we need to define the metadata for the columns.
+```
+const columns = [
+  { key: 'firstName', title: 'First Name' },
+  { key: 'lastName', title: 'Last Name' },
+  { key: 'email', title: 'email' },
+]
+```
+
+The data for the table would usually come from an API endpoint. For this example,
+let's define some fake data.
+
+The `key` attribute is used to pick the corresponding data for each row from the data array.
+Thus the data array should take the following shape.
+
+```
+const data = [
+  { firstName: 'John', lastName: 'Carpenter', email: 'john.c@gmail.com' },
+  { firstName: 'Rey', lastName: 'Morris', email: 'ray.m@gmail.com' },
+  // ...
+]
+```
+
+Now we can render the DataTable by passing columns and data as props.
+
+<Preview>
+  <BasicTable />
+</Preview>
+
+```
+<DataTable columns={columns} data={data} />
+```
+
+## Striped Rows
+To make the table rows striped, pass the `striped` prop.
+
+<Preview>
+  <BasicTable striped />
+</Preview>
+
+```
+<DataTable columns={columns} data={data} striped />
+```
+
+## Highlight on hover
+To highlight the rows on mouse hover, pass the `hover` prop.
+
+<Preview>
+  <BasicTable hover />
+</Preview>
+
+```
+<DataTable columns={columns} data={data} hover />
+```
+
+## Table Size
+To change the general size of the table, pass the `size` prop.
+As of now, only small tables are supported in addition to the normal size.
+
+<Preview>
+  <BasicTable size="sm" />
+</Preview>
+
+```
+<DataTable columns={columns} data={data} size="sm" />
+```
+
+## Dark Headings
+To make the table headings dark, pass the `DataTable.DarkHeading` as the `Heading` prop.
+
+<Preview>
+  <DarkHeadingsTable />
+</Preview>
+
+```
+<DataTable columns={columns} data={data} Heading={DataTable.DarkHeading} />
+```
+
+The magic behind this is the ability to pass any custom component as the Table Heading.
+The DataTable.DarkHeading used above is simply the following component.
+```
+const DarkHeading = props => <Th {...props} color="dark" />
+```
+
+## Dark Table
+You can also make table itself dark, by passing the color prop.
+
+<Preview>
+  <BasicTable color="dark" />
+</Preview>
+
+```
+<DataTable columns={columns} data={data} color="dark" />
+```
+
+## TableWidth
+The width of the table can be controlled by passing the `width` prop.
+
+<Preview>
+  <BasicTable width="600px" color="dark"/>
+</Preview>
+
+```
+<DataTable columns={columns} data={data} color="dark" width="600px" />
+```
+Here we are passing the width in pixels. Instead, we can use any unit like `rem` of `em`.
+
+## Column Width
+We can control the width of columns as well.
+To do this, we need to set the width attribute in the columns metadata object.
+
+```
+const columns = [
+  { key: 'firstName', title: 'First Name', width: '250px'},
+  { key: 'lastName', title: 'Last Name', width: '250px' },
+  { key: 'email', title: 'email', width: '250px' },
+]
+```
+
+<Preview>
+  <ColumnWidthTable />
+</Preview>
+
+## Custom Rows
+We can get more fine grained control over the rendering process by passing
+table rows as children to the table. To do this, we can use the `DataTable.Row`
+and `DataTable.Rows` components.
+
+<Preview>
+  <CustomRowsTable />
+</Preview>
+
+```
+<DataTable columns={columns} data={data} color="dark">
+  <DataTable.Row
+    data={{
+      firstName: 'Barrack',
+      lastName: 'Obama',
+      email: 'barrack.obama@gmail.com',
+    }}
+    color="info"
+  />
+</DataTable>
+```
+
+In this example, we left the data prop as well. Therefore, rest of the rows
+are rendered below our custom table row. We can omit the `data` prop to avoid this.
+
+The `DataTable.Rows` component works the same way as the `DataTable.Row` component,
+except that it accepts an array of data.
