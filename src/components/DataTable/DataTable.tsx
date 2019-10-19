@@ -39,7 +39,7 @@ DataTable.DarkHeading = DarkHeading;
 
 export interface Column {
   key: string;
-  title: string;
+  title?: string;
   width?: number | string;
   Cell?: React.FC;
   Heading?: React.FC;
