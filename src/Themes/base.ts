@@ -2,7 +2,8 @@ import { shade, getLuminance, lighten } from 'polished';
 import state from '../core/ruleEngine/state';
 
 function getColorShade(colorEnum, type) {
-  const color = state.theme.colors[colorEnum];
+  const color = state.theme.colors[colorEnum] || colorEnum;
+  if (!color) return;
   const colorMap = {
     '-2': lighten(0.15, color),
     '-1': lighten(0.075, color),
@@ -14,12 +15,23 @@ function getColorShade(colorEnum, type) {
   return colorMap[type];
 }
 
-function colorByLuminance(color) {
-  return getLuminance(state.theme.colors[color] || color) < 0.7 ? '#FFF' : '#666';
+function colorByLuminance(colorEnum) {
+  const color = state.theme.colors[colorEnum] || colorEnum;
+  if (!color) return;
+  return getLuminance(state.theme.colors[color] || color || '#FFFFFF') < 0.7 ? '#FFF' : '#666';
+}
+
+function shadeByLuminance(colorEnum) {
+  const color = state.theme.colors[colorEnum] || colorEnum;
+  if (!color) return;
+  return getLuminance(state.theme.colors[color] || color || '#FFFFFF') < 0.7
+    ? getColorShade(color, -1)
+    : getColorShade(color, 1);
 }
 
 const theme = {
   colorByLuminance,
+  shadeByLuminance,
   getColorShade,
   colors: {},
   breakpoints: {},
