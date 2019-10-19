@@ -58,8 +58,8 @@ class Builder<T> {
     const children = React.Children.map(props.children, (child: any) => {
       if (child) {
         return React.cloneElement(child, {
-          ...child.props,
           ...callOrReturn(forwardProps, props),
+          ...child.props,
         });
       }
       return child;
