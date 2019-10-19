@@ -4,9 +4,9 @@ const THead = makeComponent('THead')
   .classNames(props => ({
     sticky: props.sticky,
   }))
-  .styles(() => {
-    return {}; // TODO change colors based on props
-  })
+  .forwardProps(props => ({
+    color: props.color,
+  }))
   .create('thead');
 
 export { THead };
