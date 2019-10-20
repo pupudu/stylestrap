@@ -1,0 +1,57 @@
+---
+name: useColor
+menu: Hooks
+---
+
+import { PropsTable, InfoCard, Preview, Spaced, Playground } from '../../components/docs';
+import { Box, Grid, Cell, Badge, Heading, Button, Link } from '../../';
+import { ButtonColor, ButtonColorVariants } from './Presets';
+
+# useColor
+
+The useColor hook can be used in a component to get the raw representation of a theme color.
+This can be useful when you want to derive another color from a 3rd party library like polished.
+
+For example, let's make a Button with a lighter version of "primary" color.
+
+<Preview>
+  <ButtonColor />
+</Preview>
+
+```
+import { lighten } from 'polished';
+import { useColor, Button } from 'stylestrap';
+
+function LightButtonView() {
+  const color = useColor("danger");
+  const lightenedColor = lighten(0.3, color);
+
+  return <Button color={lightenedColor}>Light Button</Button>;
+}
+```
+
+It's a common requirement in any website to get a lightened or darkened variant
+of a theme color. Since it can be cumbersome to use a 3rd party library explicitly,
+the useColor hook supports a second argument for changing the color shade based on
+preset values.
+
+Pass in a value from -7 to +7 to get the variants.
+
+<Preview>
+  <ButtonColorVariants />
+</Preview>
+
+```
+function ColorVariantExample() {
+  const colorVariant = useColor("danger", -3);
+
+  return <ColorBox color={lightenedColor}>Dark 3</ColorBox>;
+}
+```
+
+<InfoCard>
+  The enum passed to get the preset color variants defaults to integers from -7 to +7.
+  However, this can be easily changed to more meaningful keywords such as "light", "lighter" and "lightest"
+  by adding aliases to the colorShadeMap in the theme. However the original references need to remain
+  as some of the core functions of stylestrap depend on the original enums.
+</InfoCard>
