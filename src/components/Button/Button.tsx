@@ -17,7 +17,7 @@ function getButtonStyle(props, theme) {
   const darker = theme.getColorShade(color, 2);
   const lighter = theme.getColorShade(color, -2);
   const transparent = 'rgba(0,0,0,0)';
-  const semiTransparent = transparentize(0.5, theme.colors[color] || color);
+  const semiTransparent = transparentize(0.5, theme.getColor(color));
   const white = theme.colorByLuminance(color);
 
   const backgroundColor = {
