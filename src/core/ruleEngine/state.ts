@@ -5,6 +5,7 @@ class EngineState {
     overrideStyles: {},
     sizes: {},
     colors: {},
+    colorShadeMap: {},
   };
 
   setTheme(theme) {

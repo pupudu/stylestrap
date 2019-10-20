@@ -1,19 +1,29 @@
-import { shade, getLuminance, lighten } from 'polished';
+import { getLuminance, lighten } from 'polished';
 import state from '../core/ruleEngine/state';
+
+const colorShadeMap = {
+  '-7': -0.4,
+  '-6': -0.35,
+  '-5': -0.3,
+  '-4': -0.225,
+  '-3': -0.15,
+  '-2': -0.1,
+  '-1': -0.05,
+  '0': 0,
+  '1': 0.05,
+  '2': 0.1,
+  '3': 0.175,
+  '4': 0.25,
+  '5': 0.325,
+  '6': 0.4,
+  '7': 0.45,
+};
 
 function getColorShade(color, type) {
   const colorRaw = getColor(color);
   if (!colorRaw) return;
 
-  const colorMap = {
-    '-2': lighten(0.15, colorRaw),
-    '-1': lighten(0.075, colorRaw),
-    0: colorRaw,
-    1: shade(0.1, colorRaw),
-    2: shade(0.2, colorRaw),
-  };
-
-  return colorMap[type];
+  return lighten(state.theme.colorShadeMap[type], colorRaw);
 }
 
 function colorByLuminance(color) {
@@ -25,7 +35,7 @@ function colorByLuminance(color) {
 function shadeByLuminance(color) {
   const colorRaw = state.theme.colors[color] || color;
   if (!colorRaw) return;
-  return getColorShade(colorRaw, getLuminance(colorRaw) < 0.7 ? -1 : 1);
+  return getColorShade(colorRaw, getLuminance(colorRaw) < 0.7 ? 2 : -2);
 }
 
 function getColor(color) {
@@ -36,6 +46,7 @@ const theme = {
   colorByLuminance,
   shadeByLuminance,
   getColorShade,
+  colorShadeMap,
   getColor,
   colors: {},
   breakpoints: {},

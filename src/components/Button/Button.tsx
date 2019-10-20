@@ -13,9 +13,9 @@ function getButtonStyle(props, theme) {
   const { flavor, color, active, disabled } = props;
   if (!color) return;
 
-  const dark = theme.getColorShade(color, 1);
-  const darker = theme.getColorShade(color, 2);
-  const lighter = theme.getColorShade(color, -2);
+  const dark = theme.getColorShade(color, -1);
+  const darker = theme.getColorShade(color, -2);
+  const lighter = theme.getColorShade(color, 2);
   const transparent = 'rgba(0,0,0,0)';
   const semiTransparent = transparentize(0.5, theme.getColor(color));
   const white = theme.colorByLuminance(color);
@@ -40,8 +40,6 @@ function getButtonStyle(props, theme) {
     hover: dark,
     none: color,
   };
-
-  console.log(backgroundColor[getStatus(active, false, disabled)]);
 
   return {
     color: {

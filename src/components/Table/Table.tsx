@@ -18,14 +18,11 @@ const Table = makeComponent<TableProps>('Table')
     'table-bordered': props.borders === 'all',
     'table-sm': props.size === 'sm',
   }))
-  .styles((props, theme) => {
-    console.log({ props });
-    return {
-      width: props.width,
-      backgroundColor: props.color,
-      color: theme.colorByLuminance(props.color),
-    };
-  })
+  .styles((props, theme) => ({
+    width: props.width,
+    backgroundColor: props.color,
+    color: theme.colorByLuminance(props.color),
+  }))
   .forwardProps(props => ({
     color: props.color,
   }))
