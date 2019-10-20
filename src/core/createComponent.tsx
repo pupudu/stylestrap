@@ -13,10 +13,16 @@ class Builder<T> {
     forwardProps: undefined,
     defaultProps: {},
     raw: '',
+    filter: [] as string[],
   };
 
   constructor(name) {
     this.state.name = name;
+  }
+
+  filter(list: string | string[]) {
+    this.state.filter = Array.isArray(list) ? list : [list];
+    return this;
   }
 
   raw(raw) {
@@ -84,14 +90,14 @@ class Builder<T> {
 
     return (styled[Component] || styled(Component))`
       &&& {
-        ${propsWithTheme => getStyleString(propsWithTheme, styleMapper, name)};
-        ${propsWithTheme => getRawStyles(propsWithTheme)}
+        ${props => getStyleString({ ...props, ...props._filtered }, styleMapper, name)};
+        ${props => getRawStyles({ ...props, ...props._filtered })}
       }
     `;
   }
 
   create(Component: any = 'div'): React.FC<T> {
-    const { name, transformedProps, defaultProps, initialClassNames } = this.state;
+    const { name, transformedProps, defaultProps, initialClassNames, filter } = this.state;
 
     const StyledComponent = this.__getStyledComponent__(Component);
 
@@ -136,7 +142,16 @@ class Builder<T> {
         delete mergedProps.as;
       }
 
-      return <StyledComponent {...mergedProps} className={className} />;
+      /**
+       * If a filter list is given, filter out those props from the component
+       */
+      const _filtered = {};
+      filter.forEach(key => {
+        _filtered[key] = mergedProps[key];
+        delete mergedProps[key];
+      });
+
+      return <StyledComponent {...mergedProps} _filtered={_filtered} className={className} />;
     };
     Wrapped.displayName = name;
 

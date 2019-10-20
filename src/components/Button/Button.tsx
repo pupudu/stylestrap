@@ -11,13 +11,13 @@ function getStatus(active, hover, disabled) {
 
 function getButtonStyle(props, theme) {
   const { flavor, color, active, disabled } = props;
-  if (!color || !theme.colors[color]) return;
+  if (!color) return;
 
   const dark = theme.getColorShade(color, 1);
   const darker = theme.getColorShade(color, 2);
   const lighter = theme.getColorShade(color, -2);
   const transparent = 'rgba(0,0,0,0)';
-  const semiTransparent = transparentize(0.5, theme.colors[color]);
+  const semiTransparent = transparentize(0.5, theme.colors[color] || color);
   const white = theme.colorByLuminance(color);
 
   const backgroundColor = {
@@ -40,6 +40,8 @@ function getButtonStyle(props, theme) {
     hover: dark,
     none: color,
   };
+
+  console.log(backgroundColor[getStatus(active, false, disabled)]);
 
   return {
     color: {
@@ -91,4 +93,5 @@ export const Button = makeComponent<ButtonProps>('Button')
     tabIndex: props.as === 'a' && props.disabled ? '-1' : props.tabindex || 0,
   }))
   .styles(getButtonStyle)
+  .filter('color')
   .create('button');
