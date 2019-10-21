@@ -15,7 +15,7 @@ const DataTable: DataTableType = ({
   ...rest
 }) => {
   return (
-    <Table {...rest} className="table" width={(width as string) || deriveTableWidth(columns)}>
+    <Table {...rest} width={(width as string) || deriveTableWidth(columns)}>
       <TableHeadings columns={columns} Heading={Heading} />
       <TBody>
         {injectProps(children, { columns })}
