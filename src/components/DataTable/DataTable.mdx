@@ -15,6 +15,7 @@ import {
   DarkHeadingsTable,
   ColumnWidthTable,
   CustomRowsTable,
+  CustomCellsAndHeadings,
 } from './Presets'
 
 # DataTable
@@ -149,6 +150,71 @@ const columns = [
 <Preview>
   <ColumnWidthTable />
 </Preview>
+
+## Custom Cells
+It is often a requirement to show table cells with custom content. This can be done by passing
+any custom component as the `Cell` attribute to a table.
+
+<Preview>
+  <CustomCellsAndHeadings />
+</Preview>
+
+```
+import { Button, FormInput, Modal, ModalBody, Td, useToggle } from 'stylestrap';
+
+const columnsWithCustomCells = [
+  { key: 'firstName', title: 'First Name' },
+  { key: 'lastName', title: 'Last Name' },
+  { key: 'email', title: 'email' },
+  { key: 'actions', title: 'Actions', Cell: ModalButton },
+];
+
+function ModalButton(props) {
+  // Toggle switch to turn the modal on and off
+  const [isOpen, toggle] = useToggle();
+
+  // props.data - gives the data row itself
+  // props.children - gives the data for the column only (if there are matching data)
+
+  return (
+    // Note that we are using `Td` as the outermost component.
+    // Make sure to use `Td` or any other variant of 'td' as the outer most component
+    <Td>
+      {/* Rendering the modal content here */}
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <ModalBody>
+          <FormInput value={props.data.firstName} label="First Name" />
+          <FormInput value={props.data.lastName} label="Last Name" />
+          <FormInput value={props.data.email} label="email" />
+        </ModalBody>
+      </Modal>
+      {/* Button to trigger the Modal on and off */}
+      <Button size="sm" color="info" onClick={toggle}>Show Data</Button>
+    </Td>
+  );
+};
+
+function CustomCells() {
+  return (
+    <DataTable
+      columns={columnsWithCustomCells}
+      data={data}
+      Heading={DataTable.DarkHeading}
+      striped
+    />
+  );
+}
+```
+<InfoCard>
+  Note that we used the key "actions" for the actions column, although the data array
+  does not have a field called "actions".
+  <br />
+  <br />
+  Instead, we could've passed 'email' as the key, which would enable the props.children
+  to give us the corresponding email of each row.
+  It doesn't matter much since props.data provides the full data row, allowing us to do whatever we want
+  for custom columns.
+</InfoCard>
 
 ## Custom Rows
 We can get more fine grained control over the rendering process by passing

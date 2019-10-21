@@ -1,5 +1,6 @@
 import React from 'react';
 import { DataTable } from './index';
+import { Button, FormInput, Modal, ModalBody, Td, useToggle } from '../';
 import faker from 'faker';
 
 const columns = [
@@ -42,5 +43,41 @@ export function CustomRowsTable() {
         color="info"
       />
     </BasicTable>
+  );
+}
+
+const ModalButton = props => {
+  const [isOpen, toggle] = useToggle();
+  return (
+    <Td>
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <ModalBody>
+          <FormInput value={props.data.firstName} label="First Name" />
+          <FormInput value={props.data.lastName} label="Last Name" />
+          <FormInput value={props.data.email} label="email" />
+        </ModalBody>
+      </Modal>
+      <Button size="sm" color="info" onClick={toggle}>
+        Show Data
+      </Button>
+    </Td>
+  );
+};
+
+const columnsWithCustomCells = [
+  { key: 'firstName', title: 'First Name' },
+  { key: 'lastName', title: 'Last Name' },
+  { key: 'email', title: 'email' },
+  { key: 'email', title: 'Actions', Cell: ModalButton },
+];
+
+export function CustomCellsAndHeadings() {
+  return (
+    <DataTable
+      columns={columnsWithCustomCells}
+      data={data}
+      Heading={DataTable.DarkHeading}
+      striped
+    />
   );
 }
