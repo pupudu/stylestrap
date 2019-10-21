@@ -6,6 +6,7 @@ const THead = makeComponent('THead')
   }))
   .forwardProps(props => ({
     color: props.color,
+    textColor: props.textColor,
   }))
   .create('thead');
 

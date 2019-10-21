@@ -26,16 +26,16 @@ function getColorShade(color, type) {
   return lighten(state.theme.colorShadeMap[type], colorRaw);
 }
 
-function colorByLuminance(color) {
+function colorByLuminance(color, lightColor = '#FFF', darkColor = '#666', threshold = 0.7) {
   const colorRaw = getColor(color);
   if (!colorRaw) return;
-  return getLuminance(colorRaw) < 0.7 ? '#FFF' : '#666';
+  return getLuminance(colorRaw) < threshold ? lightColor : darkColor;
 }
 
-function shadeByLuminance(color) {
+function shadeByLuminance(color, lightPreset = 2, darkPreset = -2, threshold = 0.7) {
   const colorRaw = state.theme.colors[color] || color;
   if (!colorRaw) return;
-  return getColorShade(colorRaw, getLuminance(colorRaw) < 0.7 ? 2 : -2);
+  return getColorShade(colorRaw, getLuminance(colorRaw) < threshold ? lightPreset : darkPreset);
 }
 
 function getColor(color) {

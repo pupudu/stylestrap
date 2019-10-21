@@ -21,10 +21,11 @@ const Table = makeComponent<TableProps>('Table')
   .styles((props, theme) => ({
     width: props.width,
     backgroundColor: props.color,
-    color: theme.colorByLuminance(props.color),
+    color: props.textColor || theme.colorByLuminance(props.color, '#FFF', '#000'),
   }))
   .forwardProps(props => ({
     color: props.color,
+    textColor: props.textColor,
   }))
   .create('table');
 
