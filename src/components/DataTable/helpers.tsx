@@ -3,11 +3,7 @@ import { Th } from '../Table';
 
 export const deriveTableWidth = columns => {
   if (columns.find(column => !column.width)) return;
-
-  const columnWidthSumStr = columns
-    .map(({ width }) => (typeof width === 'string' ? width : `${width || 0}px`))
-    .join(' + ');
-  return `calc(${columnWidthSumStr})`;
+  return `calc(${columns.map(({ width }) => width).join(' + ')})`;
 };
 
 export const injectProps = (children, props) => {

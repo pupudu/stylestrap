@@ -15,7 +15,7 @@ const DataTable: DataTableType = ({
   ...rest
 }) => {
   return (
-    <Table {...rest} width={(width as string) || deriveTableWidth(columns)}>
+    <Table {...rest} width={width || deriveTableWidth(columns)}>
       <TableHeadings columns={columns} Heading={Heading} />
       <TBody>
         {injectProps(children, { columns })}
@@ -27,7 +27,7 @@ const DataTable: DataTableType = ({
   );
 };
 
-type DataTableType = React.FC<DataTableProps & TableProps> & {
+type DataTableType = React.FC<DataTableProps> & {
   Row: typeof TableRow;
   Rows: typeof TableRows;
   DarkHeading: typeof DarkHeading;
@@ -46,12 +46,12 @@ export interface Column {
   props?: object;
 }
 
-export interface DataTableProps {
+export interface DataTableProps extends TableProps {
   data?: any[];
   columns: Column[];
   Cell?: React.FC;
   Heading?: React.FC;
-  width?: string | number;
+  width?: string;
 }
 
 export { DataTable };
