@@ -83,6 +83,7 @@ class Builder<T> {
 
     const styleMapper = props => ({
       ...callOrReturn(initialStyles, props, props.theme),
+      ...callOrReturn(props.$css, props, props.theme),
       ...callOrReturn(props.css, props, props.theme),
     });
 
