@@ -8,11 +8,11 @@ export const TableHeadings = ({ columns, Heading, ...rest }) => {
   return (
     <THead {...rest}>
       <Tr>
-        {columns.map(column => {
+        {columns.map((column, index) => {
           const Component = column.Heading || Heading || Th;
           return (
             <Component
-              key={column.key}
+              key={index}
               {...column.props}
               style={{ minWidth: column.width, maxWidth: column.width }}
             >
