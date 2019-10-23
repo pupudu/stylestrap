@@ -284,7 +284,7 @@ export function BlockquoteCard() {
   return (
     <Card>
       <CardBody>
-        <Blockquote css={{ marginBottom: 0 }}>
+        <Blockquote $css={{ marginBottom: 0 }}>
           <BlockquoteText>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
           </BlockquoteText>

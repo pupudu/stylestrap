@@ -10,7 +10,7 @@ const longModalContent = longText.split('\n').map(token => (
 
 export function BasicModalLayout() {
   return (
-    <Box p="sm" css={{ background: '#EEE' }}>
+    <Box p="sm">
       <Card width="30rem">
         <ModalHeader toggle={true}>Modal Header</ModalHeader>
         <ModalBody>Modal body text goes here.</ModalBody>

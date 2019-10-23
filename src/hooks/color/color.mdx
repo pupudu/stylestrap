@@ -3,11 +3,12 @@ name: useColor
 menu: Hooks
 ---
 
-import { PropsTable, InfoCard, Preview, Spaced, Playground } from '../../components/docs';
+import { PropsTable, InfoCard, Preview, Spaced, Playground, Helpers } from '../../components/docs';
 import { Box, Grid, Cell, Badge, Heading, Button, Link } from '../../';
 import { ButtonColor, ButtonColorVariants } from './Presets';
 
 # useColor
+<Helpers.Subtitle>Use our color util hooks to get variants of theme colors.</Helpers.Subtitle>
 
 The useColor hook can be used in a component to get the raw representation of a theme color.
 This can be useful when you want to derive another color from a 3rd party library like polished.
@@ -18,8 +19,8 @@ For example, let's make a Button with a lighter version of "primary" color.
   <ButtonColor />
 </Preview>
 
-```
-import { lighten } from 'polished';
+```jsx
+import { lighten } from '../../core/safePolished';
 import { useColor, Button } from 'stylestrap';
 
 function LightButtonView() {
@@ -41,7 +42,7 @@ Pass in a value from -7 to +7 to get the variants.
   <ButtonColorVariants />
 </Preview>
 
-```
+```jsx
 function ColorVariantExample() {
   const colorVariant = useColor("danger", -3);
 

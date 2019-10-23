@@ -36,7 +36,7 @@ export function Subtitle() {
     <div>
       <Heading size="h5">
         The{' '}
-        <Styled as="span" css={{ color: '#7952b3', fontSize: '24px' }}>
+        <Styled as="span" $css={{ color: '#7952b3', fontSize: '24px' }}>
           Bootstrap
         </Styled>{' '}
         you know; reimagined with

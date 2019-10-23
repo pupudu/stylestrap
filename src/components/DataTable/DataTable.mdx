@@ -3,7 +3,7 @@ name: DataTable
 menu: Components
 ---
 
-import { PropsTable, Preview, Playground, InfoCard, WarnCard } from '../docs';
+import { PropsTable, Preview, Playground, InfoCard, WarnCard, Helpers } from '../docs';
 import {
   Card,
   CardHeader,
@@ -19,11 +19,11 @@ import {
 } from './Presets'
 
 # DataTable
-The DataTable component makes it easier to render a simple table with dynamic data.
+<Helpers.Subtitle>The DataTable component makes it easier to render a simple table with dynamic data.</Helpers.Subtitle>
 
 ## Basic Example
 First we need to define the metadata for the columns.
-```
+```jsx
 const columns = [
   { key: 'firstName', title: 'First Name' },
   { key: 'lastName', title: 'Last Name' },
@@ -37,7 +37,7 @@ let's define some fake data.
 The `key` attribute in columns metadata is used to pick the corresponding data for each row from the data array.
 Thus the data array should take the following shape.
 
-```
+```jsx
 const data = [
   { firstName: 'John', lastName: 'Carpenter', email: 'john.c@gmail.com' },
   { firstName: 'Rey', lastName: 'Morris', email: 'ray.m@gmail.com' },
@@ -57,7 +57,7 @@ Now we can render the DataTable by passing columns and data as props.
   <BasicTable />
 </Preview>
 
-```
+```jsx
 <DataTable columns={columns} data={data} />
 ```
 
@@ -68,7 +68,7 @@ To make the table rows striped, pass the `striped` prop.
   <BasicTable striped />
 </Preview>
 
-```
+```jsx
 <DataTable columns={columns} data={data} striped />
 ```
 
@@ -79,7 +79,7 @@ To highlight the rows on mouse hover, pass the `hover` prop.
   <BasicTable hover />
 </Preview>
 
-```
+```jsx
 <DataTable columns={columns} data={data} hover />
 ```
 
@@ -91,7 +91,7 @@ As of now, only small tables are supported in addition to the normal size.
   <BasicTable size="sm" />
 </Preview>
 
-```
+```jsx
 <DataTable columns={columns} data={data} size="sm" />
 ```
 
@@ -102,7 +102,7 @@ To make the table headings dark, pass the `DataTable.DarkHeading` as the `Headin
   <DarkHeadingsTable />
 </Preview>
 
-```
+```jsx
 <DataTable columns={columns} data={data} Heading={DataTable.DarkHeading} />
 ```
 
@@ -119,7 +119,7 @@ You can also make table itself dark, by passing the color prop.
   <BasicTable color="dark" />
 </Preview>
 
-```
+```jsx
 <DataTable columns={columns} data={data} color="dark" />
 ```
 
@@ -130,7 +130,7 @@ The width of the table can be controlled by passing the `width` prop.
   <BasicTable width="600px" color="dark"/>
 </Preview>
 
-```
+```jsx
 <DataTable columns={columns} data={data} color="dark" width="600px" />
 ```
 Here we are passing the width in pixels. Instead, we can use any unit like `rem` of `em`.
@@ -139,7 +139,7 @@ Here we are passing the width in pixels. Instead, we can use any unit like `rem`
 We can control the width of columns as well.
 To do this, we need to set the width attribute in the columns metadata object.
 
-```
+```jsx
 const columns = [
   { key: 'firstName', title: 'First Name', width: '250px'},
   { key: 'lastName', title: 'Last Name', width: '250px' },
@@ -159,7 +159,7 @@ any custom component as the `Cell` attribute to a table.
   <CustomCellsAndHeadings />
 </Preview>
 
-```
+```jsx
 import { Button, FormInput, Modal, ModalBody, Td, useToggle } from 'stylestrap';
 
 const columnsWithCustomCells = [
@@ -225,7 +225,7 @@ and `DataTable.Rows` components.
   <CustomRowsTable />
 </Preview>
 
-```
+```jsx
 <DataTable columns={columns} data={data} color="dark">
   <DataTable.Row
     data={{
@@ -248,7 +248,7 @@ except that it accepts an array of data.
 In all above examples, we were using an array of objects as the data prop.
 Sometimes, it's rather convenient to pass an array of arrays as data.
 
-```
+```jsx
 const data = [
   ['Nikola', 'Tesla', 'Electricity'],
   ['Issac', 'Newton', 'Newtonian Physics'],
@@ -259,7 +259,7 @@ const data = [
 To render the above data with DataTable, we can define the columns metadata as follows;
 The key idea is to use the array indices as the `key` attribute of columns metadata.
 
-```
+```jsx
 const columns = [
   { key: 0, title: 'First Name' },
   { key: 1, title: 'Last Name' },

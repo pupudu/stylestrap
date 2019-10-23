@@ -3,7 +3,7 @@ name: Card
 menu: Components
 ---
 
-import { PropsTable, Preview, Playground, InfoCard, WarnCard } from '../../docs';
+import { PropsTable, Preview, Playground, InfoCard, WarnCard, Helpers } from '../../docs';
 import {
   Card,
   CardHeader,
@@ -41,7 +41,7 @@ import {
 } from './Presets';
 
 # Card
-### Flexible and extensible content container with multiple variants and options
+<Helpers.Subtitle>Flexible and extensible content container with multiple variants and options</Helpers.Subtitle>
 
 ## Example
 Below is an example of a basic card with mixed content and a fixed width.
@@ -53,7 +53,7 @@ unless specified explicitly like in this example.
   <BasicCard />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card width="18rem">
   <CardImg src={src} alt="swiss-landscape" />
   <CardBody>
@@ -77,9 +77,8 @@ Cards support a wide variety of content, including images, text, list groups, li
     not bound to use these subcomponents. You have full flexibility on what you want to
     render inside a card.
     <br />
-    <br />
-    For example, <code>{` <CardTitle /> `}</code> is just a <code>{` <Heading /> `}</code> with
-    <code> size="h5" </code> and <code> margin-bottom=0.75rem</code>.
+    For example, <InfoCard.code>{` <CardTitle /> `}</InfoCard.code> is just a <InfoCard.code>{` <Heading /> `}</InfoCard.code> with
+    <InfoCard.code> size="h5" </InfoCard.code> and <InfoCard.code> margin-bottom=0.75rem</InfoCard.code>.
   </div>
 </InfoCard>
 
@@ -95,7 +94,7 @@ Use it whenever you need a padded section within a card.
   </Card>
 </Preview>
 
-```typescript jsx
+```jsx
 <Card>
   <CardBody>
     This is some text within a card body.
@@ -121,7 +120,7 @@ props are supported by these helper components as well.
   </Card>
 </Preview>
 
-```typescript jsx
+```jsx
 <Card width="18rem">
   <CardBody>
     <CardTitle>Card Title</CardTitle>
@@ -138,7 +137,7 @@ props are supported by these helper components as well.
   <CardImageTop />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card width="15rem">
   <CardImg src={src} />
   <CardBody>
@@ -155,7 +154,7 @@ passed to ignore the default left and right borders of the ListGroup.
   <ListGroupPreset />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card width="18rem">
   <CardHeader>Optional Header</CardHeader>
   <ListGroup flush>
@@ -181,7 +180,7 @@ Add an optional **header** and/or **footer** within a card.
   <OptionalHeader />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card>
   <CardHeader>Optional Header</CardHeader>
   <CardBody>
@@ -202,7 +201,7 @@ use of all its props.
   <OptionalHeaderBold />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card>
   <CardHeader as="h5">Optional Header</CardHeader>
   <CardBody>
@@ -235,7 +234,7 @@ within a grid layout.
   </Card>
 </Preview>
 
-```typescript jsx
+```jsx
 <Card width="36rem">
   <CardBody>
     <CardTitle>Using Width Prop</CardTitle>
@@ -253,7 +252,7 @@ The Grid's column prop can be changed to give the card either a fixed width or a
 Similarly 'Row' and `Column` components can be used to control the Card size
 according to the Flexbox layout.
 
-```typescript jsx
+```jsx
 <Grid columns="36rem 1fr">
   <Card>
     {/* Card content */}
@@ -269,7 +268,7 @@ Align contents to left, right, center or justify using the `textAlign` prop.
   <TextAlign />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card textAlign="justify" width="16rem">
   <CardBody>
     <CardTitle>Title</CardTitle>
@@ -308,7 +307,7 @@ Add some navigation to a card’s header with the CardHeaderNav component.
   </Card>
 </Preview>
 
-```typescript jsx
+```jsx
 <Card>
   {/* Header with tabs */}
   <CardHeader>
@@ -346,7 +345,7 @@ Similarly, you change tabs to pills by passing the `pills` prop instead of the `
   </Card>
 </Preview>
 
-```typescript jsx
+```jsx
 <Card>
   <CardHeader>
     <CardHeaderNav pills>
@@ -360,8 +359,8 @@ Similarly, you change tabs to pills by passing the `pills` prop instead of the `
 ```
 
 <InfoCard>
-  <code>CardHeaderNav</code> component, and its children behave the exact same way as regular Navs, except
-  for the fact that a <code>CardHeaderNav</code> is only used inside a card header.
+  <InfoCard.code>CardHeaderNav</InfoCard.code> component, and its children behave the exact same way as regular Navs, except
+  for the fact that a <InfoCard.code>CardHeaderNav</InfoCard.code> is only used inside a card header.
 </InfoCard>
 
 ## Images
@@ -376,7 +375,7 @@ Similar to headers and footers, cards can include images at the top, bottom or m
   <CardImagePreview />
 </Preview>
 
-```typescript jsx
+```jsx
 import src from './cardImg.jpg';
 //...
 <Grid columns="3">
@@ -413,7 +412,7 @@ Turn an image into a card background and overlay your card’s text.
   <CardImageOverlay />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card width="20rem" textColor="#FFF">
   <CardImg src={src} />
   <CardImgOverlay>
@@ -430,7 +429,7 @@ Turn an image into a card background and overlay your card’s text.
 <WarnCard>
 Note that content should not be larger than the height of the image.
 If content is larger than the image the content will be displayed outside the image.
-<b>See the <a href="#image_size">Image Size</a> section for an alternative way to do this.</b>
+<b> See the <a href="#image_size">Image Size</a> section for an alternative way to do this.</b>
 </WarnCard>
 
 ### Horizontal
@@ -443,7 +442,7 @@ In the following example, we use a 2 column Grid inside the card.
   <CardImageHorizontal />
 </Preview>
 
-```
+```jsx
 <Card width="40rem">
   <Grid columns="1fr 1fr">
     <CardImg src={src} />
@@ -472,7 +471,7 @@ in [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)
   <CardBgImg />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card width="25rem">
   <Grid columns="2">
     <BgImg src={src} />
@@ -493,7 +492,7 @@ wrapping CardBody in a BgImg component.
   <CardBgImgOverlay />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card width="18rem" textColor="white">
   <BgImg src={src}>
     <CardBody>
@@ -521,7 +520,7 @@ Set the main background color of the card by setting the color prop.
   <CardStylePlain />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card color="primary">
   <CardHeader>Heading</CardHeader>
   <CardBody>
@@ -549,7 +548,7 @@ main color. You can take control of this by passing the `textColor` prop explici
   <PlainCard color="dark" textColor="warning" width="18rem" />
 </Preview>
 
-```typescript jsx
+```jsx
 <Card color="dark" textColor="warning" width="18rem">
   {/* Similar content as above */}
 </Card>
@@ -558,11 +557,11 @@ main color. You can take control of this by passing the `textColor` prop explici
 ### Accent Cards
 Create cards to place content which should standout from the rest using the accent flavor.
 
-<Preview>
+<Preview.Adaptive>
   <CardStyleAccent />
-</Preview>
+</Preview.Adaptive>
 
-```typescript jsx
+```jsx
 <Card color="dark" textColor="warning" width="18rem">
   {/* Similar content as above */}
 </Card>

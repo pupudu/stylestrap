@@ -12,7 +12,7 @@ const theme = {
     light: '#f8f9fa',
     dark: '#343a40',
     gray: '#7b848c',
-    transparent: 'rgba(0,0,0,0)',
+    transparent: 'rgba(255,255,255,0)',
   },
   breakpoints: {
     xs: 0,
