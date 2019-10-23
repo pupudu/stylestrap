@@ -92,6 +92,7 @@ class Builder<T> {
       &&& {
         ${props => getStyleString({ ...props, ...props._filtered }, styleMapper, name)};
         ${props => getRawStyles({ ...props, ...props._filtered })}
+        ${props => callOrReturn(props.$raw, { ...props, ...props._filtered }, props.theme)}
       }
     `;
   }
