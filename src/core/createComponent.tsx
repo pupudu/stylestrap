@@ -89,7 +89,7 @@ class Builder<T> {
 
     const getRawStyles = props => callOrReturn(raw, props, props.theme);
 
-    return (styled[Component] || styled(Component))`
+    return (typeof Component === 'string' ? styled[Component] : styled(Component))`
       &&& {
         ${props => getStyleString({ ...props, ...props._filtered }, styleMapper, name)};
         ${props => getRawStyles({ ...props, ...props._filtered })}
