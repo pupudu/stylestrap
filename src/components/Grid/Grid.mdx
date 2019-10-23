@@ -4,10 +4,11 @@ menu: Layout
 ---
 
 import { Grid, Cell } from '../';
-import { Preview, ColoredDiv, GridArea, GridLines, WordTemplate } from '../docs';
+import { Preview, ColoredDiv, Helpers } from '../docs';
+import { GridArea, GridLines, WordTemplate } from './Presets';
 
 # Grid
-### An alternative to the classic Bootstrap flex layout, built with the CSS Grid.
+<Helpers.Subtitle>An alternative to the classic Bootstrap flex layout, built with the CSS Grid.</Helpers.Subtitle>
 
 The Grid component can be used to create advanced layouts spanning across the 2D
 space, based on both Rows and Columns.
@@ -30,7 +31,7 @@ using the colors interchangeably to make the distinction among the boxes.
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Grid columns="3">
   <ColoredDiv color="info" />
   <ColoredDiv color="dark" />
@@ -59,7 +60,7 @@ grid children. This can be achieved by specifying the `gap` prop.
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Grid columns="3" gap="1rem">
   <ColoredDiv color="info" />
   {/* ... */}
@@ -80,7 +81,7 @@ to specify the horizontal & vertical gaps respectively.
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Grid columns="3" gap="0.5rem 2rem">
   <ColoredDiv color="info" />
   {/* ... */}
@@ -120,7 +121,7 @@ create columns as fractions of the full width.
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Grid columns="2fr 1fr" gap="1rem">
   <ColoredDiv color="info" />
   {/* ... */}
@@ -139,7 +140,7 @@ Using this notation, similarly, we can create a three-column layout such that,
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Grid columns="50px 1fr 1fr" gap="1rem">
   <ColoredDiv color="info" />
   {/* ... */}
@@ -164,7 +165,7 @@ Then the left and right grid lines can be specified by passing the `left` and `r
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Grid columns="3" gap="1rem">
   <Cell left={1} right={3}>
     <ColoredDiv color="info" />
@@ -175,7 +176,7 @@ Then the left and right grid lines can be specified by passing the `left` and `r
 
 The markup can be further simplified using the Styled Components' `as` prop.
 
-```typescript jsx
+```jsx
 <Grid columns="3" gap="1rem">
   <Cell as={ColoredDiv}  left={1} right={3} color="info" />
   <ColoredDiv color="dark" />
@@ -209,7 +210,7 @@ The way you would do this in a flex based layout is usually using the `justifyCo
 CSS attributes. However with the Grid component, it's rather trivial. We just need to specify
 the row and column for each cell.
 
-```typescript jsx
+```jsx
 <Grid rows="5" columns="5" gap="xs">
   <Cell as={ColoredDiv} color="primary" left={1} top={1} />
   <Cell as={ColoredDiv} color="success" right={-1} top={1} />
@@ -232,7 +233,7 @@ Now suppose we want to move the red box to fill 3rd and 4th cells.
 It would be a nightmare with a flex based layout. But with the Grid, it's
 only a prop change.
 
-```typescript jsx
+```jsx
 <Grid rows="5" columns="5" gap="xs">
   {/* Unchanged markup */}
   <Cell as={ColoredDiv} color="danger" left={3} right={5} bottom={-1} />
@@ -255,7 +256,7 @@ Using this template, we can create a layout as follows.
 The idea here is to pass the areas template to the Grid component using the `areas` prop,
 and then refer to each of those areas using the `area` prop of the Cell component.
 
-```typescript jsx
+```jsx
 const areasTemplate = `
   "HEAD HEAD"
   "SIDE BODY"

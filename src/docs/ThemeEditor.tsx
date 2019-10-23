@@ -1,12 +1,10 @@
 import React from 'react';
-import { UnControlled as CodeMirror } from 'react-codemirror2';
-import 'codemirror/theme/material.css';
-import 'codemirror/mode/javascript/javascript';
 import { Button, Card, FormInput as Input, Styled } from './index';
-import { getState, setState, setBaseCssUrl, getBaseCssUrl } from './Provider';
+import { getState, setBaseCssUrl, getBaseCssUrl } from './Provider';
 
 export function Editor() {
   const currentTheme = getState();
+  if (!currentTheme) return null;
   const { __filemeta, ...themeWithoutFileMeta } = currentTheme as any;
   const defaultTheme = JSON.stringify(themeWithoutFileMeta, null, 2).replace(
     /\"([^(\")"]+)\":/g,
@@ -17,17 +15,19 @@ export function Editor() {
   let defaultThemeText = defaultTheme;
   let cssUrl = getBaseCssUrl();
 
+  void (defaultThemeText = defaultThemeText); // TODO remove when prismjs is integrated
+
   return (
     <Card css={{ padding: 'sm' }}>
-      <CodeMirror
-        value={defaultTheme}
-        options={{
-          mode: 'javascript',
-          theme: 'material',
-          lineNumbers: true,
-        }}
-        onChange={(_editor, _data, value) => (defaultThemeText = value)}
-      />
+      {/*<CodeMirror*/}
+      {/*  value={defaultTheme}*/}
+      {/*  options={{*/}
+      {/*    mode: 'javascript',*/}
+      {/*    theme: 'material',*/}
+      {/*    lineNumbers: true,*/}
+      {/*  }}*/}
+      {/*  onChange={(_editor, _data, value) => (defaultThemeText = value)}*/}
+      {/*/>*/}
       <Styled marginTop="sm">
         <Input
           type="text"
@@ -42,8 +42,8 @@ export function Editor() {
       <div>
         <Button
           onClick={() => {
-            const newTheme = Function(`return ${defaultThemeText}`)();
-            setState({ ...currentTheme, ...newTheme });
+            // const newTheme = Function(`return ${defaultThemeText}`)();
+            // setState({ ...currentTheme, ...newTheme });
             setBaseCssUrl(cssUrl);
           }}
         >

@@ -3,12 +3,12 @@ name: Button
 menu: Components
 ---
 
-import { PropsTable, Preview, Spaced, Playground } from '../docs';
+import { PropsTable, Preview, Spaced, Playground, Helpers } from '../docs';
 import { Grid, Cell, Styled, Button, Badge } from '../';
 import { ButtonType } from './Types'
 
 # Button
-### For actions in forms, dialogs, and more with default support for multiple sizes, variants, and more.
+<Helpers.Subtitle>For actions in forms, dialogs, and more with default support for multiple sizes, variants, and more.</Helpers.Subtitle>
 
 ## Examples
 Stylestrap includes several predefined button styles, each serving its own semantic purpose.
@@ -30,8 +30,8 @@ and easier to extend.
   </Grid>
 </Preview>
 
-```typescript jsx
-<Button>Primary</Button> { /*You can pass color="primary" explicitly as well */}
+```jsx
+<Button>Primary</Button> {/* You can pass color="primary" explicitly as well */}
 <Button color="secondary">Secondary</Button>
 <Button color="success">Success</Button>
 <Button color="warning">Warning</Button>
@@ -62,7 +62,7 @@ set the `role` attribute as "button".
   </Spaced>
 </Preview>
 
-```typescript jsx
+```jsx
 <Button as="a">Primary</Button>
 <Button as="input" type="button" value="Input" />
 <Button as="input" type="submit" value="Submit" />
@@ -90,7 +90,7 @@ the `flavor` prop.
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Button color="primary" flavor="outline">Primary</Button>
 {/* Similar markup for other color variants */}
 ```
@@ -110,7 +110,7 @@ the `flavor` prop.
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Button color="primary" flavor="ghost">Primary</Button>
 {/* Similar markup for other color variants */}
 ```
@@ -130,7 +130,7 @@ the `flavor` prop.
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Button color="primary" flavor="accent">Primary</Button>
 {/* Similar markup for other color variants */}
 ```
@@ -167,7 +167,7 @@ Fancy larger or smaller buttons? Change the button size using the `size` prop.
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Button size="lg">Large Button</Button>
 <Button>Regular Button</Button>
 <Button size="sm">Small Button</Button>
@@ -182,7 +182,7 @@ Create block buttons which take full width of the parent by passing the `block` 
   <Button block color="secondary">Secondary</Button>
 </Preview>
 
-```typescript jsx
+```jsx
 <Button block color="primary">Primary</Button>
 <Button block color="secondary">Secondary</Button>
 ```
@@ -205,7 +205,7 @@ should you need to replicate the state programmatically.
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Button active color="primary">Primary</Button>
 {/* Note: Markup shown only for the first button */}
 ```
@@ -244,7 +244,7 @@ Make buttons look inactive by setting the disabled prop.
   </Grid>
 </Preview>
 
-```typescript jsx
+```jsx
 <Button disabled color="primary">Primary</Button>
 {/* Note: Markup shown only for the first button */}
 ```
@@ -260,7 +260,7 @@ takes care of all those cases based on the `disabled` prop.
 ## Playground
 
 <Playground>
-  <Button size="lg" color="success" flavor="outline" css={{boxShadow: '10px 5px 5px #6d8'}}>
+  <Button size="lg" color="success" flavor="outline" $css={{boxShadow: '10px 5px 5px #6d8'}}>
     Play With Me
   </Button>
 </Playground>

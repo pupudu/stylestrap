@@ -18,7 +18,7 @@ const data = Array(4)
   }));
 
 export function BasicTable(props) {
-  return <DataTable columns={columns} data={data} {...props} />;
+  return <DataTable color="white" columns={columns} data={data} {...props} />;
 }
 
 export function DarkHeadingsTable() {
@@ -73,7 +73,7 @@ const columnsWithCustomCells = [
 
 export function CustomCellsAndHeadings() {
   return (
-    <DataTable
+    <BasicTable
       columns={columnsWithCustomCells}
       data={data}
       Heading={DataTable.DarkHeading}

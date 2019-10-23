@@ -83,12 +83,13 @@ class Builder<T> {
 
     const styleMapper = props => ({
       ...callOrReturn(initialStyles, props, props.theme),
+      ...callOrReturn(props.$css, props, props.theme),
       ...callOrReturn(props.css, props, props.theme),
     });
 
     const getRawStyles = props => callOrReturn(raw, props, props.theme);
 
-    return (styled[Component] || styled(Component))`
+    return (typeof Component === 'string' ? styled[Component] : styled(Component))`
       &&& {
         ${props => getStyleString({ ...props, ...props._filtered }, styleMapper, name)};
         ${props => getRawStyles({ ...props, ...props._filtered })}

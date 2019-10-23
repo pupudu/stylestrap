@@ -11,7 +11,7 @@ const getCardPreset = (props, theme) => {
 
   const styleMap = {
     plain: {
-      color: theme.colorByLuminance(color),
+      color: theme.colorByLuminance(color, '#FFF', '#000'),
       background: color,
     },
   };
