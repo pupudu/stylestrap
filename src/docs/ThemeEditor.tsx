@@ -4,7 +4,7 @@ import { getState, setBaseCssUrl, getBaseCssUrl } from './Provider';
 
 export function Editor() {
   const currentTheme = getState();
-  if (!currentTheme) return;
+  if (!currentTheme) return null;
   const { __filemeta, ...themeWithoutFileMeta } = currentTheme as any;
   const defaultTheme = JSON.stringify(themeWithoutFileMeta, null, 2).replace(
     /\"([^(\")"]+)\":/g,
