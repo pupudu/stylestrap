@@ -3,6 +3,7 @@ import * as SS from './SS';
 
 export interface StyledBase {
   css?: React.CSSProperties | any;
+  $raw?: string;
   as?: any;
 }
 
