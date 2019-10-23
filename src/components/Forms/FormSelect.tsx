@@ -1,7 +1,8 @@
 import React from 'react';
 import { FormGroup, Label, Feedback, HelpText } from './FormComponents';
-import { Select } from './ReactSelect';
-import { makeComponent, SS } from '../../core';
+import { Select as ReactSelect } from './ReactSelect';
+import { makeComponent } from '../../core';
+import { Select } from '../../core/SS';
 
 const FormSelectBase = props => {
   const { id, label, helpText, className, ...rest } = props;
@@ -11,14 +12,14 @@ const FormSelectBase = props => {
   return (
     <FormGroup className={className}>
       <Label htmlFor={id}>{label}</Label>
-      <Select id={id} invalid={touched && error} {...rest} />
+      <ReactSelect id={id} invalid={touched && error} {...rest} />
       {error && <Feedback invalid={error}>{error}</Feedback>}
       {helpText && <HelpText>{helpText}</HelpText>}
     </FormGroup>
   );
 };
 
-interface FormSelectProps extends Omit<SS.Select, 'value'> {
+interface FormSelectProps extends Omit<Select, 'value'> {
   label: string;
   value: {
     label: string;

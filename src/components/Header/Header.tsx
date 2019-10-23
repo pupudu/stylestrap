@@ -1,6 +1,7 @@
-import { makeComponent, SS } from '../../core';
+import { makeComponent } from '../../core';
+import { Div } from '../../core/SS';
 
-interface HeaderProps extends SS.Div {
+interface HeaderProps extends Div {
   minHeight: string | number;
 }
 

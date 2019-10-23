@@ -1,6 +1,7 @@
-import { makeComponent, SS } from '../../core';
+import { makeComponent } from '../../core';
+import { Div } from '../../core/SS';
 
-export interface BoxProps extends SS.Div {
+export interface BoxProps extends Div {
   p?: string | any;
   pt?: string | any;
   pl?: string | any;

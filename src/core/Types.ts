@@ -1,5 +1,4 @@
 import React from 'react';
-import * as SS from './SS';
 
 export interface StyledBase {
   $css?: React.CSSProperties | any;
@@ -18,5 +17,3 @@ export type ThemeColors =
   | 'light'
   | 'dark'
   | string;
-
-export { SS };

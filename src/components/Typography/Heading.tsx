@@ -1,7 +1,8 @@
-import { makeComponent, SS } from '../../core';
+import { makeComponent } from '../../core';
+import { Div } from '../../core/SS';
 import { Text } from './Text';
 
-interface HeadingProps extends SS.Div {
+interface HeadingProps extends Div {
   size?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   muted?: boolean;
   color?: string;

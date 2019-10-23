@@ -1,7 +1,8 @@
-import { makeComponent, SS } from '../../core';
+import { makeComponent } from '../../core';
+import { Table as TableType } from '../../core/SS';
 import './table.css';
 
-export interface TableProps extends SS.Table {
+export interface TableProps extends TableType {
   striped?: boolean;
   hover?: boolean;
   borders?: boolean | 'all';

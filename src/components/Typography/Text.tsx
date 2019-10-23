@@ -1,6 +1,7 @@
-import { makeComponent, SS } from '../../core';
+import { makeComponent } from '../../core';
+import { Div } from '../../core/SS';
 
-interface TextProps extends SS.Div {
+interface TextProps extends Div {
   muted: boolean;
 }
 

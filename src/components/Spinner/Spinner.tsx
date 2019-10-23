@@ -1,6 +1,7 @@
-import { makeComponent, SS } from '../../core';
+import { makeComponent } from '../../core';
+import { Span } from '../../core/SS';
 
-interface SpinnerProps extends SS.Span {
+interface SpinnerProps extends Span {
   duration?: number;
   size?: string;
 }

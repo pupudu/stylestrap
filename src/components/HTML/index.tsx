@@ -1,3 +1,4 @@
-import { makeComponent, SS } from '../../core';
+import { makeComponent } from '../../core';
+import { Img as ImgType } from '../../core/SS';
 
-export const Img = makeComponent<SS.Img>('Img').create('img');
+export const Img = makeComponent<ImgType>('Img').create('img');

@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyledBase, SS } from '../../core';
+import { StyledBase } from '../../core';
+import { Div } from '../../core/SS';
 
 export interface ButtonToolbarPropsBase {
   margin: object;
@@ -12,8 +13,8 @@ export interface ButtonGroupPropsBase {
   padding: object;
 }
 
-export interface ButtonToolbarProps extends ButtonToolbarPropsBase, SS.Div {}
-export interface ButtonGroupProps extends ButtonGroupPropsBase, SS.Div {}
+export interface ButtonToolbarProps extends ButtonToolbarPropsBase, Div {}
+export interface ButtonGroupProps extends ButtonGroupPropsBase, Div {}
 
 export const ButtonGroupType: React.FC<ButtonGroupPropsBase & StyledBase> = () => null;
 export const ButtonToolbarType: React.FC<ButtonToolbarPropsBase & StyledBase> = () => null;
