@@ -1,4 +1,3 @@
 export * from './Subtitle';
 export * from './Title';
 export * from './ColoredDiv';
-export * from './Grid';

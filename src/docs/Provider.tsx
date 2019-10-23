@@ -12,8 +12,8 @@ const cacheState: {
   baseCssUrl?: any;
 } = {};
 
-export const getState = () => cacheState.state && cacheState.state;
-export const getBaseCssUrl = () => cacheState.baseCssUrl && cacheState.baseCssUrl;
+export const getState = () => cacheState.state;
+export const getBaseCssUrl = () => cacheState.baseCssUrl;
 
 export function setState(theme) {
   if (cacheState.setState) {
@@ -30,8 +30,8 @@ export function setBaseCssUrl(theme = defaultCssUrl) {
 }
 
 export default function DoczRoot(props) {
-  const [state, setState] = useState(defaultTheme);
-  const [baseCssUrl, setBaseCssUrl] = useState(defaultCssUrl);
+  const [state, setState] = useState(cacheState.state || defaultTheme);
+  const [baseCssUrl, setBaseCssUrl] = useState(cacheState.baseCssUrl || defaultCssUrl);
 
   useEffect(() => {
     cacheState.state = state;
@@ -41,7 +41,7 @@ export default function DoczRoot(props) {
   }, [baseCssUrl, state]);
 
   return (
-    <div>
+    <div style={{ fontSize: '1rem' }}>
       <link
         href="https://fonts.googleapis.com/css?family=Barriecito&display=swap"
         rel="stylesheet"

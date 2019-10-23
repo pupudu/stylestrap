@@ -1,5 +1,5 @@
 import React from 'react';
-import { lighten } from 'polished';
+import { lighten } from '../../core/safePolished';
 import { Button, FlexBox, Grid } from '../../';
 import { ColoredDiv } from '../../docs/Presets';
 import { useColor } from './useColor';

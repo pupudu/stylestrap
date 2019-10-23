@@ -3,7 +3,7 @@ name: Modal
 menu: Components
 ---
 
-import { PropsTable, Preview, Spaced, Playground } from '../../docs';
+import { PropsTable, Preview, Spaced, Playground, Helpers } from '../../docs';
 import { Modal, Cell, Badge, Heading, Button, Link } from '../../';
 import {
   BasicModalLayout,
@@ -14,9 +14,7 @@ import {
 } from './Presets';
 
 # Modal
-### Add dialogs to your site for lightboxes, user notifications, or completely custom content.
-
-## Examples
+<Helpers.Subtitle>Add dialogs to your site for lightboxes, user notifications, or completely custom content.</Helpers.Subtitle>
 
 ### Modal components
 Below is a static modal example, showing the basic components of a typical modal dialog.
@@ -26,7 +24,7 @@ Included are the modal header, modal body (required for padding), and modal foot
  <BasicModalLayout />
 </Preview>
 
-```typescript jsx
+```jsx
 <Modal toggle={toggle}>
   <ModalHeader>Modal Header</ModalHeader>
   <ModalBody>
@@ -78,7 +76,7 @@ Try the demo below to see what we mean.
   <ModalLongContent />
 </Preview>
 
-```typescript jsx
+```jsx
 <Modal toggle={toggle}>
   <ModalHeader>Modal Header</ModalHeader>
   <ModalBody>
@@ -102,7 +100,7 @@ and making it overflow auto.
   </Spaced>
 </Preview>
 
-```typescript jsx
+```jsx
 <Modal toggle={toggle}>
   <ModalHeader>Modal Header</ModalHeader>
   <ModalBody>
