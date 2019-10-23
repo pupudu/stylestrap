@@ -26,3 +26,12 @@ export function transparentize(amount, color) {
     return '#F66';
   }
 }
+
+export function opacify(amount, color) {
+  try {
+    return polished.opacify(amount, color);
+  } catch (e) {
+    console.log({ amount, color }, e);
+    return '#FFF';
+  }
+}

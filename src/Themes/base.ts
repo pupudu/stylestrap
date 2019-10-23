@@ -1,4 +1,4 @@
-import { getLuminance, lighten } from 'polished';
+import { getLuminance, lighten, opacify } from '../core/safePolished';
 import state from '../core/ruleEngine/state';
 
 const colorShadeMap = {
@@ -29,7 +29,7 @@ function getColorShade(color, type) {
 function colorByLuminance(color, lightColor = '#FFF', darkColor = '#666', threshold = 0.7) {
   const colorRaw = getColor(color);
   if (!colorRaw) return;
-  return getLuminance(colorRaw) < threshold ? lightColor : darkColor;
+  return getLuminance(opacify(1, colorRaw)) < threshold ? lightColor : darkColor;
 }
 
 function shadeByLuminance(color, lightPreset = 2, darkPreset = -2, threshold = 0.7) {
