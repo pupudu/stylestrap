@@ -46,6 +46,18 @@ function Striped(props) {
   );
 }
 
+function Hover(props) {
+  const [mode] = useColorMode();
+  return (
+    <BasicTable
+      Heading={DataTable.DarkHeading}
+      hover
+      hoverColor={mode === 'dark' ? '#FFF' : '#000'}
+      {...props}
+    />
+  );
+}
+
 export function ColumnWidthTable() {
   return (
     <BasicTable color="dark" columns={columns.map(column => ({ ...column, width: '250px' }))} />
@@ -98,3 +110,4 @@ export function CustomCellsAndHeadings() {
 
 export const Presets = {} as any;
 Presets.Striped = Striped;
+Presets.Hover = Hover;
