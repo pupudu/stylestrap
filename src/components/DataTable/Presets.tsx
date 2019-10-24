@@ -2,6 +2,7 @@ import React from 'react';
 import { DataTable } from './index';
 import { Button, FormInput, Modal, ModalBody, Td, useToggle } from '../';
 import faker from 'faker';
+import { useColorMode } from 'theme-ui';
 
 const columns = [
   { key: 'firstName', title: 'First Name' },
@@ -18,11 +19,31 @@ const data = Array(4)
   }));
 
 export function BasicTable(props) {
-  return <DataTable color="white" columns={columns} data={data} {...props} />;
+  const [mode] = useColorMode();
+  return (
+    <DataTable
+      columns={columns}
+      data={data}
+      textColor={mode === 'dark' ? '#FFF' : undefined}
+      {...props}
+    />
+  );
 }
 
 export function DarkHeadingsTable() {
   return <BasicTable Heading={DataTable.DarkHeading} />;
+}
+
+function Striped(props) {
+  const [mode] = useColorMode();
+  return (
+    <BasicTable
+      Heading={DataTable.DarkHeading}
+      striped
+      stripeColor={mode === 'dark' ? '#FFF' : '#000'}
+      {...props}
+    />
+  );
 }
 
 export function ColumnWidthTable() {
@@ -72,12 +93,8 @@ const columnsWithCustomCells = [
 ];
 
 export function CustomCellsAndHeadings() {
-  return (
-    <BasicTable
-      columns={columnsWithCustomCells}
-      data={data}
-      Heading={DataTable.DarkHeading}
-      striped
-    />
-  );
+  return <Striped columns={columnsWithCustomCells} data={data} Heading={DataTable.DarkHeading} />;
 }
+
+export const Presets = {} as any;
+Presets.Striped = Striped;

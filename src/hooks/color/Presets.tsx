@@ -36,11 +36,15 @@ export function ButtonColorVariant(props) {
         {props.color}
       </FlexBox>
       {[7, 6, 5, 4, 3, 2, 1].map(num => (
-        <ColorBox color={colors[-1 * num]}>-{num}</ColorBox>
+        <ColorBox key={num} color={colors[-1 * num]}>
+          -{num}
+        </ColorBox>
       ))}
       <ColorBox color={defaultColor}>0</ColorBox>
       {[1, 2, 3, 4, 5, 6, 7].map(num => (
-        <ColorBox color={colors[num]}>{num}</ColorBox>
+        <ColorBox key={num} color={colors[num]}>
+          {num}
+        </ColorBox>
       ))}
     </div>
   );

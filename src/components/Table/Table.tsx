@@ -1,4 +1,5 @@
 import { makeComponent } from '../../core';
+import { transparentize } from '../../core/safePolished';
 import { Table as TableType } from '../../core/SS';
 import './table.css';
 
@@ -8,12 +9,27 @@ export interface TableProps extends TableType {
   borders?: boolean | 'all';
   width?: string;
   size?: 'sm';
+  stripeColor: string;
+  stripeTransparency: number;
 }
 
 const Table = makeComponent<TableProps>('Table')
+  .defaultProps({
+    stripeColor: '#000',
+    stripeTransparency: 0.05,
+  })
+  .raw(
+    (props, theme) => `
+      &.table-striped-custom tr:nth-of-type(odd) {
+        background-color: ${transparentize(
+          1 - props.stripeTransparency,
+          theme.getColor(props.stripeColor)
+        )};
+      }`
+  )
   .classNames(props => ({
     table: true,
-    'table-striped': props.striped,
+    'table-striped-custom': props.striped,
     'table-hover': props.hover,
     'table-borderless': props.borders === false,
     'table-bordered': props.borders === 'all',

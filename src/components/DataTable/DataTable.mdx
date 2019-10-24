@@ -16,6 +16,7 @@ import {
   ColumnWidthTable,
   CustomRowsTable,
   CustomCellsAndHeadings,
+  Presets,
 } from './Presets'
 
 # DataTable
@@ -53,9 +54,9 @@ const data = [
 
 Now we can render the DataTable by passing columns and data as props.
 
-<Preview>
+<Preview.Adaptive>
   <BasicTable />
-</Preview>
+</Preview.Adaptive>
 
 ```jsx
 <DataTable columns={columns} data={data} />
@@ -64,9 +65,9 @@ Now we can render the DataTable by passing columns and data as props.
 ## Striped Rows
 To make the table rows striped, pass the `striped` prop.
 
-<Preview>
-  <BasicTable striped />
-</Preview>
+<Preview.Adaptive>
+  <Presets.Striped />
+</Preview.Adaptive>
 
 ```jsx
 <DataTable columns={columns} data={data} striped />
@@ -75,9 +76,9 @@ To make the table rows striped, pass the `striped` prop.
 ## Highlight on hover
 To highlight the rows on mouse hover, pass the `hover` prop.
 
-<Preview>
+<Preview.Adaptive>
   <BasicTable hover />
-</Preview>
+</Preview.Adaptive>
 
 ```jsx
 <DataTable columns={columns} data={data} hover />
@@ -87,9 +88,9 @@ To highlight the rows on mouse hover, pass the `hover` prop.
 To change the general size of the table, pass the `size` prop.
 As of now, only small tables are supported in addition to the normal size.
 
-<Preview>
+<Preview.Adaptive>
   <BasicTable size="sm" />
-</Preview>
+</Preview.Adaptive>
 
 ```jsx
 <DataTable columns={columns} data={data} size="sm" />
@@ -98,9 +99,9 @@ As of now, only small tables are supported in addition to the normal size.
 ## Dark Headings
 To make the table headings dark, pass the `DataTable.DarkHeading` as the `Heading` prop.
 
-<Preview>
+<Preview.Adaptive>
   <DarkHeadingsTable />
-</Preview>
+</Preview.Adaptive>
 
 ```jsx
 <DataTable columns={columns} data={data} Heading={DataTable.DarkHeading} />
@@ -147,17 +148,17 @@ const columns = [
 ]
 ```
 
-<Preview>
+<Preview.Adaptive>
   <ColumnWidthTable />
-</Preview>
+</Preview.Adaptive>
 
 ## Custom Cells
 It is often a requirement to show table cells with custom content. This can be done by passing
 any custom component as the `Cell` attribute to a table.
 
-<Preview>
+<Preview.Adaptive>
   <CustomCellsAndHeadings />
-</Preview>
+</Preview.Adaptive>
 
 ```jsx
 import { Button, FormInput, Modal, ModalBody, Td, useToggle } from 'stylestrap';
@@ -221,9 +222,9 @@ We can get more fine grained control over the rendering process by passing
 table rows as children to the table. To do this, we can use the `DataTable.Row`
 and `DataTable.Rows` components.
 
-<Preview>
+<Preview.Adaptive>
   <CustomRowsTable />
-</Preview>
+</Preview.Adaptive>
 
 ```jsx
 <DataTable columns={columns} data={data} color="dark">
