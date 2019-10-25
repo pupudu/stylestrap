@@ -9,10 +9,10 @@ export interface TableProps extends TableType {
   borders?: boolean | 'all';
   width?: string;
   size?: 'sm';
-  stripeColor: string;
-  stripeTextColor: string;
-  hoverColor: string;
-  hoverTextColor: string;
+  stripeColor?: string;
+  stripeTextColor?: string;
+  hoverColor?: string;
+  hoverTextColor?: string;
 }
 
 const Table = makeComponent<TableProps>('Table')
