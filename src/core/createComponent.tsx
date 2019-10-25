@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { callOrReturn, filterEmptyKeys } from './utils';
 import classnames from 'classnames';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import { getStyleString } from './ruleEngine';
 
 class Builder<T> {
@@ -104,6 +104,9 @@ class Builder<T> {
     const StyledComponent = this.__getStyledComponent__(Component);
 
     const Wrapped: React.FC = (originalProps: any) => {
+      const theme = useContext(ThemeContext) || {};
+      const themeDefaultProps = (theme.defaultProps || {})[name];
+
       /**
        * as prop should be passed to `transformedProps` and `initialClassNames` calls.
        * So we create a props object with the as prop,
@@ -111,6 +114,7 @@ class Builder<T> {
        */
       const propsWithAs = {
         ...defaultProps,
+        ...themeDefaultProps,
         ...originalProps,
         ...filterEmptyKeys({ as: originalProps.__as__ }),
       };
