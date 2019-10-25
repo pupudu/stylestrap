@@ -5,7 +5,10 @@ import { Modal as ModalBase, ModalHeader as ModalHeaderBase } from 'reactstrap';
 
 const Modal = makeComponent('Modal')
   .forwardProps(props => ({ toggle: props.toggle }))
-  .classNames('react-admin')
+  .classNames({
+    'react-admin': true,
+    'react-admin-root': true,
+  })
   .create(ModalBase);
 
 const ModalHeader = makeComponent('ModalHeader').create(ModalHeaderBase);
