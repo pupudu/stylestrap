@@ -12283,11 +12283,6 @@ react-color@^2.17.3:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
-react-css-spinners@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/react-css-spinners/-/react-css-spinners-3.1.1.tgz#30e84660555581659e11dfae63d82d57bf8c2c63"
-  integrity sha512-RBJOyyHr5wk72SgTwBpVbPKfYuaWg8yLqMDyVZE5owHrmcnDT3rT1cDi+DpAjwbhnr2gobBTg+o5Qt9nz7HyiQ==
-
 react-dev-utils@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-4.2.3.tgz#5b42d9ea58d5e9e017a2f57a40a8af408a3a46fb"
