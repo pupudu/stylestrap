@@ -1,40 +1,80 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Ripple, Ellipsis, Ring } from 'react-css-spinners';
+import React from 'react';
 import { makeComponent } from '../../core';
-import { ThemeContext } from 'styled-components';
+import { Div } from '../../core/SS';
 
-const ComponentMap = {
-  ring: makeComponent('LoadingBaseComponent').create(Ring),
-  ripple: makeComponent('LoadingBaseComponent').create(Ripple),
-  dots: makeComponent('LoadingBaseComponent').create(Ellipsis),
-};
-
-const LoadingBase = props => {
-  const [state, setState] = useState(false);
-  const theme = useContext(ThemeContext);
-
-  useEffect(() => {
-    setTimeout(() => setState(true), props.wait);
-  }, [props.wait, state]);
-
-  const color = theme.colors[props.color] || props.color;
-
-  const Component = ComponentMap[props.type];
-  return <Component {...props} $css={{ ...props.$css, display: !state && 'none' }} color={color} />;
-};
-
-export const Loading = makeComponent('Loading')
-  .defaultProps({
-    type: 'ripple',
-    color: 'black',
-    wait: 500,
-  })
+const Grower = makeComponent('Grower')
+  .styles(props => ({
+    backgroundColor: 'currentColor',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    borderRadius: '100%',
+    opacity: 0,
+    animation: 'ball-scale-multiple 1s 0s linear infinite',
+    animationDelay: props.delay || 0,
+  }))
   .raw(
     `
-    @keyframes fadein {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes ball-scale-multiple {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      5% {
+        opacity: .75;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1);
+      }
     }
-    animation: fadein 3s;`
+  `
   )
-  .create(LoadingBase);
+  .create('div');
+
+export interface LoadingProps extends Div {
+  color: string;
+  size: string;
+  wait: number;
+  fadeDuration: number;
+}
+
+export const Loading: React.FC<LoadingProps> = makeComponent('Loading')
+  .defaultProps({
+    color: 'blue',
+    size: '32px',
+    wait: 1000,
+    fadeDuration: 2000,
+  })
+  .styles(props => ({
+    fontSize: 0,
+    position: 'relative',
+    animationName: 'lazy-appear',
+    color: props.color,
+    width: props.size,
+    height: props.size,
+    animationDuration: `${props.wait + props.fadeDuration}ms`,
+  }))
+  .raw(
+    props =>
+      `
+    @keyframes lazy-appear {
+      0% {
+        opacity: 0;
+      }
+      ${(props.wait * 100) / (props.wait + props.fadeDuration)}% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  `
+  )
+  .create(props => (
+    <div {...props}>
+      <Grower />
+      <Grower delay="0.2s" />
+      <Grower delay="0.4s" />
+    </div>
+  ));
