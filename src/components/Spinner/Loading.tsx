@@ -33,10 +33,10 @@ const Grower = makeComponent('Grower')
   .create('div');
 
 export interface LoadingProps extends Div {
-  color: string;
-  size: string;
-  wait: number;
-  fadeDuration: number;
+  color?: string;
+  size?: string;
+  wait?: number;
+  fadeDuration?: number;
 }
 
 export const Loading: React.FC<LoadingProps> = makeComponent('Loading')
