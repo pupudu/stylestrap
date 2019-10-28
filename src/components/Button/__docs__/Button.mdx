@@ -1,11 +1,13 @@
 ---
 name: Button
 menu: Components
+route: '/components/button'
 ---
 
-import { PropsTable, Preview, Spaced, Playground, Helpers } from '../docs';
-import { Grid, Cell, Styled, Button, Badge } from '../';
-import { ButtonType } from './Types'
+import { PropsTable, Preview, Spaced, Playground, Helpers, InfoCard, WarnCard } from '../../docs';
+import { Grid, Cell, Styled, Button, Badge, LoadingButton } from '../../';
+import { ButtonType } from '../Types'
+import { Presets } from './Presets'
 
 # Button
 <Helpers.Subtitle>For actions in forms, dialogs, and more with default support for multiple sizes, variants, and more.</Helpers.Subtitle>
@@ -41,10 +43,12 @@ and easier to extend.
 <Button color="light">Light</Button>
 ```
 
->Using color to add meaning only provides a visual indication,
-which will not be conveyed to users of assistive technologies – such as screen readers.
-Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text),
-or is included through alternative means, such as additional text hidden with the ScreenReader component.
+<InfoCard>
+  Using color to add meaning only provides a visual indication,
+  which will not be conveyed to users of assistive technologies – such as screen readers.
+  Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text),
+  or is included through alternative means, such as additional text hidden with the ScreenReader component.
+</InfoCard>
 
 ## Button tags
 The buttons by default uses the html button tag. However, just like any other stylestrap component,
@@ -73,7 +77,9 @@ set the `role` attribute as "button".
 Stylestrap includes few other variants of Buttons which can be changed using
 the `flavor` prop.
 
->Contextual variants like `color="light"` will work best with dark backgrounds.
+<WarnCard>
+Contextual variants like <InfoCard.code>color="light"</InfoCard.code> will work best with dark backgrounds.
+</WarnCard>
 
 ### Outline Buttons
 
@@ -249,10 +255,49 @@ Make buttons look inactive by setting the disabled prop.
 {/* Note: Markup shown only for the first button */}
 ```
 
->Disabled buttons using the `<a>` element behave a bit different.
+<InfoCard>
+Disabled buttons using the <InfoCard.code>{"<a>"}</InfoCard.code> element behave a bit different.
 With raw bootstrap, you will have to adjust the css classnames, aria-role
 and tabindex attribute to avoid unintended behavior. However stylestrap
-takes care of all those cases based on the `disabled` prop.
+takes care of all those cases based on the <InfoCard.code>disabled</InfoCard.code> prop.
+</InfoCard>
+
+## Loading Buttons
+In a real world web application, data fetching on response to a button click is a common scenario.
+Thus stylestrap includes a Loading Button preset which can provide visual indications to show the
+progress.
+
+In the following example, the loading indicator is added based on a timer.
+In a real world application, this would be replaced by a fetch call or something similar.
+
+<Preview>
+  <Presets.LoadingButton>LoadingButton</Presets.LoadingButton>
+</Preview>
+
+```jsx
+function LoadingButtonExample() {
+  const [loading, setLoading] = useState(false);
+  return (
+    <LoadingButton
+      loading={loading}
+      onClick={() => {
+        setLoading(true);
+        setTimeout(() => setLoading(false), 2000);
+      }}
+    />
+  );
+}
+```
+
+All sorts of Button variants work with LoadingButtons too.
+
+<Preview>
+  <Spaced>
+    <Presets.LoadingButton color="info">Info Button</Presets.LoadingButton>
+    <Presets.LoadingButton color="info" flavor="outline">Outline Button</Presets.LoadingButton>
+    <Presets.LoadingButton color="info" flavor="ghost">Ghost Button</Presets.LoadingButton>
+  </Spaced>
+</Preview>
 
 ## Props Table
 <PropsTable of={ButtonType} />

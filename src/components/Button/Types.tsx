@@ -20,4 +20,9 @@ interface ButtonPropsBase {
 
 export interface ButtonProps extends ButtonPropsBase, Button {}
 
+export interface LoadingButtonProps extends ButtonProps {
+  loading?: boolean;
+  direction?: 'left' | 'right';
+}
+
 export const ButtonType: React.FC<ButtonPropsBase & StyledBase> = () => null;
