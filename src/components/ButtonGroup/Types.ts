@@ -3,14 +3,14 @@ import { StyledBase } from '../../core';
 import { Div } from '../../core/SS';
 
 export interface ButtonToolbarPropsBase {
-  margin: object;
-  padding: object;
+  margin?: object;
+  padding?: object;
 }
 
 export interface ButtonGroupPropsBase {
-  vertical: boolean;
-  margin: object;
-  padding: object;
+  vertical?: boolean;
+  margin?: object;
+  padding?: object;
 }
 
 export interface ButtonToolbarProps extends ButtonToolbarPropsBase, Div {}

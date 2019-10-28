@@ -19,6 +19,7 @@ export interface BoxProps extends Div {
   maxWidth?: string;
   minWidth?: string;
   overflow?: string;
+  display?: string;
 }
 
 export const Box = makeComponent<BoxProps>('Box')
