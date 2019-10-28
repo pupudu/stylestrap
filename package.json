@@ -1,6 +1,6 @@
 {
   "name": "stylestrap",
-  "version": "0.17.2",
+  "version": "0.18.0",
   "description": "Bootstrap based components library built using styled components",
   "main": "dist/index.js",
   "module": "dist/stylestrap.esm.js",
