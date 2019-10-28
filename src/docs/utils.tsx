@@ -96,14 +96,15 @@ export function WarnCard(props) {
     </Card>
   );
 }
+
 WarnCard.code = Code;
 
-export function Spaced(props) {
-  return React.Children.map(props.children, (child: any) => {
-    return (
-      <>
-        <Box $css={{ display: 'inline-block' }}>{child}</Box>{' '}
-      </>
-    );
-  });
+export function Spaced({ children, ...props }) {
+  return (
+    <Box display="flex" {...props}>
+      {React.Children.map(children, (child: any) => {
+        return <Box $css={{ display: 'inline-block', marginRight: '0.5rem' }}>{child}</Box>;
+      })}
+    </Box>
+  );
 }
