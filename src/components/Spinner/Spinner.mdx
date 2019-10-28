@@ -4,8 +4,9 @@ menu: Components
 ---
 
 import { PropsTable, Preview, Spaced, Playground } from '../docs';
-import { Spinner } from '../';
+import { Spinner, Button } from '../';
 import { Loading } from './Loading';
+import { Presets } from './Presets';
 
 # Spinner
 
@@ -16,5 +17,13 @@ import { Loading } from './Loading';
 
   <Spinner duration="2" size="1.25rem" />
   <Spinner duration="2" size="2rem" />
-  <Loading size="3rem" />
+
+  <Button><Spinner size="1.25rem" type="border"/> Button</Button>
+  <Button><Spinner size="1.25rem" type="grow"/> Button</Button>
+  <Button><Loading size="1.25rem"/></Button>
+  <Button><Loading size="4.5rem"/> Button</Button>
+</Preview>
+
+<Preview>
+  <Presets.LoadingButton />
 </Preview>
