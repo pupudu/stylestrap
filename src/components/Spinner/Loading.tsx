@@ -21,7 +21,7 @@ const Grower = makeComponent('Grower')
         transform: scale(0);
       }
       5% {
-        opacity: .75;
+        opacity: 1;
       }
       100% {
         opacity: 0;
@@ -34,26 +34,29 @@ const Grower = makeComponent('Grower')
 
 export interface LoadingProps extends Div {
   color?: string;
-  size?: string;
+  size?: string | 0;
   wait?: number;
   fadeDuration?: number;
 }
 
 export const Loading: React.FC<LoadingProps> = makeComponent('Loading')
   .defaultProps({
-    color: 'blue',
-    size: '32px',
+    color: 'currentColor',
+    size: '2rem',
     wait: 1000,
     fadeDuration: 2000,
+    waveCount: 3,
   })
   .styles(props => ({
-    fontSize: 0,
+    display: 'inline-block',
+    verticalAlign: 'middle',
     position: 'relative',
     animationName: 'lazy-appear',
     color: props.color,
     width: props.size,
     height: props.size,
     animationDuration: `${props.wait + props.fadeDuration}ms`,
+    transition: 'height, width 0.3s',
   }))
   .raw(
     props =>
@@ -73,8 +76,10 @@ export const Loading: React.FC<LoadingProps> = makeComponent('Loading')
   )
   .create(props => (
     <div {...props}>
-      <Grower />
-      <Grower delay="0.2s" />
-      <Grower delay="0.4s" />
+      {Array(props.waveCount)
+        .fill(0)
+        .map((_, i) => (
+          <Grower key={i} delay={`${i * 0.2}s`} />
+        ))}
     </div>
   ));
