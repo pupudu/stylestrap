@@ -98,7 +98,7 @@ class Builder<T> {
     `;
   }
 
-  create(Component: any = 'div'): React.FC<T> {
+  create(Component: any = 'div'): React.FC<T & { [propName: string]: any }> {
     const { name, transformedProps, defaultProps, initialClassNames, filter } = this.state;
 
     const StyledComponent = this.__getStyledComponent__(Component);
