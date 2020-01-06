@@ -7,7 +7,7 @@ const LoadingSizeMap = {
   lg: '24px',
   sm: '18px',
   xs: '15px',
-  undefined: '20px',
+  undefined: '18px',
 };
 
 export const LoadingButton: React.FC<LoadingButtonProps> = ({
