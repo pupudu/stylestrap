@@ -1,0 +1,176 @@
+---
+name: Forms
+menu: Components
+route: '/components/forms'
+---
+
+import { PropsTable, Preview, Playground } from '../../docs';
+import * as Helpers from '../../../docs/utils';
+import * as Presets from './Presets';
+
+# Forms
+<Helpers.Subtitle>
+  Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.
+</Helpers.Subtitle>
+
+## Overview
+Here's a quick example of how stylestrap Form elements can be used to
+create elegant forms with ease.
+
+<Preview>
+  <Presets.Overview />
+</Preview>
+
+```jsx
+<form>
+  <FormGroup>
+    <Label htmlFor="email-eg">Email address</Label>
+    <Input type="email" name="email-eg" placeholder="Enter email" />
+    <HelpText>We'll never share your email with anyone else.</HelpText>
+  </FormGroup>
+  <FormGroup>
+    <Label htmlFor="password-eg">Password</Label>
+    <Input type="password" name="password-eg" placeholder="Password" />
+  </FormGroup>
+  <FormGroup type="checkbox">
+    <Input type="checkbox" name="check-eg" />
+    <Label type="checkbox" htmlFor="check-eg">
+      Check me out
+    </Label>
+  </FormGroup>
+  <Button type="submit" color="primary">
+    Submit
+  </Button>
+</form>
+```
+
+## Form controls
+Textual form controls—like `<input>`s and `<textarea>`s—are all included in the `Input`
+component. Use the `Select` component for select dropdown controls.
+
+<Preview>
+  <Presets.FormControls />
+</Preview>
+
+```jsx
+<form>
+  <FormGroup>
+    <Label htmlFor="email-eg">Email address</Label>
+    <Input type="email" name="email-eg" placeholder="name@example.com" />
+  </FormGroup>
+  <FormGroup>
+    <Label htmlFor="exampleFormControlSelect1">Example select</Label>
+    <Select name="select-eg">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </Select>
+  </FormGroup>
+  <FormGroup>
+    <Label htmlFor="select-eg-2">Example multiple select</Label>
+    <Select multiple name="select-eg-2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </Select>
+  </FormGroup>
+  <FormGroup>
+    <label htmlFor="text-area-eg">Example textarea</label>
+    <Input type="textarea" name="text-area-eg" rows="3" placeholder="Some long description" />
+  </FormGroup>
+  <FormGroup>
+    <label htmlFor="file-eg">Example File Input</label>
+    <Input type="file" name="file-eg" placeholder="Upload file from computer" />
+  </FormGroup>
+</form>
+```
+
+## FormControl Presets
+You may have noted above, that we are writing a lot of boilerplate code
+to mark the form controls as form groups and for adding labels.
+Thus Stylestrap includes preset components which can shorten the markup required
+for rendering the same content.
+
+In addition to the shorter markup, these presets much easier to be used
+along side a form management library like `formik`, specially since they
+require only a single jsx tag.
+
+### FormInput
+`FormInput` is a compound component made of many components like `FormGroup`, `Input`, `Label` and `HelpText`.
+
+<Preview>
+  <Presets.FormInputPreset />
+</Preview>
+
+```jsx
+<FormInput
+  type="email"
+  placeholder="name@example.com"
+  label="Email address"
+  helpText="We'll never share your email with anyone else."
+/>
+```
+
+Validation feedback is baked into the Presets. Head on to the [FormPresets](/components/form-presets)
+section for more information
+about Preset components regarding the markup, prop types, examples and guidelines on the usage with Formik.
+
+<Preview>
+  <Presets.FormInputWithValidation />
+</Preview>
+
+## Sizing
+Set heights for form components by passing the `scale` prop.
+
+<Helpers.WarnCard>
+  A more natural prop name for sizing would be "size". However, input elements in the HTML spec
+  already has an attribute named "size"; which specifies the width of the input element
+  in terms of the number of characters allowed. Therefore we use the name "scale" for sizing of form components.
+</Helpers.WarnCard>
+
+<Preview>
+  <Presets.Sizing />
+</Preview>
+
+```jsx
+<Input placeholder="scale lg" scale="lg" />
+<Input placeholder="normal size" />
+<Input placeholder="scale sm" scale="sm" />
+```
+
+<Preview>
+  <Presets.SizingSelect />
+</Preview>
+
+```jsx
+<Select scale="lg">
+  <option>Large Select</option>
+</Select>
+<Select>
+  <option>Normal Select</option>
+</Select>
+<Select scale="sm">
+  <option>Small Select</option>
+</Select>
+```
+
+## Readonly
+
+Add the readonly boolean attribute on an input to prevent modification of the input’s value.
+Read-only inputs appear lighter (just like disabled inputs), but retain the standard cursor.
+
+If you want to have `<input readonly>` elements in your form styled as plain text,
+pass the type prop as "plaintext".
+
+<Preview>
+  <Presets.Readonly />
+</Preview>
+
+```jsx
+<Input value="readonly text input" readOnly />
+<Input value="readonly text input" type="plaintext" readOnly />
+```

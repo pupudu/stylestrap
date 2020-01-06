@@ -83,7 +83,7 @@ export const Button = makeComponent<ButtonProps>('Button')
     active: props.active,
     disabled: props.disabled,
   }))
-  .defaultProps({ color: 'primary' })
+  .defaultProps({ color: 'primary', type: 'button' })
   .props(props => ({
     'aria-pressed': props.active,
     'aria-disabled': props.disabled,

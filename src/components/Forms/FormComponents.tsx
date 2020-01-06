@@ -1,6 +1,10 @@
-import { makeComponent } from '../../core';
+import * as React from 'react';
+import * as SS from '../../core/SS';
+import { StyledBase, makeComponent } from '../../core';
 
-const Feedback = makeComponent('Feedback')
+export const Form = makeComponent('form').create('form');
+
+export const Feedback = makeComponent('Feedback')
   .props(({ invalid, valid }) => ({
     color: invalid ? 'danger' : valid ? 'success' : 'initial',
   }))
@@ -10,7 +14,7 @@ const Feedback = makeComponent('Feedback')
   }))
   .create();
 
-const HelpText = makeComponent('HelpText')
+export const HelpText = makeComponent('HelpText')
   .props({ muted: true })
   .classNames(({ muted }) => ({
     'form-text': true,
@@ -18,29 +22,54 @@ const HelpText = makeComponent('HelpText')
   }))
   .create('small');
 
-const FormGroup = makeComponent('FormGroup')
-  .classNames('form-group')
+export const FormGroup = makeComponent('FormGroup')
+  .classNames(props => ({
+    'form-group': props.type !== 'checkbox',
+    'form-check': props.type === 'checkbox',
+  }))
   .create();
 
-const Input = makeComponent('Input')
+interface InputPropsBase extends StyledBase {
+  type?: 'text' | 'plaintext' | 'checkbox' | 'file' | 'textarea' | 'email' | 'password' | string;
+  valid?: boolean;
+  invalid?: boolean;
+  scale?: 'sm' | 'lg';
+}
+
+interface TextAreaProps extends SS.TextArea, InputPropsBase {}
+interface InputProps extends SS.Input, InputPropsBase {
+  plaintext?: boolean;
+}
+
+export const Input: React.FC<InputProps | TextAreaProps> = makeComponent('Input')
+  .props(props => ({
+    as: props.type === 'textarea' && 'textarea',
+  }))
   .classNames(props => ({
-    'form-control': props.type !== 'plaintext',
+    'form-control': !['checkbox', 'file', 'plaintext'].includes(props.type) && !props.plaintext,
+    'form-control-lg': props.scale === 'lg',
+    'form-control-sm': props.scale === 'sm',
     'form-control-plaintext': props.type === 'plaintext',
+    'form-check-input': props.type === 'checkbox',
+    'form-control-file': props.type === 'file',
     'is-invalid': props.invalid,
     'is-valid': props.valid,
   }))
   .create('input');
 
-const Select = makeComponent('Select')
+export const Select = makeComponent('Select')
   .classNames(props => ({
     'form-control': true,
+    'form-control-lg': props.scale === 'lg',
+    'form-control-sm': props.scale === 'sm',
     'is-invalid': props.invalid,
     'is-valid': props.valid,
   }))
   .create('select');
 
-const Label = makeComponent('Label')
-  .classNames('label')
-  .create();
-
-export { Feedback, HelpText, FormGroup, Input, Label, Select };
+export const Label = makeComponent('Label')
+  .classNames(props => ({
+    label: true,
+    'form-check-label': props.type === 'checkbox',
+  }))
+  .create('label');

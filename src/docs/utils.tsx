@@ -16,17 +16,13 @@ export function Playground(props) {
   );
 }
 
-export const Helpers = {} as any;
-
-const Subtitle = props => {
+export const Subtitle = props => {
   return (
     <Heading size="h5" muted={true} css={{ marginBottom: '2rem' }}>
       {props.children}
     </Heading>
   );
 };
-
-Helpers.Subtitle = Subtitle;
 
 export function PropsTable(props) {
   return <Props {...props} />;
@@ -108,3 +104,6 @@ export function Spaced({ children, ...props }) {
     </Box>
   );
 }
+
+export const Helpers = {} as any;
+Helpers.Subtitle = Subtitle;

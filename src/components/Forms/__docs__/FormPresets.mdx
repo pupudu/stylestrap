@@ -1,0 +1,47 @@
+---
+name: Form Presets
+menu: Components
+route: '/components/form-presets'
+---
+
+import { PropsTable, Preview, Playground, Helpers } from '../../docs';
+import * as Presets from './Presets';
+
+# Form Presets
+<Helpers.Subtitle>
+  Documentation for preset compound form components, and guidelines for integration with Formik.
+</Helpers.Subtitle>
+
+## FormInput
+`FormInput` is a compound component made of many components like `FormGroup`, `Input`, `Label` and `HelpText`.
+
+<Preview.Adaptive>
+  <Presets.FormInputPreset />
+</Preview.Adaptive>
+
+```jsx
+<FormInput
+  type="email"
+  placeholder="name@example.com"
+  label="Email address"
+  helpText="We'll never share your email with anyone else."
+/>
+```
+
+Validation feedback is baked into the Presets. We can activate them by passing `error`, `touched` and `validInfo`
+props.
+
+In the following example, we validate the email address by simply checking whether it has an `@` sign.
+In a real world application, you would use a library like `yup` to do validations in forms.
+
+The purpose of the `touched` prop is to validate the fields only if it was touched by the user. In this example,
+we pass `touched` as true when there is an error. This can be handled more meaningfully with the help of a library
+like formik.
+
+Also note that the `vaidInfo` prop is not very useful in practice. If the fields are valid, you would usually
+want to submit the form right away, rather than indicating that the form values are valid.
+
+<Preview.Adaptive>
+  <Presets.FormInputWithValidation />
+</Preview.Adaptive>
+

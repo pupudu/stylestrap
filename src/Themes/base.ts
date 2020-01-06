@@ -27,6 +27,7 @@ function getColorShade(color, type) {
 }
 
 function colorByLuminance(color, lightColor = '#FFF', darkColor = '#666', threshold = 0.7) {
+  if (color === 'transparent') return;
   const colorRaw = getColor(color);
   if (!colorRaw) return;
   return getLuminance(opacify(1, colorRaw)) < threshold ? lightColor : darkColor;
