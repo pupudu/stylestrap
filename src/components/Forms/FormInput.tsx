@@ -11,7 +11,7 @@ const FormInputBase = props => {
 
   return (
     <FormGroup className={className}>
-      <Label htmlFor={id}>{label}</Label>
+      {label && <Label htmlFor={id}>{label}</Label>}
       <Input
         {...rest}
         readOnly={readOnly}
