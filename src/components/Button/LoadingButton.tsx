@@ -5,9 +5,9 @@ import { LoadingButtonProps } from './Types';
 
 const LoadingSizeMap = {
   lg: '24px',
-  sm: '18px',
+  sm: '17px',
   xs: '15px',
-  undefined: '18px',
+  undefined: '17px',
 };
 
 const defaultProps = {
