@@ -56,7 +56,6 @@ export const Loading: React.FC<LoadingProps> = makeComponent('Loading')
     width: props.size,
     height: props.size,
     animationDuration: `${props.wait + props.fadeDuration}ms`,
-    transition: 'height, width 0.3s',
   }))
   .raw(
     props =>
@@ -74,9 +73,10 @@ export const Loading: React.FC<LoadingProps> = makeComponent('Loading')
     }
   `
   )
-  .create(props => (
+  .filter(['fadeDuration', 'waveCount'])
+  .create(({ _props, ...props }) => (
     <div {...props}>
-      {Array(props.waveCount)
+      {Array({ ...props, ..._props }.waveCount)
         .fill(0)
         .map((_, i) => (
           <Grower key={i} delay={`${i * 0.2}s`} />

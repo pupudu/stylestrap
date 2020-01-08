@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
-import { Button } from '../Button';
-import { Loading } from './Loading';
+import { LoadingButton as Button } from '../Button';
 
-const LoadingButton = () => {
-  const [state, setState] = useState(0);
+export const LoadingButton = props => {
+  const [state, setState] = useState(false);
+
   return (
     <Button
+      {...props}
       onClick={() => {
-        setState(1);
-        setTimeout(() => {
-          setState(0);
-        }, 5000);
+        setState(true);
+        setTimeout(() => setState(false), 3000);
       }}
-      size="sm"
+      loading={state}
     >
-      <Loading size={state !== 2 ? '1.25rem' : 0} css={{ marginRight: state === 1 && '0.5rem' }} />
-      Button
+      Loading
     </Button>
   );
 };

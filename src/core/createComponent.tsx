@@ -91,9 +91,9 @@ class Builder<T> {
 
     return (typeof Component === 'string' ? styled[Component] : styled(Component))`
       &&& {
-        ${props => getStyleString({ ...props, ...props._filtered }, styleMapper, name)};
-        ${props => getRawStyles({ ...props, ...props._filtered })}
-        ${props => callOrReturn(props.$raw, { ...props, ...props._filtered }, props.theme)}
+        ${props => getStyleString({ ...props, ...props._props }, styleMapper, name)};
+        ${props => getRawStyles({ ...props, ...props._props })}
+        ${props => callOrReturn(props.$raw, { ...props, ...props._props }, props.theme)}
       }
     `;
   }
@@ -151,13 +151,13 @@ class Builder<T> {
       /**
        * If a filter list is given, filter out those props from the component
        */
-      const _filtered = {};
+      const _props = {};
       filter.forEach(key => {
-        _filtered[key] = mergedProps[key];
+        _props[key] = mergedProps[key];
         delete mergedProps[key];
       });
 
-      return <StyledComponent {...mergedProps} _filtered={_filtered} className={className} />;
+      return <StyledComponent {...mergedProps} _props={_props} className={className} />;
     };
     Wrapped.displayName = name;
 

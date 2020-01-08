@@ -10,27 +10,38 @@ const LoadingSizeMap = {
   undefined: '18px',
 };
 
-export const LoadingButton: React.FC<LoadingButtonProps> = ({
-  loading,
-  direction,
-  $css,
-  ...props
-}) => {
-  const marginDirection = direction === 'right' ? 'marginLeft' : 'marginRight';
+const defaultProps = {
+  delay: 200,
+  duration: 300,
+  disabled: false,
+  disabledWhileLoading: true,
+};
 
+export const LoadingButton: React.FC<LoadingButtonProps> = allProps => {
+  const { loading, direction, delay, $css, disabled, duration, disabledWhileLoading, ...props } = {
+    ...defaultProps,
+    ...allProps,
+  };
+
+  const marginDirection = direction === 'right' ? 'margin-left' : 'margin-right';
   const size = loading ? LoadingSizeMap[String(props.size)] : 0;
+
   const styles = {
-    [marginDirection]: loading ? `calc(${size} * 2 / 5)` : 0,
     float: direction,
+    transition: `all ${duration}ms`,
+    [marginDirection]: loading ? `calc(${size} * 2 / 5)` : 0,
+    opacity: loading ? 1 : 0,
+    transitionDelay: loading ? `${delay}ms` : 0,
   };
 
   return (
     <Button
       {...props}
-      disabled={loading}
+      disabled={disabled || (disabledWhileLoading && loading)}
       $css={{ ...$css, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
-      <Loading $css={styles} size={size} /> {props.children}
+      <Loading $css={styles} size={size} />
+      {props.children}
     </Button>
   );
 };
